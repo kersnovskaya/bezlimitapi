@@ -1,6 +1,6 @@
 import pytest
 
-from baseApp import Request
+from baseapp import Request
 from config import TEST_PHONE, PASSWORD, TEST_SIDE_PHONE
 
 

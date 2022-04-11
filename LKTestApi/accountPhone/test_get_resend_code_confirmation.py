@@ -1,7 +1,7 @@
 import pytest
 import random
 
-from baseApp import Request
+from baseapp import Request
 from get_token import get_access_token
 from config import TEST_PHONE, PASSWORD, TEST_SIDE_PHONE
 
