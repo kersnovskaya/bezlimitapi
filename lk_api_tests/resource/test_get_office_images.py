@@ -1,7 +1,7 @@
 import pytest
 
-from lkapi.baseapp import Request
-from lkapi.get_token import get_access_token
+from baseapp import Request
+from get_token import get_access_token
 
 
 class Test:
