@@ -1,7 +1,5 @@
-import pytest
-
-from baseapp import Request
-from config import TEST_PHONE, PASSWORD, TEST_SIDE_PHONE
+from api.baseapp import Request
+from config import TEST_PHONE, PASSWORD
 
 
 class Test:

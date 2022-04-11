@@ -1,7 +1,7 @@
 import random
 
-from baseapp import Request
-from get_token import get_access_token
+from api.baseapp import Request
+from api.get_token import get_access_token
 from config import TEST_PHONE, PASSWORD
 
 

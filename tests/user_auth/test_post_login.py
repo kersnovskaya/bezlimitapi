@@ -1,6 +1,4 @@
-import pytest
-
-from baseapp import Request
+from api.baseapp import Request
 from config import TEST_PHONE, PASSWORD
 
 

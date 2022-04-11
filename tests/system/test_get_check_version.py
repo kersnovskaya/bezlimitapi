@@ -1,8 +1,4 @@
-import pytest
-
-from baseapp import Request
-from get_token import get_access_token
-from config import TEST_PHONE, PASSWORD, TEST_SIDE_PHONE, TEST_SECOND_PHONE
+from api.baseapp import Request
 
 
 class Test:
