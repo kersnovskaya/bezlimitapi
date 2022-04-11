@@ -1,7 +1,7 @@
 import pytest
 
-from baseapp import Request
-from config import TEST_PHONE, PASSWORD, TEST_SIDE_PHONE
+from lkapi.baseapp import Request
+from lkapi.config import TEST_PHONE, PASSWORD, TEST_SIDE_PHONE
 
 
 class Test:

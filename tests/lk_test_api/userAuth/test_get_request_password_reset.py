@@ -1,8 +1,8 @@
 import pytest
 
-from baseapp import Request
-from get_token import get_access_token
-from config import TEST_PHONE, PASSWORD, TEST_SIDE_PHONE, TEST_SECOND_PHONE
+from lkapi.baseapp import Request
+from lkapi.get_token import get_access_token
+from lkapi.config import TEST_PHONE, PASSWORD, TEST_SIDE_PHONE, TEST_SECOND_PHONE
 
 
 class Test:
