@@ -1,8 +1,8 @@
 import random
 
-from lkapi.baseapp import Request
-from lkapi.get_token import get_access_token
-from lkapi.config import TEST_PHONE, PASSWORD
+from baseapp import Request
+from get_token import get_access_token
+from config import TEST_PHONE, PASSWORD
 
 
 class Test:
