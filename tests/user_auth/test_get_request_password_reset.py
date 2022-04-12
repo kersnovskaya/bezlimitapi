@@ -1,5 +1,5 @@
-from api.base_app.baseapp import Request
-from api.configuration.config import TEST_PHONE, PASSWORD, TEST_SIDE_PHONE, TEST_SECOND_PHONE
+from lkapi.base_app.baseapp import Request
+from lkapi.configuration.config import TEST_PHONE, PASSWORD, TEST_SIDE_PHONE, TEST_SECOND_PHONE
 
 
 class Test:

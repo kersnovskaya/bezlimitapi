@@ -1,7 +1,7 @@
 import requests
 import json
 
-from api.configuration.config import DOMAIN_PROD
+from lkapi.configuration.config import DOMAIN_PROD
 
 
 class Response:

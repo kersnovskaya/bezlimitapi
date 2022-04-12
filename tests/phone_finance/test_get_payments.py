@@ -1,6 +1,6 @@
-from api.base_app.baseapp import Request
-from api.tokenmethod.get_token import get_access_token
-from api.configuration.config import TEST_PHONE, PASSWORD
+from lkapi.base_app.baseapp import Request
+from lkapi.tokenmethod.get_token import get_access_token
+from lkapi.configuration.config import TEST_PHONE, PASSWORD
 
 
 class Test:

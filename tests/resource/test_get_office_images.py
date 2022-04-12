@@ -1,4 +1,4 @@
-from api.base_app.baseapp import Request
+from lkapi.base_app.baseapp import Request
 
 
 class Test:

@@ -1,4 +1,4 @@
-from api.base_app import baseapp as ba
+from lkapi.base_app import baseapp as ba
 
 
 def get_access_token(phone: int, password: str) -> str:
