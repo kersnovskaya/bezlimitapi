@@ -1,5 +1,5 @@
-from api.baseapp import Request
-from config import TEST_PHONE, PASSWORD
+from api.base_app.baseapp import Request
+from api.configuration.config import TEST_PHONE, PASSWORD
 
 
 class Test:

@@ -1,6 +1,6 @@
-from api.baseapp import Request
-from api.get_token import get_access_token
-from config import TEST_PHONE, PASSWORD
+from api.base_app.baseapp import Request
+from api.tokenmethod.get_token import get_access_token
+from api.configuration.config import TEST_PHONE, PASSWORD
 
 
 class Test:

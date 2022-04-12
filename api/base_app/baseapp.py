@@ -1,7 +1,7 @@
 import requests
 import json
 
-from config import DOMAIN_PROD, DOMAIN_DEV
+from api.configuration.config import DOMAIN_PROD
 
 
 class Response:
