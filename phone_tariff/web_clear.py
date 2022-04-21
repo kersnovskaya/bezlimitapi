@@ -9,46 +9,6 @@ chrome_options = Options()
 chrome_options.add_argument("--headless")
 driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=r'C:\Users\morozov_i\PycharmProjects\bezlimitapi\driver\chromedriver.exe')
 
-ts = Test
-token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
-
-try:
-    ts.test_put_phone_tariff_change_invalid_token(1234567890)
-except:
-    print()
-try:
-    ts.test_put_phone_tariff_change_invalid_phone(token)
-except:
-    print()
-try:
-    ts.test_put_phone_tariff_change_invalid_tariff_id(token)
-except:
-    print()
-try:
-    ts.test_put_phone_tariff_change_valid_credentials(token)
-except:
-    print()
-try:
-    ts.test_put_phone_tariff_change_valid_credentials_duplicate(token)
-except:
-    print()
-try:
-    ts.test_put_phone_tariff_cancel_invalid_token(1234567890)
-except:
-    print()
-try:
-    ts.test_put_phone_tariff_cancel_invalid_credentials(token)
-except:
-    print()
-try:
-    ts.test_put_phone_tariff_cancel_valid_credentials(token)
-except:
-    print()
-try:
-    ts.test_put_phone_tariff_change_valid_credentials_duplicate(token)
-except:
-    print()
-
 
 def authorize():
     driver.get('https://bill.bezlimit.ru/site/login')

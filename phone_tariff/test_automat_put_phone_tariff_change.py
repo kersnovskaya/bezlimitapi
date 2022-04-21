@@ -1,12 +1,11 @@
 import requests
-from lkapi.configuration.config import TOKEN_9006471111
 
 class Test:
 
     def test_put_phone_tariff_change_invalid_token(self):
-        self = 12345678910
+        token = 12345678910
         headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {self}',
+                   'Authorization': f'Bearer {token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
         lktest_url = "https://lktest.bezlimit.ru/v1"
@@ -29,9 +28,9 @@ class Test:
 
 
     def test_put_phone_tariff_change_invalid_tariff_id(self):
-        token = self
+        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
         headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {self}',
+                   'Authorization': f'Bearer {token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
         lktest_url = "https://lktest.bezlimit.ru/v1"
@@ -51,9 +50,9 @@ class Test:
 
 
     def test_put_phone_tariff_change_invalid_phone(self):
-        token = self
+        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
         headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {self}',
+                   'Authorization': f'Bearer {token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
         lktest_url = "https://lktest.bezlimit.ru/v1"
@@ -73,9 +72,9 @@ class Test:
 
 
     def test_put_phone_tariff_change_valid_credentials(self):
-        token = self
+        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
         headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {self}',
+                   'Authorization': f'Bearer {token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
         lktest_url = "https://lktest.bezlimit.ru/v1"
@@ -93,9 +92,9 @@ class Test:
 
 
     def test_put_phone_tariff_change_valid_credentials_duplicate(self):
-        token = self
+        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
         headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {self}',
+                   'Authorization': f'Bearer {token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
         lktest_url = "https://lktest.bezlimit.ru/v1"
@@ -119,9 +118,9 @@ class Test:
 
 
     def test_put_phone_tariff_cancel_invalid_token(self):
-        token = self
+        token = 12345678910
         headers = {'accept': '*/*',
-                   'Authorization': f'Bearer {self}',
+                   'Authorization': f'Bearer {token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
         lktest_url = "https://lktest.bezlimit.ru/v1"
@@ -143,9 +142,9 @@ class Test:
 
 
     def test_put_phone_tariff_cancel_invalid_credentials(self):
-        token = self
+        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
         headers = {'accept': '*/*',
-                   'Authorization': f'Bearer {self}',
+                   'Authorization': f'Bearer {token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
         lktest_url = "https://lktest.bezlimit.ru/v1"
@@ -164,9 +163,9 @@ class Test:
 
 
     def test_put_phone_tariff_cancel_valid_credentials(self):
-        token = self
+        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
         headers = {'accept': '*/*',
-                   'Authorization': f'Bearer {self}',
+                   'Authorization': f'Bearer {token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
         lktest_url = "https://lktest.bezlimit.ru/v1"
@@ -183,9 +182,9 @@ class Test:
 
 
     def test_put_phone_tariff_cancel_without_application(self):
-        token = self
+        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
         headers = {'accept': '*/*',
-                   'Authorization': f'Bearer {self}',
+                   'Authorization': f'Bearer {token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
         lktest_url = "https://lktest.bezlimit.ru/v1"
