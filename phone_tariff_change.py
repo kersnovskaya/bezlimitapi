@@ -7,7 +7,7 @@ import time
 
 chrome_options = Options()
 chrome_options.add_argument("--headless")
-driver = webdriver.Chrome(chrome_options=chrome_options, executable_path=r'C:\Users\morozov_i\PycharmProjects\bezlimitapi\driver\chromedriver.exe')
+driver = webdriver.Chrome(chrome_options=chrome_options, executable_path='/home/butovich_v/workspace/atsore/drivers/chromedriver_lnx')
 
 ts = Test
 token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
