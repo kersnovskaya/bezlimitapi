@@ -1,4 +1,3 @@
-from tests.phone_tariff.test_put_phone_tariff_change import Test
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
