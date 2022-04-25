@@ -1,4 +1,3 @@
-import pytest
 import requests
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -35,7 +34,7 @@ print(url_dev)
 chrome_options = Options()
 chrome_options.add_argument("--headless")
 driver = webdriver.Chrome(chrome_options=chrome_options,
-                          executable_path='home/butovich_v/workspace/billingreport7/driver/chromedriver_lnx')
+                          executable_path=r'C:\Users\morozov_i\PycharmProjects\bezlimitapi\driver\chromedriver.exe')
 
 input_card = 2202201766660126
 input_date = 325
