@@ -7,7 +7,7 @@ import time
 chrome_options = Options()
 chrome_options.add_argument("--headless")
 driver = webdriver.Chrome(chrome_options=chrome_options,
-                          executable_path=r'C:\Users\morozov_i\PycharmProjects\bezlimitapi\driver\chromedriver.exe')
+                          executable_path='home/butovich_v/workspace/billingreport7/driver/chromedriver_lnx')
 
 
 def authorize():
