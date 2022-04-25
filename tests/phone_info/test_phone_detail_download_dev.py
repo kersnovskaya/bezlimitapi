@@ -1,11 +1,31 @@
 import requests
-from lkapi.configuration.config import TOKEN_9006471111
 
 
 class Test:
+    def test_get_phone_detail_download_without_token(self):
+        token = 12345678910
+        headers = {'accept': '*/*', 'Authorization': f'Bearer {token}'}
+        lktest_url = "https://lktest.bezlimit.ru/v1"
+        data = {
+            "phone": 9006471111,
+            "periodStart": "2022-01-01",
+            "periodEnd": "2022-03-01",
+            "type": "0"
+        }
+        request_url = f"{lktest_url}/phone/detail/download"
+        response = requests.get(request_url, headers=headers, params=data)
+        print(response)
+
+        assert response.status_code == 401
+        assert response.json() is {'code': 0,
+                                   'message': 'Your request was made with invalid credentials.',
+                                   'name': 'Unauthorized',
+                                   'status': 401,
+                                   'type': 'yii\\web\\UnauthorizedHttpException'}
+
 
     def test_get_phone_detail_download_correct_credentials_type_0(self):
-        token = TOKEN_9006471111
+        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
         headers = {'accept': '*/*', 'Authorization': f'Bearer {token}'}
         lktest_url = "https://lktest.bezlimit.ru/v1"
         data = {
@@ -22,7 +42,7 @@ class Test:
 
 
     def test_get_phone_detail_download_correct_credentials_type_1(self):
-        token = TOKEN_9006471111
+        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
         headers = {'accept': '*/*', 'Authorization': f'Bearer {token}'}
         lktest_url = "https://lktest.bezlimit.ru/v1"
         data = {
@@ -39,7 +59,7 @@ class Test:
 
 
     def test_get_phone_detail_download_correct_credentials_type_2(self):
-        token = TOKEN_9006471111
+        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
         headers = {'accept': '*/*', 'Authorization': f'Bearer {token}'}
         lktest_url = "https://lktest.bezlimit.ru/v1"
         data = {
@@ -56,7 +76,7 @@ class Test:
 
 
     def test_get_phone_detail_download_non_bezlimit_number(self):
-        token = TOKEN_9006471111
+        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
         headers = {'accept': '*/*', 'Authorization': f'Bearer {token}'}
         lktest_url = "https://lktest.bezlimit.ru/v1"
         data = {
@@ -75,7 +95,7 @@ class Test:
 
 
     def test_get_phone_detail_download_wrong_number(self):
-        token = TOKEN_9006471111
+        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
         headers = {'accept': '*/*', 'Authorization': f'Bearer {token}'}
         lktest_url = "https://lktest.bezlimit.ru/v1"
         data = {
@@ -94,7 +114,7 @@ class Test:
 
 
     def test_get_phone_detail_download_over_three_months(self):
-        token = TOKEN_9006471111
+        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
         headers = {'accept': '*/*', 'Authorization': f'Bearer {token}'}
         lktest_url = "https://lktest.bezlimit.ru/v1"
         data = {
@@ -114,7 +134,7 @@ class Test:
 
 
     def test_get_phone_detail_download_wrong_params(self):
-        token = TOKEN_9006471111
+        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
         headers = {'accept': '*/*', 'Authorization': f'Bearer {token}'}
         lktest_url = "https://lktest.bezlimit.ru/v1"
         data = {
@@ -136,7 +156,7 @@ class Test:
 
 
     def test_get_phone_detail_download_empty_params(self):
-        token = TOKEN_9006471111
+        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
         headers = {'accept': '*/*', 'Authorization': f'Bearer {token}'}
         lktest_url = "https://lktest.bezlimit.ru/v1"
         data = {
