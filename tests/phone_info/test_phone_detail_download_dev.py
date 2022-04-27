@@ -17,7 +17,7 @@ class Test:
         print(response)
 
         assert response.status_code == 401
-        assert response.json() is {'code': 0,
+        assert response.json() == {'code': 0,
                                    'message': 'Your request was made with invalid credentials.',
                                    'name': 'Unauthorized',
                                    'status': 401,

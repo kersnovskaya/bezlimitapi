@@ -19,12 +19,11 @@ class Test:
         print(response.json())
 
         assert response.status_code == 401
-        assert response.json() == {
-                                    'name': 'Unauthorized',
-                                    'message': 'Your request was made with invalid credentials.',
-                                    'code': 0,
-                                    'status': 401
-                                    }
+        assert response.json() == {'code': 0,
+                                   'message': 'Your request was made with invalid credentials.',
+                                   'name': 'Unauthorized',
+                                   'status': 401,
+                                   'type': 'yii\\web\\UnauthorizedHttpException'}
 
 
     def test_put_phone_tariff_change_invalid_tariff_id(self):

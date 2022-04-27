@@ -17,7 +17,7 @@ class Test:
         print(response)
 
         assert response.status_code == 401
-        assert response.json() is {'code': 0,
+        assert response.json() == {'code': 0,
                                    'message': 'Your request was made with invalid credentials.',
                                    'name': 'Unauthorized',
                                    'status': 401,
@@ -171,8 +171,7 @@ class Test:
         print(response.json())
 
         assert response.status_code == 400
-        assert response.json() == {'name': 'Bad Request',
+        assert response.json() == {'code': 0,
                                    'message': 'Неправильное значение параметра "phone".',
-                                   'code': 0,
-                                   'status': 400,
-                                   'type': 'yii\\web\\BadRequestHttpException'}
+                                   'name': 'Bad Request',
+                                   'status': 400}

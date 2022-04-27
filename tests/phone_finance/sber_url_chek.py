@@ -41,9 +41,9 @@ input_date = 325
 input_cvc = 594
 
 for url in (url_prod, url_dev):
-    time.sleep(5)
+    time.sleep(8)
     driver.get(url)
-    time.sleep(5)
+    time.sleep(8)
     assert driver.find_element(By.XPATH, '//*[@id="root"]/div/div/div[2]/div/div[3]/form/div[8]/button'), \
         'Не открывается эквайринг.'
 
@@ -55,19 +55,20 @@ for url in (url_prod, url_dev):
         card.send_keys(input_card)
         date.send_keys(input_date)
         cvc.send_keys(input_cvc)
-        time.sleep(5)
+        time.sleep(8)
 
         button_pay = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div[2]/div/div[3]/form/div[8]/button')
         button_pay.click()
-        time.sleep(5)
+        time.sleep(8)
 
         button_cancel = driver.find_element(By.XPATH, '/html/body/div/div[3]/div/div/div[1]/a')
         button_cancel.click()
-        time.sleep(5)
+        time.sleep(8)
 
         button_accept = driver.find_element(By.XPATH, '//*[@id="exit-page"]/div[4]/div[2]')
         button_accept.click()
         time.sleep(5)
 
+    time.sleep(5)
     assert driver.find_element(By.XPATH, '/html/body/main/div/div[1]/button'), \
         'Не открывается страница неуспешной оплаты.'
