@@ -8,9 +8,9 @@ class Test:
                    'Authorization': f'Bearer {token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
-        lktest_url = "https://lktest.bezlimit.ru/v1"
+        lktest_url = "https://api.lk.bezlimit.ru/v1"
         data = {
-            "phone": 9006471111,
+            "phone": 9682223481,
             "tariffId": 6903
         }
         request_url = f"{lktest_url}/phone/tariff/change"
@@ -19,11 +19,12 @@ class Test:
         print(response.json())
 
         assert response.status_code == 401
-        assert response.json() == {'code': 0,
-                                   'message': 'Your request was made with invalid credentials.',
-                                   'name': 'Unauthorized',
-                                   'status': 401,
-                                   'type': 'yii\\web\\UnauthorizedHttpException'}
+        assert response.json() == {
+                                    'name': 'Unauthorized',
+                                    'message': 'Your request was made with invalid credentials.',
+                                    'code': 0,
+                                    'status': 401
+                                    }
 
 
     def test_put_phone_tariff_change_invalid_tariff_id(self):
@@ -32,9 +33,9 @@ class Test:
                    'Authorization': f'Bearer {token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
-        lktest_url = "https://lktest.bezlimit.ru/v1"
+        lktest_url = "https://api.lk.bezlimit.ru/v1"
         data = {
-            "phone": 9006471111,
+            "phone": 9682223481,
             "tariffId": 1488
         }
         request_url = f"{lktest_url}/phone/tariff/change"
@@ -54,7 +55,7 @@ class Test:
                    'Authorization': f'Bearer {token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
-        lktest_url = "https://lktest.bezlimit.ru/v1"
+        lktest_url = "https://api.lk.bezlimit.ru/v1"
         data = {
             "phone": 9696588825,
             "tariffId": 6903
@@ -76,9 +77,9 @@ class Test:
                    'Authorization': f'Bearer {token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
-        lktest_url = "https://lktest.bezlimit.ru/v1"
+        lktest_url = "https://api.lk.bezlimit.ru/v1"
         data = {
-            "phone": 9006471111,
+            "phone": 9682223481,
             "tariffId": 6903
         }
         request_url = f"{lktest_url}/phone/tariff/change"
@@ -96,9 +97,9 @@ class Test:
                    'Authorization': f'Bearer {token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
-        lktest_url = "https://lktest.bezlimit.ru/v1"
+        lktest_url = "https://api.lk.bezlimit.ru/v1"
         data = {
-            "phone": 9006471111,
+            "phone": 9682223481,
             "tariffId": 6903
         }
         request_url = f"{lktest_url}/phone/tariff/change"
@@ -122,9 +123,9 @@ class Test:
                    'Authorization': f'Bearer {token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
-        lktest_url = "https://lktest.bezlimit.ru/v1"
+        lktest_url = "https://api.lk.bezlimit.ru/v1"
         data = {
-            "phone": 9006471111
+            "phone": 9682223481
         }
         request_url = f"{lktest_url}/phone/tariff/cancel-change"
         response = requests.put(request_url, headers=headers, data=data)
@@ -146,7 +147,7 @@ class Test:
                    'Authorization': f'Bearer {token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
-        lktest_url = "https://lktest.bezlimit.ru/v1"
+        lktest_url = "https://api.lk.bezlimit.ru/v1"
         data = {
             "phone": 9696588825
         }
@@ -167,9 +168,9 @@ class Test:
                    'Authorization': f'Bearer {token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
-        lktest_url = "https://lktest.bezlimit.ru/v1"
+        lktest_url = "https://api.lk.bezlimit.ru/v1"
         data = {
-            "phone": 9006471111
+            "phone": 9682223481
         }
         request_url = f"{lktest_url}/phone/tariff/cancel-change"
         response = requests.put(request_url, headers=headers, data=data)
@@ -186,9 +187,9 @@ class Test:
                    'Authorization': f'Bearer {token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
-        lktest_url = "https://lktest.bezlimit.ru/v1"
+        lktest_url = "https://api.lk.bezlimit.ru/v1"
         data = {
-            "phone": 9006471111
+            "phone": 9682223481
         }
         request_url = f"{lktest_url}/phone/tariff/cancel-change"
         response = requests.put(request_url, headers=headers, data=data)

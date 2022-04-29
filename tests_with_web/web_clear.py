@@ -7,7 +7,7 @@ import time
 chrome_options = Options()
 chrome_options.add_argument("--headless")
 driver = webdriver.Chrome(chrome_options=chrome_options,
-                          executable_path=r'C:\Users\morozov_i\PycharmProjects\bezlimitapi\driver\chromedriver.exe')
+                          executable_path=r'/driver/chromedriver.exe')
 
 
 def authorize():
@@ -30,7 +30,7 @@ def authorize():
 
 authorize()
 
-driver.get('https://bill.bezlimit.ru/phone/card/tasks/9006471111')
+driver.get('https://bill.bezlimit.ru/phone/card/tasks/9682223481')
 
 
 status_list = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div[2]/div/div[5]/div/div[1]/div[2]/div[1]/div/div/div[2]/div[3]/table/tbody/tr[1]/td[8]/a')
