@@ -14,7 +14,6 @@ class Test:
         print(response)
         print(response.json())
 
-        assert response.json().startswith('"url":')
         assert response.status_code == 200
 
 
