@@ -1,4 +1,3 @@
-from lkapi.base_app.baseapp import Request
 import requests
 
 class Test:

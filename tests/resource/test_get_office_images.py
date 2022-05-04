@@ -1,16 +1,28 @@
-from lkapi.base_app.baseapp import Request
+import requests
 
 
 class Test:
 
-    endpoint = '/resource/office-images'
 
-    def test_resource_office_images(self):
-        req = Request('GET', endpoint=self.endpoint)
+    def test_resource_office_images_prod(self):
+        lk_url = "https://api.lk.bezlimit.ru/v1"
 
-        res = req.make_request_to_endpoint()
+        request_url = f"{lk_url}/resource/office-images"
+        response = requests.get(request_url)
 
-        assert res.get_status_code() == 200
-        assert type(res.get_content()) == list
-        for i in res.get_content():
+        assert response.status_code == 200
+        assert type(response.json()) == list
+        for i in response.json():
+            assert i['url'] is not None
+
+
+    def test_resource_office_images_dev(self):
+        lk_url = "https://lktest.bezlimit.ru/v1"
+
+        request_url = f"{lk_url}/resource/office-images"
+        response = requests.get(request_url)
+
+        assert response.status_code == 200
+        assert type(response.json()) == list
+        for i in response.json():
             assert i['url'] is not None

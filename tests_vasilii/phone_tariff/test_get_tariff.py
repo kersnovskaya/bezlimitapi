@@ -1,3 +1,4 @@
+import requests
 import random
 
 from lkapi.base_app.baseapp import Request
