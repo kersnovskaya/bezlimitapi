@@ -10,8 +10,8 @@ class Test:
                    }
         lktest_url = "https://api.lk.bezlimit.ru/v1"
         data = {
-            "phone": 9682223481,
-            "tariffId": 6903
+            "phone": 9612224930,
+            "tariffId": 8014
         }
         request_url = f"{lktest_url}/phone/tariff/change"
         response = requests.get(request_url, headers=headers, data=data)
@@ -28,14 +28,14 @@ class Test:
 
 
     def test_put_phone_tariff_change_invalid_tariff_id(self):
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+        token = 'g6w9Csyh-yhrZQTcXjDEJ9-5kLqqJDNDKpAllfprIG3J8fk2WX8rqCRFIJxD3cJ6'
         headers = {'accept': 'application/json',
                    'Authorization': f'Bearer {token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
         lktest_url = "https://api.lk.bezlimit.ru/v1"
         data = {
-            "phone": 9682223481,
+            "phone": 9612224930,
             "tariffId": 1488
         }
         request_url = f"{lktest_url}/phone/tariff/change"
@@ -50,7 +50,7 @@ class Test:
 
 
     def test_put_phone_tariff_change_invalid_phone(self):
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+        token = 'g6w9Csyh-yhrZQTcXjDEJ9-5kLqqJDNDKpAllfprIG3J8fk2WX8rqCRFIJxD3cJ6'
         headers = {'accept': 'application/json',
                    'Authorization': f'Bearer {token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
@@ -58,7 +58,7 @@ class Test:
         lktest_url = "https://api.lk.bezlimit.ru/v1"
         data = {
             "phone": 9696588825,
-            "tariffId": 6903
+            "tariffId": 8014
         }
         request_url = f"{lktest_url}/phone/tariff/change"
         response = requests.get(request_url, headers=headers, data=data)
@@ -72,15 +72,15 @@ class Test:
 
 
     def test_put_phone_tariff_change_valid_credentials(self):
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+        token = 'g6w9Csyh-yhrZQTcXjDEJ9-5kLqqJDNDKpAllfprIG3J8fk2WX8rqCRFIJxD3cJ6'
         headers = {'accept': 'application/json',
                    'Authorization': f'Bearer {token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
         lktest_url = "https://api.lk.bezlimit.ru/v1"
         data = {
-            "phone": 9682223481,
-            "tariffId": 6903
+            "phone": 9612224930,
+            "tariffId": 8014
         }
         request_url = f"{lktest_url}/phone/tariff/change"
         response = requests.get(request_url, headers=headers, data=data)
@@ -92,15 +92,15 @@ class Test:
 
 
     def test_put_phone_tariff_change_valid_credentials_duplicate(self):
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+        token = 'g6w9Csyh-yhrZQTcXjDEJ9-5kLqqJDNDKpAllfprIG3J8fk2WX8rqCRFIJxD3cJ6'
         headers = {'accept': 'application/json',
                    'Authorization': f'Bearer {token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
         lktest_url = "https://api.lk.bezlimit.ru/v1"
         data = {
-            "phone": 9682223481,
-            "tariffId": 6903
+            "phone": 9612224930,
+            "tariffId": 8014
         }
         request_url = f"{lktest_url}/phone/tariff/change"
         response = requests.get(request_url, headers=headers, data=data)
@@ -125,7 +125,7 @@ class Test:
                    }
         lktest_url = "https://api.lk.bezlimit.ru/v1"
         data = {
-            "phone": 9682223481
+            "phone": 9612224930
         }
         request_url = f"{lktest_url}/phone/tariff/cancel-change"
         response = requests.put(request_url, headers=headers, data=data)
@@ -142,7 +142,7 @@ class Test:
 
 
     def test_put_phone_tariff_cancel_invalid_credentials(self):
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+        token = 'g6w9Csyh-yhrZQTcXjDEJ9-5kLqqJDNDKpAllfprIG3J8fk2WX8rqCRFIJxD3cJ6'
         headers = {'accept': '*/*',
                    'Authorization': f'Bearer {token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
@@ -163,14 +163,14 @@ class Test:
 
 
     def test_put_phone_tariff_cancel_valid_credentials(self):
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+        token = 'g6w9Csyh-yhrZQTcXjDEJ9-5kLqqJDNDKpAllfprIG3J8fk2WX8rqCRFIJxD3cJ6'
         headers = {'accept': '*/*',
                    'Authorization': f'Bearer {token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
         lktest_url = "https://api.lk.bezlimit.ru/v1"
         data = {
-            "phone": 9682223481
+            "phone": 9612224930
         }
         request_url = f"{lktest_url}/phone/tariff/cancel-change"
         response = requests.put(request_url, headers=headers, data=data)
@@ -182,14 +182,14 @@ class Test:
 
 
     def test_put_phone_tariff_cancel_without_application(self):
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+        token = 'g6w9Csyh-yhrZQTcXjDEJ9-5kLqqJDNDKpAllfprIG3J8fk2WX8rqCRFIJxD3cJ6'
         headers = {'accept': '*/*',
                    'Authorization': f'Bearer {token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
         lktest_url = "https://api.lk.bezlimit.ru/v1"
         data = {
-            "phone": 9682223481
+            "phone": 9612224930
         }
         request_url = f"{lktest_url}/phone/tariff/cancel-change"
         response = requests.put(request_url, headers=headers, data=data)

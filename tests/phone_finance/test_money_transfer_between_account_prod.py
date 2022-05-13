@@ -144,15 +144,15 @@ class Test:
 
 
     def test_post_phone_finance_money_transfer_between_account_not_in_account_phone_to(self):
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+        token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
         headers = {'accept': 'application/json',
                    'Authorization': f'Bearer {token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
         lk_url = "https://api.lk.bezlimit.ru/v1"
         data = {
-            "phoneFrom": 9032417766,
-            "phoneTo": 9696588825,
+            "phoneFrom": 9682224036,
+            "phoneTo": 9006471111,
             "sum": 100
         }
         request_url = f"{lk_url}/phone/finance/money-transfer-between-account-phones"
@@ -166,15 +166,15 @@ class Test:
 
 
     def test_post_phone_finance_money_transfer_between_account_without_passport_phone_from(self):
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+        token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
         headers = {'accept': 'application/json',
                    'Authorization': f'Bearer {token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
         lktest_url = "https://lktest.bezlimit.ru/v1"
         data = {
-            "phoneFrom": 9682221451,
-            "phoneTo": 9006471111,
+            "phoneFrom": 9682221928,
+            "phoneTo": 9682224036,
             "sum": 100
         }
         request_url = f"{lktest_url}/phone/finance/money-transfer-between-account-phones"
@@ -279,16 +279,16 @@ class Test:
 
 
     def test_post_phone_finance_money_transfer_between_account_not_100(self):
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+        token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
         headers = {'accept': 'application/json',
                    'Authorization': f'Bearer {token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
         lk_url = "https://api.lk.bezlimit.ru/v1"
         data = {
-            "phoneFrom": 9032417766,
-            "phoneTo": 9006471111,
-            "sum": 750
+            "phoneFrom": 9682224036,
+            "phoneTo": 9682223055,
+            "sum": 351
         }
 
         request_url = f"{lk_url}/phone/finance/money-transfer-between-account-phones"
@@ -302,15 +302,15 @@ class Test:
 
 
     def test_post_phone_finance_money_transfer_between_account_same_phones(self):
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+        token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
         headers = {'accept': 'application/json',
                    'Authorization': f'Bearer {token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
         lk_url = "https://api.lk.bezlimit.ru/v1"
         data = {
-            "phoneFrom": 9032417766,
-            "phoneTo": 9032417766,
+            "phoneFrom": 9682224036,
+            "phoneTo": 9682224036,
             "sum": 100
         }
         request_url = f"{lk_url}/phone/finance/money-transfer-between-account-phones"
@@ -325,15 +325,15 @@ class Test:
 
 
     def test_post_phone_finance_money_transfer_between_account_correct(self):
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+        token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
         headers = {'accept': 'application/json',
                    'Authorization': f'Bearer {token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
         lk_url = "https://api.lk.bezlimit.ru/v1"
         data = {
-            "phoneFrom": 9032417766,
-            "phoneTo": 9006471111,
+            "phoneFrom": 9682224036,
+            "phoneTo": 9682223055,
             "sum": 150
         }
         request_url = f"{lk_url}/phone/finance/money-transfer-between-account-phones"
@@ -346,15 +346,15 @@ class Test:
 
 
     def test_post_phone_finance_money_transfer_between_account_correct_again(self):
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+        token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
         headers = {'accept': 'application/json',
                    'Authorization': f'Bearer {token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
         lk_url = "https://api.lk.bezlimit.ru/v1"
         data = {
-            "phoneFrom": 9032417766,
-            "phoneTo": 9006471111,
+            "phoneFrom": 9682224036,
+            "phoneTo": 9682223055,
             "sum": 150
         }
         request_url = f"{lk_url}/phone/finance/money-transfer-between-account-phones"

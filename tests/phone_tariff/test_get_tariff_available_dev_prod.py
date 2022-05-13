@@ -58,8 +58,8 @@ class TestProd:
 
         assert response.status_code == 404
         assert response.reason == 'Not Found'
-        assert type(response.json) == dict
         assert response.json()['message'] == 'Номер телефона не привязан к аккаунту.'
+        assert type(response.json) == list
 
 
     def test_unsuccessful_getting_available_tariffs_for_wrong_phone_at_lk(self):
@@ -77,8 +77,8 @@ class TestProd:
 
         assert response.status_code == 404
         assert response.reason == 'Not Found'
-        assert type(response.json) == dict
         assert response.json()['message'] == 'Введите номер телефона в формате 9001112233.'
+        assert type(response.json) == list
 
 
     def test_unsuccessful_getting_available_tariffs_not_bezlimit_phone_at_lk(self):
@@ -96,12 +96,12 @@ class TestProd:
 
         assert response.status_code == 404
         assert response.reason == 'Not Found'
-        assert type(response.json) == dict
         assert response.json()['message'] == 'Введенный номер не обслуживается в Безлимит!'
+        assert type(response.json) == list
 
 
     def test_unsuccessful_getting_available_tariffs_without_token_at_lk(self):
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+        token = 'kurwa'
         lktest_url = "https://api.lk.bezlimit.ru/v1"
         number = 9000000000
         request_url = f"{lktest_url}/phone/tariff/available/{number}"
@@ -175,8 +175,8 @@ class TestDev:
 
         assert response.status_code == 404
         assert response.reason == 'Not Found'
-        assert type(response.json) == dict
         assert response.json()['message'] == 'Номер телефона не привязан к аккаунту.'
+        assert type(response.json) == list
 
 
     def test_unsuccessful_getting_available_tariffs_for_wrong_phone_at_lk(self):
@@ -194,8 +194,8 @@ class TestDev:
 
         assert response.status_code == 404
         assert response.reason == 'Not Found'
-        assert type(response.json) == dict
         assert response.json()['message'] == 'Введите номер телефона в формате 9001112233.'
+        assert type(response.json) == list
 
 
     def test_unsuccessful_getting_available_tariffs_not_bezlimit_phone_at_lk(self):
@@ -213,12 +213,12 @@ class TestDev:
 
         assert response.status_code == 404
         assert response.reason == 'Not Found'
-        assert type(response.json) == dict
         assert response.json()['message'] == 'Введенный номер не обслуживается в Безлимит!'
+        assert type(response.json) == list
 
 
     def test_unsuccessful_getting_available_tariffs_without_token_at_lk(self):
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+        token = 'kurwa'
         lktest_url = "https://lktest.bezlimit.ru/v1"
         number = 9000000000
         request_url = f"{lktest_url}/phone/tariff/available/{number}"
