@@ -28,8 +28,8 @@ TEST_PHONE_JOHN = 9682223481
 five_numbers_lk_token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
 grand_number = 9682224036  # Есть ПД, есть деньги, нет контактного номера
 snd_number = 9682223055    # Есть ПД, есть деньги, есть контактный номер
-trd_number = 9682221928    # Нет ПД, есть деньги, нет контактного номера
-frt_number = 9618880491    # Нет ПД, есть деньги, нет контактного номера
+trd_number = 9682221928    # Нет ПД, есть деньги, нет контактного номера, активирован менее месяца назад
+frt_number = 9618880491    # Нет ПД, есть деньги, нет контактного номера, активирован менее месяца назад
 
 one_number_lk_token = 'g6w9Csyh-yhrZQTcXjDEJ9-5kLqqJDNDKpAllfprIG3J8fk2WX8rqCRFIJxD3cJ6'
 fst_number = 9612224930    # Есть ПД, есть деньги, есть контактный номер

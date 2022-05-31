@@ -13,7 +13,7 @@ class Test:
         print(response)
         print(response.json())
 
-        assert response.status_code == 200
+        assert response.status_code == 200, f'Код ответа {response.status_code}, а не 200.'
 
 
     def test_resource_tariff_false_id(self):
@@ -26,4 +26,4 @@ class Test:
         print(response.json())
 
         assert response.json() is None
-        assert response.status_code == 200
+        assert response.status_code == 200, f'Код ответа {response.status_code}, а не 200.'

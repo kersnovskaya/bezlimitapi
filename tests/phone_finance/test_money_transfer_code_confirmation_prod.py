@@ -24,6 +24,7 @@ def get_code(phone_from):
     token = 'Z1RseVcn9twtKLY84eYQf57Pw8ENZ1yks436TJHXaC2dJhcRZLJ2mGsgRBpTuFp7'
     url = "https://api.bezlimit.ru/v1"
     headers = {'accept': 'application/json',
+               'authorization': 'Basic YXBpOldHZnpzQWlKYkxa',
                'Api-Token': token}
     params = {'phone': int(phone_from)}
     request_url = f"{url}/queue/sms"

@@ -56,7 +56,7 @@ class Test:
                    }
         lktest_url = "https://lktest.bezlimit.ru/v1"
         data = {
-            "phone": 9696588825,
+            "phone": 9006471111,
             "tariffId": 8014
         }
         request_url = f"{lktest_url}/phone/tariff/change"

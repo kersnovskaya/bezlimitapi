@@ -16,11 +16,11 @@ class TestProd:
         print(response)
         print(response.json())
 
-        assert response.status_code == 200
-        assert type(response.json()) == list
+        assert response.status_code == 200, f'Код ответа {response.status_code}, а не 200.'
+        assert type(response.json()) == list, f'Тип данных тела ответа {type(response.json())}, а не "list".'
         for i in response.json():
-            assert type(i['id']) == int
-            assert i['name']
+            assert type(i['id']) == int, f'Тип данных параметра "id" не "int".'
+            assert i['name'] is not None
 
 
     def test_successful_getting_available_tariffs_for_second_phone_at_lk(self):
@@ -36,10 +36,10 @@ class TestProd:
         print(response)
         print(response.json())
 
-        assert response.status_code == 200
-        assert type(response.json()) == list
+        assert response.status_code == 200, f'Код ответа {response.status_code}, а не 200.'
+        assert type(response.json()) == list, f'Тип данных тела ответа {type(response.json())}, а не "list".'
         for i in response.json():
-            assert type(i['id']) == int
+            assert type(i['id']) == int, f'Тип данных параметра "id" не "int".'
             assert i['name']
 
 
@@ -56,10 +56,10 @@ class TestProd:
         print(response)
         print(response.json())
 
-        assert response.status_code == 404
-        assert response.reason == 'Not Found'
-        assert response.json()['message'] == 'Номер телефона не привязан к аккаунту.'
-        assert type(response.json) == list
+        assert response.status_code == 404, f'Код ответа {response.status_code}, а не 404.'
+        assert response.reason == 'Not Found', f'Причина ошибки {response.reason}, а не "Not Found".'
+        assert response.json()['message'] == 'Номер телефона не привязан к аккаунту.', 'Ошибка в параметре "message".'
+        assert type(response.json()) == dict, f'Тип данных тела ответа {type(response.json())}, а не "dict".'
 
 
     def test_unsuccessful_getting_available_tariffs_for_wrong_phone_at_lk(self):
@@ -75,10 +75,11 @@ class TestProd:
         print(response)
         print(response.json())
 
-        assert response.status_code == 404
-        assert response.reason == 'Not Found'
-        assert response.json()['message'] == 'Введите номер телефона в формате 9001112233.'
-        assert type(response.json) == list
+        assert response.status_code == 404, f'Код ответа {response.status_code}, а не 404.'
+        assert response.reason == 'Not Found', f'Причина ошибки {response.reason}, а не "Not Found".'
+        assert response.json()['message'] == 'Введите номер телефона в формате 9001112233.', \
+                                             'Ошибка в параметре "message".'
+        assert type(response.json()) == dict, f'Тип данных тела ответа {type(response.json())}, а не "dict".'
 
 
     def test_unsuccessful_getting_available_tariffs_not_bezlimit_phone_at_lk(self):
@@ -94,10 +95,11 @@ class TestProd:
         print(response)
         print(response.json())
 
-        assert response.status_code == 404
-        assert response.reason == 'Not Found'
-        assert response.json()['message'] == 'Введенный номер не обслуживается в Безлимит!'
-        assert type(response.json) == list
+        assert response.status_code == 404, f'Код ответа {response.status_code}, а не 404.'
+        assert response.reason == 'Not Found', f'Причина ошибки {response.reason}, а не "Not Found".'
+        assert response.json()['message'] == 'Введенный номер не обслуживается в Безлимит!', \
+                                             'Ошибка в параметре "message".'
+        assert type(response.json()) == dict, f'Тип данных тела ответа {type(response.json())}, а не "dict".'
 
 
     def test_unsuccessful_getting_available_tariffs_without_token_at_lk(self):
@@ -113,9 +115,10 @@ class TestProd:
         print(response)
         print(response.json())
 
-        assert response.status_code == 401
-        assert response.reason == 'Unauthorized'
-        assert response.json()['message'] == 'Your request was made with invalid credentials.'
+        assert response.status_code == 401, f'Код ответа {response.status_code}, а не 401.'
+        assert response.reason == 'Unauthorized', f'Причина ошибки {response.reason}, а не "Unauthorized".'
+        assert response.json()['message'] == 'Your request was made with invalid credentials.', \
+                                             'Ошибка в параметре "message".'
 
 
 class TestDev:
@@ -133,11 +136,11 @@ class TestDev:
         print(response)
         print(response.json())
 
-        assert response.status_code == 200
-        assert type(response.json()) == list
+        assert response.status_code == 200, f'Код ответа {response.status_code}, а не 200.'
+        assert type(response.json()) == list, f'Тип данных тела ответа {type(response.json())}, а не "list".'
         for i in response.json():
-            assert type(i['id']) == int
-            assert i['name']
+            assert type(i['id']) == int, f'Тип данных параметра "id" не "int".'
+            assert i['name'] is not None
 
 
     def test_successful_getting_available_tariffs_for_second_phone_at_lk(self):
@@ -153,10 +156,10 @@ class TestDev:
         print(response)
         print(response.json())
 
-        assert response.status_code == 200
-        assert type(response.json()) == list
+        assert response.status_code == 200, f'Код ответа {response.status_code}, а не 200.'
+        assert type(response.json()) == list, f'Тип данных тела ответа {type(response.json())}, а не "list".'
         for i in response.json():
-            assert type(i['id']) == int
+            assert type(i['id']) == int, f'Тип данных параметра "id" не "int".'
             assert i['name']
 
 
@@ -173,10 +176,10 @@ class TestDev:
         print(response)
         print(response.json())
 
-        assert response.status_code == 404
-        assert response.reason == 'Not Found'
-        assert response.json()['message'] == 'Номер телефона не привязан к аккаунту.'
-        assert type(response.json) == list
+        assert response.status_code == 404, f'Код ответа {response.status_code}, а не 404.'
+        assert response.reason == 'Not Found', f'Причина ошибки {response.reason}, а не "Not Found".'
+        assert response.json()['message'] == 'Номер телефона не привязан к аккаунту.', 'Ошибка в параметре "message".'
+        assert type(response.json()) == dict, f'Тип данных тела ответа {type(response.json())}, а не "dict".'
 
 
     def test_unsuccessful_getting_available_tariffs_for_wrong_phone_at_lk(self):
@@ -192,10 +195,11 @@ class TestDev:
         print(response)
         print(response.json())
 
-        assert response.status_code == 404
-        assert response.reason == 'Not Found'
-        assert response.json()['message'] == 'Введите номер телефона в формате 9001112233.'
-        assert type(response.json) == list
+        assert response.status_code == 404, f'Код ответа {response.status_code}, а не 404.'
+        assert response.reason == 'Not Found', f'Причина ошибки {response.reason}, а не "Not Found".'
+        assert response.json()['message'] == 'Введите номер телефона в формате 9001112233.', \
+                                             'Ошибка в параметре "message".'
+        assert type(response.json()) == dict, f'Тип данных тела ответа {type(response.json())}, а не "dict".'
 
 
     def test_unsuccessful_getting_available_tariffs_not_bezlimit_phone_at_lk(self):
@@ -211,10 +215,11 @@ class TestDev:
         print(response)
         print(response.json())
 
-        assert response.status_code == 404
-        assert response.reason == 'Not Found'
-        assert response.json()['message'] == 'Введенный номер не обслуживается в Безлимит!'
-        assert type(response.json) == list
+        assert response.status_code == 404, f'Код ответа {response.status_code}, а не 404.'
+        assert response.reason == 'Not Found', f'Причина ошибки {response.reason}, а не "Not Found".'
+        assert response.json()['message'] == 'Введенный номер не обслуживается в Безлимит!', \
+                                             'Ошибка в параметре "message".'
+        assert type(response.json()) == dict, f'Тип данных тела ответа {type(response.json())}, а не "dict".'
 
 
     def test_unsuccessful_getting_available_tariffs_without_token_at_lk(self):
@@ -230,6 +235,8 @@ class TestDev:
         print(response)
         print(response.json())
 
-        assert response.status_code == 401
-        assert response.reason == 'Unauthorized'
-        assert response.json()['message'] == 'Your request was made with invalid credentials.'
+        assert response.status_code == 401, f'Код ответа {response.status_code}, а не 401.'
+        assert response.reason == 'Unauthorized', f'Причина ошибки {response.reason}, а не "Unauthorized".'
+        assert response.json()['message'] == 'Your request was made with invalid credentials.', \
+                                             'Ошибка в параметре "message".'
+
