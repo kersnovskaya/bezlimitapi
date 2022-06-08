@@ -134,7 +134,7 @@ class TestDev:
         request_url = f"{lktest_url}/phone/finance/money-transfer-code-confirmation"
         response = requests.post(request_url, headers=headers, data=data1)
 
-        print(response.json())
+        # print(response.json())
         assert response.status_code == 422
         assert response.json() == [{"field": "code", "message": "Неправильный код подтверждения."}]
 

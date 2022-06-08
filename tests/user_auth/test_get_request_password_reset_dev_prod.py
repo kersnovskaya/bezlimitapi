@@ -1,229 +1,429 @@
 import requests
 
-
 class TestDev:
 
-    def test_successful_request_for_reset_password_at_lk(self):
-        lktest_url = "https://lktest.bezlimit.ru/v1"
-        phone = 9006471111
-        params = {"phone": phone}
-        headers = {"accept": "application/json"}
+	def test_successful_request_for_reset_password_at_lk(self):
+		message = ['Проверка кода подтверждения для восстановления пароля. Корректный запрос.']
+		expected_message = ['Проверка кода подтверждения для восстановления пароля. Корректный запрос.']
 
-        request_url = f'{lktest_url}/user/auth/request-password-reset/'
-        response = requests.get(request_url, headers=headers, params=params)
+		lktest_url = "https://lktest.bezlimit.ru/v1"
+		phone = 9006471111
+		params = {"phone": phone}
+		headers = {"accept": "application/json"}
 
-        assert response.status_code == 201, f'Код ответа {response.status_code}, а не 201.'
-        assert type(response.json()) == dict, f'Тип данных в ответе {type(response.json())}, а не "dict".'
-        assert type(response.json()['sending_repeated_notify']) == int, \
-                                    f'Тип данных в параметре "sending_repeated_notify" ' \
-                                    f"{type(response.json()['sending_repeated_notify'])}, а не 'int'."
+		request_url = f'{lktest_url}/user/auth/request-password-reset/'
+		response = requests.get(request_url, headers=headers, params=params)
 
-    def test_validation_request_for_reset_password_to_side_phone_at_lk(self):
-        lktest_url = "https://lktest.bezlimit.ru/v1"
-        phone = 9614828609
-        params = {"phone": phone}
-        headers = {"accept": "application/json"}
-
-        request_url = f'{lktest_url}/user/auth/request-password-reset/'
-        response = requests.get(request_url, headers=headers, params=params)
-
-        assert response.status_code == 422, f'Код ответа {response.status_code}, а не 422.'
-        assert response.reason == 'Data Validation Failed.', f'Причина {response.reason}, а не "Data Validation Failed".'
-        assert response.json()[0]['field'] == 'phone', f"В причине ошибки указано поле {response.json()[0]['field']}, " \
-                                                       f"а не 'phone'."
-        assert response.json()[0]['message'] == 'Восстановить пароль можно только на номере, ' \
-                                                'с которого зарегистрирован аккаунт.', \
-                                                'Ошибка в тексте ошибки.'
-
-    def test_validation_request_for_reset_password_to_second_phone_at_lk(self):
-        lktest_url = "https://lktest.bezlimit.ru/v1"
-        phone = 9682224854
-        params = {"phone": phone}
-        headers = {"accept": "application/json"}
-
-        request_url = f'{lktest_url}/user/auth/request-password-reset/'
-        response = requests.get(request_url, headers=headers, params=params)
-
-        assert response.status_code == 422, f'Код ответа {response.status_code}, а не 422.'
-        assert response.reason == 'Data Validation Failed.', f'Причина {response.reason}, а не "Data Validation Failed".'
-        assert response.json()[0]['field'] == 'phone', f"В причине ошибки указано поле {response.json()[0]['field']}, " \
-                                                       f"а не 'phone'."
-        assert response.json()[0]['message'] == 'Восстановить пароль можно только на номере, ' \
-                                                'с которого зарегистрирован аккаунт.', \
-                                                'Ошибка в тексте ошибки.'
-
-    def test_validation_request_for_reset_password_to_not_bezlimit_phone_at_lk(self):
-        lktest_url = "https://lktest.bezlimit.ru/v1"
-        phone = 9000000000
-        params = {"phone": phone}
-        headers = {"accept": "application/json"}
-
-        request_url = f'{lktest_url}/user/auth/request-password-reset/'
-        response = requests.get(request_url, headers=headers, params=params)
-
-        assert response.status_code == 422, f'Код ответа {response.status_code}, а не 422.'
-        assert response.reason == 'Data Validation Failed.', f'Причина {response.reason}, а не "Data Validation Failed".'
-        assert response.json()[0]['field'] == 'phone', f"В причине ошибки указано поле {response.json()[0]['field']}, " \
-                                                       f"а не 'phone'."
-        assert response.json()[0]['message'] == 'Введенный номер не обслуживается в Безлимит!', \
-                                                'Ошибка в тексте ошибки.'
+		try:
+			assert response.status_code == 201
+		except AssertionError:
+			message.append(f'Код ответа {response.status_code}, а не 201.')
+		try:
+			assert type(response.json()) == dict
+		except AssertionError:
+			message.append(f'Тип данных в ответе {type(response.json())}, а не "dict".')
+		try:
+			assert type(response.json()['sending_repeated_notify']) == int
+		except AssertionError:
+			message.append((f"Тип данных в параметре 'sending_repeated_notify' "
+							f"{type(response.json()['sending_repeated_notify'])}, а не 'int'."))
+		assert message == expected_message, message
 
 
-    def test_validation_request_for_reset_password_to_wrong_phone_at_lk(self):
-        lktest_url = "https://lktest.bezlimit.ru/v1"
-        phone = 90000000
-        params = {"phone": phone}
-        headers = {"accept": "application/json"}
+	def test_validation_request_for_reset_password_to_side_phone_at_lk(self):
+		message = ['Проверка кода подтверждения для восстановления пароля. Ввод не основного номера.']
+		expected_message = ['Проверка кода подтверждения для восстановления пароля. Ввод не основного номера.']
 
-        request_url = f'{lktest_url}/user/auth/request-password-reset/'
-        response = requests.get(request_url, headers=headers, params=params)
+		lktest_url = "https://lktest.bezlimit.ru/v1"
+		phone = 9614828609
+		params = {"phone": phone}
+		headers = {"accept": "application/json"}
 
-        assert response.status_code == 422, f'Код ответа {response.status_code}, а не 422.'
-        assert response.reason == 'Data Validation Failed.', f'Причина {response.reason}, а не "Data Validation Failed".'
-        assert response.json()[0]['field'] == 'phone', f"В причине ошибки указано поле {response.json()[0]['field']}, " \
-                                                       f"а не 'phone'."
-        assert response.json()[0]['message'] == 'Введите номер телефона в формате 9001112233.', \
-                                                'Ошибка в тексте ошибки.'
+		request_url = f'{lktest_url}/user/auth/request-password-reset/'
+		response = requests.get(request_url, headers=headers, params=params)
 
-    def test_validation_request_for_reset_password_to_non_numeric_phone_at_lk(self):
-        lktest_url = "https://lktest.bezlimit.ru/v1"
-        phone = 'dick'
-        params = {"phone": phone}
-        headers = {"accept": "application/json"}
+		try:
+			assert response.status_code == 422
+		except:
+			message.append(f'Код ответа {response.status_code}, а не 422.')
+		try:
+			assert response.reason == 'Data Validation Failed.'
+		except:
+			message.append(f'Причина {response.reason}, а не "Data Validation Failed".')
+		try:
+			assert response.json()[0]['field'] == 'phone'
+		except:
+			message.append(f"В причине ошибки указано поле {response.json()[0]['field']}, а не 'phone'.")
+		try:
+			assert response.json()[0]['message'] == 'Восстановить пароль можно только на номере, с которого зарегистрирован аккаунт.'
+		except:
+			message.append('Ошибка в тексте ошибки.')
+		assert message == expected_message, message
 
-        request_url = f'{lktest_url}/user/auth/request-password-reset/'
-        response = requests.get(request_url, headers=headers, params=params)
 
-        assert response.status_code == 400, f'Код ответа {response.status_code}, а не 400.'
-        assert response.reason == 'Bad Request', f'Причина {response.reason}, а не "Bad Request".'
-        assert response.json()['message'] == 'Неправильное значение параметра "phone".', \
-                                             'Ошибка в тексте ошибки.'
+	def test_validation_request_for_reset_password_to_second_phone_at_lk(self):
+		message = ['Проверка кода подтверждения для восстановления пароля. Ввод не основного номера.']
+		expected_message = ['Проверка кода подтверждения для восстановления пароля. Ввод не основного номера.']
 
-    def test_validation_request_for_reset_password_to_empty_phone_at_lk(self):
-        lktest_url = "https://lktest.bezlimit.ru/v1"
-        params = {"phone": None}
-        headers = {"accept": "application/json"}
+		lktest_url = "https://lktest.bezlimit.ru/v1"
+		phone = 9682224854
+		params = {"phone": phone}
+		headers = {"accept": "application/json"}
 
-        request_url = f'{lktest_url}/user/auth/request-password-reset/'
-        response = requests.get(request_url, headers=headers, params=params)
+		request_url = f'{lktest_url}/user/auth/request-password-reset/'
+		response = requests.get(request_url, headers=headers, params=params)
 
-        assert response.status_code == 400, f'Код ответа {response.status_code}, а не 400.'
-        assert response.reason == 'Bad Request', f'Причина {response.reason}, а не "Bad Request".'
-        assert type(response.json()) == dict, f'Тип данных в ответе {type(response.json())}, а не "dict".'
-        assert response.json()['message'] == 'Отсутствуют обязательные параметры: phone', \
-                                             'Ошибка в тексте ошибки.'
+		try:
+			assert response.status_code == 422
+		except:
+			message.append(f'Код ответа {response.status_code}, а не 422.')
+		try:
+			assert response.reason == 'Data Validation Failed.'
+		except:
+			message.append(f'Причина {response.reason}, а не "Data Validation Failed".')
+		try:
+			assert response.json()[0]['field'] == 'phone'
+		except:
+			message.append(f"В причине ошибки указано поле {response.json()[0]['field']}, а не 'phone'.")
+		try:
+			assert response.json()[0]['message'] == 'Восстановить пароль можно только на номере, с которого зарегистрирован аккаунт.'
+		except:
+			message.append('Ошибка в тексте ошибки.')
+
+		assert message == expected_message, message
+
+
+	def test_validation_request_for_reset_password_to_not_bezlimit_phone_at_lk(self):
+		message = ['Проверка кода подтверждения для восстановления пароля. Ввод номера не Безлимит.']
+		expected_message = ['Проверка кода подтверждения для восстановления пароля. Ввод номера не Безлимит.']
+
+		lktest_url = "https://lktest.bezlimit.ru/v1"
+		phone = 9000000000
+		params = {"phone": phone}
+		headers = {"accept": "application/json"}
+
+		request_url = f'{lktest_url}/user/auth/request-password-reset/'
+		response = requests.get(request_url, headers=headers, params=params)
+
+		try:
+			assert response.status_code == 422
+		except:
+			message.append(f'Код ответа {response.status_code}, а не 422.')
+		try:
+			assert response.reason == 'Data Validation Failed.'
+		except:
+			message.append(f'Причина {response.reason}, а не "Data Validation Failed".')
+		try:
+			assert response.json()[0]['field'] == 'phone'
+		except:
+			message.append(f"В причине ошибки указано поле {response.json()[0]['field']}, а не 'phone'.")
+		try:
+			assert response.json()[0]['message'] == 'Введенный номер не обслуживается в Безлимит!'
+		except:
+			message.append('Ошибка в тексте ошибки.')
+
+		assert message == expected_message, message
+
+
+	def test_validation_request_for_reset_password_to_wrong_phone_at_lk(self):
+		message = ['Проверка кода подтверждения для восстановления пароля. Некорректный номер.']
+		expected_message = ['Проверка кода подтверждения для восстановления пароля. Некорректный номер.']
+
+		lktest_url = "https://lktest.bezlimit.ru/v1"
+		phone = 90000000
+		params = {"phone": phone}
+		headers = {"accept": "application/json"}
+
+		request_url = f'{lktest_url}/user/auth/request-password-reset/'
+		response = requests.get(request_url, headers=headers, params=params)
+
+		try:
+			assert response.status_code == 422
+		except:
+			message.append(f'Код ответа {response.status_code}, а не 422.')
+		try:
+			assert response.reason == 'Data Validation Failed.'
+		except:
+			message.append(f'Причина {response.reason}, а не "Data Validation Failed".')
+		try:
+			assert response.json()[0]['field'] == 'phone'
+		except:
+			message.append(f"В причине ошибки указано поле {response.json()[0]['field']}, а не 'phone'.")
+		try:
+			assert response.json()[0]['message'] == 'Введите номер телефона в формате 9001112233.'
+		except:
+			message.append('Ошибка в тексте ошибки.')
+
+		assert message == expected_message, message
+
+
+	def test_validation_request_for_reset_password_to_non_numeric_phone_at_lk(self):
+		message = ['Проверка кода подтверждения для восстановления пароля. Ввод номера в формате строки.']
+		expected_message = ['Проверка кода подтверждения для восстановления пароля. Ввод номера в формате строки.']
+
+		lktest_url = "https://lktest.bezlimit.ru/v1"
+		phone = 'dick'
+		params = {"phone": phone}
+		headers = {"accept": "application/json"}
+
+		request_url = f'{lktest_url}/user/auth/request-password-reset/'
+		response = requests.get(request_url, headers=headers, params=params)
+
+		try:
+			assert response.status_code == 400
+		except:
+			message.append(f'Код ответа {response.status_code}, а не 400.')
+		try:
+			assert response.reason == 'Bad Request'
+		except:
+			message.append(f'Причина {response.reason}, а не "Bad Request".')
+		try:
+			assert response.json()['message'] == 'Неправильное значение параметра "phone".'
+		except:
+			message.append('Ошибка в тексте ошибки.')
+
+		assert message == expected_message, message
+
+
+	def test_validation_request_for_reset_password_to_empty_phone_at_lk(self):
+		message = ['Проверка кода подтверждения для восстановления пароля. Отправка пустого номера.']
+		expected_message = ['Проверка кода подтверждения для восстановления пароля. Отправка пустого номера.']
+
+		lktest_url = "https://lktest.bezlimit.ru/v1"
+		params = {"phone": None}
+		headers = {"accept": "application/json"}
+
+		request_url = f'{lktest_url}/user/auth/request-password-reset/'
+		response = requests.get(request_url, headers=headers, params=params)
+
+		try:
+			assert response.status_code == 400
+		except:
+			message.append(f'Код ответа {response.status_code}, а не 400.')
+		try:
+			assert response.reason == 'Bad Request'
+		except:
+			message.append(f'Причина {response.reason}, а не "Bad Request".')
+		try:
+			assert type(response.json()) == dict
+		except AssertionError:
+			message.append(f'Тип данных в ответе {type(response.json())}, а не "dict".')
+		try:
+			assert response.json()['message'] == 'Отсутствуют обязательные параметры: phone'
+		except:
+			message.append('Ошибка в тексте ошибки.')
+
+		assert message == expected_message, message
 
 
 class TestProd:
 
+	def test_successful_request_for_reset_password_at_lk(self):
+		message = ['Проверка кода подтверждения для восстановления пароля. Корректный запрос.']
+		expected_message = ['Проверка кода подтверждения для восстановления пароля. Корректный запрос.']
 
-    def test_successful_request_for_reset_password_at_lk(self):
-        lk_url = "https://api.lk.bezlimit.ru/v1"
-        phone = 9006471111
-        params = {"phone": phone}
-        headers = {"accept": "application/json"}
+		lktest_url = "https://api.lk.bezlimit.ru/v1"
+		phone = 9006471111
+		params = {"phone": phone}
+		headers = {"accept": "application/json"}
 
-        request_url = f'{lk_url}/user/auth/request-password-reset/'
-        response = requests.get(request_url, headers=headers, params=params)
+		request_url = f'{lktest_url}/user/auth/request-password-reset/'
+		response = requests.get(request_url, headers=headers, params=params)
 
-        assert response.status_code == 201, f'Код ответа {response.status_code}, а не 201.'
-        assert type(response.json()) == dict, f'Тип данных в ответе {type(response.json())}, а не "dict".'
-        assert type(response.json()['sending_repeated_notify']) == int, \
-                                    f'Тип данных в параметре "sending_repeated_notify" ' \
-                                    f"{type(response.json()['sending_repeated_notify'])}, а не 'int'."
+		try:
+			assert response.status_code == 201
+		except AssertionError:
+			message.append(f'Код ответа {response.status_code}, а не 201.')
+		try:
+			assert type(response.json()) == dict
+		except AssertionError:
+			message.append(f'Тип данных в ответе {type(response.json())}, а не "dict".')
+		try:
+			assert type(response.json()['sending_repeated_notify']) == int
+		except AssertionError:
+			message.append((f"Тип данных в параметре 'sending_repeated_notify' "
+							f"{type(response.json()['sending_repeated_notify'])}, а не 'int'."))
+		assert message == expected_message, message
 
-    def test_validation_request_for_reset_password_to_side_phone_at_lk(self):
-        lk_url = "https://api.lk.bezlimit.ru/v1"
-        phone = 9614828609
-        params = {"phone": phone}
-        headers = {"accept": "application/json"}
+	def test_validation_request_for_reset_password_to_side_phone_at_lk(self):
+		message = ['Проверка кода подтверждения для восстановления пароля. Ввод не основного номера.']
+		expected_message = ['Проверка кода подтверждения для восстановления пароля. Ввод не основного номера.']
 
-        request_url = f'{lk_url}/user/auth/request-password-reset/'
-        response = requests.get(request_url, headers=headers, params=params)
+		lktest_url = "https://api.lk.bezlimit.ru/v1"
+		phone = 9614828609
+		params = {"phone": phone}
+		headers = {"accept": "application/json"}
 
-        assert response.status_code == 422, f'Код ответа {response.status_code}, а не 422.'
-        assert response.reason == 'Data Validation Failed.', f'Причина {response.reason}, а не "Data Validation Failed".'
-        assert response.json()[0]['field'] == 'phone', f"В причине ошибки указано поле {response.json()[0]['field']}, " \
-                                                       f"а не 'phone'."
-        assert response.json()[0]['message'] == 'Восстановить пароль можно только на номере, ' \
-                                                'с которого зарегистрирован аккаунт.', \
-                                                'Ошибка в тексте ошибки.'
+		request_url = f'{lktest_url}/user/auth/request-password-reset/'
+		response = requests.get(request_url, headers=headers, params=params)
 
-    def test_validation_request_for_reset_password_to_second_phone_at_lk(self):
-        lk_url = "https://api.lk.bezlimit.ru/v1"
-        phone = 9682224854
-        params = {"phone": phone}
-        headers = {"accept": "application/json"}
+		try:
+			assert response.status_code == 422
+		except:
+			message.append(f'Код ответа {response.status_code}, а не 422.')
+		try:
+			assert response.reason == 'Data Validation Failed.'
+		except:
+			message.append(f'Причина {response.reason}, а не "Data Validation Failed".')
+		try:
+			assert response.json()[0]['field'] == 'phone'
+		except:
+			message.append(f"В причине ошибки указано поле {response.json()[0]['field']}, а не 'phone'.")
+		try:
+			assert response.json()[0][
+					   'message'] == 'Восстановить пароль можно только на номере, с которого зарегистрирован аккаунт.'
+		except:
+			message.append('Ошибка в тексте ошибки.')
+		assert message == expected_message, message
 
-        request_url = f'{lk_url}/user/auth/request-password-reset/'
-        response = requests.get(request_url, headers=headers, params=params)
+	def test_validation_request_for_reset_password_to_second_phone_at_lk(self):
+		message = ['Проверка кода подтверждения для восстановления пароля. Ввод не основного номера.']
+		expected_message = ['Проверка кода подтверждения для восстановления пароля. Ввод не основного номера.']
 
-        assert response.status_code == 422, f'Код ответа {response.status_code}, а не 422.'
-        assert response.reason == 'Data Validation Failed.', f'Причина {response.reason}, а не "Data Validation Failed".'
-        assert response.json()[0]['field'] == 'phone', f"В причине ошибки указано поле {response.json()[0]['field']}, " \
-                                                       f"а не 'phone'."
-        assert response.json()[0]['message'] == 'Восстановить пароль можно только на номере, ' \
-                                                'с которого зарегистрирован аккаунт.', \
-                                                'Ошибка в тексте ошибки.'
+		lktest_url = "https://api.lk.bezlimit.ru/v1"
+		phone = 9682224854
+		params = {"phone": phone}
+		headers = {"accept": "application/json"}
 
-    def test_validation_request_for_reset_password_to_not_bezlimit_phone_at_lk(self):
-        lk_url = "https://api.lk.bezlimit.ru/v1"
-        phone = 9000000000
-        params = {"phone": phone}
-        headers = {"accept": "application/json"}
+		request_url = f'{lktest_url}/user/auth/request-password-reset/'
+		response = requests.get(request_url, headers=headers, params=params)
 
-        request_url = f'{lk_url}/user/auth/request-password-reset/'
-        response = requests.get(request_url, headers=headers, params=params)
+		try:
+			assert response.status_code == 422
+		except:
+			message.append(f'Код ответа {response.status_code}, а не 422.')
+		try:
+			assert response.reason == 'Data Validation Failed.'
+		except:
+			message.append(f'Причина {response.reason}, а не "Data Validation Failed".')
+		try:
+			assert response.json()[0]['field'] == 'phone'
+		except:
+			message.append(f"В причине ошибки указано поле {response.json()[0]['field']}, а не 'phone'.")
+		try:
+			assert response.json()[0][
+					   'message'] == 'Восстановить пароль можно только на номере, с которого зарегистрирован аккаунт.'
+		except:
+			message.append('Ошибка в тексте ошибки.')
 
-        assert response.status_code == 422, f'Код ответа {response.status_code}, а не 422.'
-        assert response.reason == 'Data Validation Failed.', f'Причина {response.reason}, а не "Data Validation Failed".'
-        assert response.json()[0]['field'] == 'phone', f"В причине ошибки указано поле {response.json()[0]['field']}, " \
-                                                       f"а не 'phone'."
-        assert response.json()[0]['message'] == 'Введенный номер не обслуживается в Безлимит!', \
-                                                'Ошибка в тексте ошибки.'
+		assert message == expected_message, message
 
+	def test_validation_request_for_reset_password_to_not_bezlimit_phone_at_lk(self):
+		message = ['Проверка кода подтверждения для восстановления пароля. Ввод номера не Безлимит.']
+		expected_message = ['Проверка кода подтверждения для восстановления пароля. Ввод номера не Безлимит.']
 
-    def test_validation_request_for_reset_password_to_wrong_phone_at_lk(self):
-        lk_url = "https://api.lk.bezlimit.ru/v1"
-        phone = 90000000
-        params = {"phone": phone}
-        headers = {"accept": "application/json"}
+		lktest_url = "https://api.lk.bezlimit.ru/v1"
+		phone = 9000000000
+		params = {"phone": phone}
+		headers = {"accept": "application/json"}
 
-        request_url = f'{lk_url}/user/auth/request-password-reset/'
-        response = requests.get(request_url, headers=headers, params=params)
+		request_url = f'{lktest_url}/user/auth/request-password-reset/'
+		response = requests.get(request_url, headers=headers, params=params)
 
-        assert response.status_code == 422, f'Код ответа {response.status_code}, а не 422.'
-        assert response.reason == 'Data Validation Failed.', f'Причина {response.reason}, а не "Data Validation Failed".'
-        assert response.json()[0]['field'] == 'phone', f"В причине ошибки указано поле {response.json()[0]['field']}, " \
-                                                       f"а не 'phone'."
-        assert response.json()[0]['message'] == 'Введите номер телефона в формате 9001112233.', \
-                                                'Ошибка в тексте ошибки.'
+		try:
+			assert response.status_code == 422
+		except:
+			message.append(f'Код ответа {response.status_code}, а не 422.')
+		try:
+			assert response.reason == 'Data Validation Failed.'
+		except:
+			message.append(f'Причина {response.reason}, а не "Data Validation Failed".')
+		try:
+			assert response.json()[0]['field'] == 'phone'
+		except:
+			message.append(f"В причине ошибки указано поле {response.json()[0]['field']}, а не 'phone'.")
+		try:
+			assert response.json()[0]['message'] == 'Введенный номер не обслуживается в Безлимит!'
+		except:
+			message.append('Ошибка в тексте ошибки.')
 
-    def test_validation_request_for_reset_password_to_non_numeric_phone_at_lk(self):
-        lk_url = "https://api.lk.bezlimit.ru/v1"
-        phone = 'dick'
-        params = {"phone": phone}
-        headers = {"accept": "application/json"}
+		assert message == expected_message, message
 
-        request_url = f'{lk_url}/user/auth/request-password-reset/'
-        response = requests.get(request_url, headers=headers, params=params)
+	def test_validation_request_for_reset_password_to_wrong_phone_at_lk(self):
+		message = ['Проверка кода подтверждения для восстановления пароля. Некорректный номер.']
+		expected_message = ['Проверка кода подтверждения для восстановления пароля. Некорректный номер.']
 
-        assert response.status_code == 400, f'Код ответа {response.status_code}, а не 400.'
-        assert response.reason == 'Bad Request', f'Причина {response.reason}, а не "Bad Request".'
-        assert response.json()['message'] == 'Неправильное значение параметра "phone".', \
-                                             'Ошибка в тексте ошибки.'
+		lktest_url = "https://api.lk.bezlimit.ru/v1"
+		phone = 90000000
+		params = {"phone": phone}
+		headers = {"accept": "application/json"}
 
-    def test_validation_request_for_reset_password_to_empty_phone_at_lk(self):
-        lk_url = "https://api.lk.bezlimit.ru/v1"
-        params = {"phone": None}
-        headers = {"accept": "application/json"}
+		request_url = f'{lktest_url}/user/auth/request-password-reset/'
+		response = requests.get(request_url, headers=headers, params=params)
 
-        request_url = f'{lk_url}/user/auth/request-password-reset/'
-        response = requests.get(request_url, headers=headers, params=params)
+		try:
+			assert response.status_code == 422
+		except:
+			message.append(f'Код ответа {response.status_code}, а не 422.')
+		try:
+			assert response.reason == 'Data Validation Failed.'
+		except:
+			message.append(f'Причина {response.reason}, а не "Data Validation Failed".')
+		try:
+			assert response.json()[0]['field'] == 'phone'
+		except:
+			message.append(f"В причине ошибки указано поле {response.json()[0]['field']}, а не 'phone'.")
+		try:
+			assert response.json()[0]['message'] == 'Введите номер телефона в формате 9001112233.'
+		except:
+			message.append('Ошибка в тексте ошибки.')
 
-        assert response.status_code == 400, f'Код ответа {response.status_code}, а не 400.'
-        assert response.reason == 'Bad Request', f'Причина {response.reason}, а не "Bad Request".'
-        assert type(response.json()) == dict, f'Тип данных в ответе {type(response.json())}, а не "dict".'
-        assert response.json()['message'] == 'Отсутствуют обязательные параметры: phone', \
-                                             'Ошибка в тексте ошибки.'
+		assert message == expected_message, message
+
+	def test_validation_request_for_reset_password_to_non_numeric_phone_at_lk(self):
+		message = ['Проверка кода подтверждения для восстановления пароля. Ввод номера в формате строки.']
+		expected_message = ['Проверка кода подтверждения для восстановления пароля. Ввод номера в формате строки.']
+
+		lktest_url = "https://api.lk.bezlimit.ru/v1"
+		phone = 'dick'
+		params = {"phone": phone}
+		headers = {"accept": "application/json"}
+
+		request_url = f'{lktest_url}/user/auth/request-password-reset/'
+		response = requests.get(request_url, headers=headers, params=params)
+
+		try:
+			assert response.status_code == 400
+		except:
+			message.append(f'Код ответа {response.status_code}, а не 400.')
+		try:
+			assert response.reason == 'Bad Request'
+		except:
+			message.append(f'Причина {response.reason}, а не "Bad Request".')
+		try:
+			assert response.json()['message'] == 'Неправильное значение параметра "phone".'
+		except:
+			message.append('Ошибка в тексте ошибки.')
+
+		assert message == expected_message, message
+
+	def test_validation_request_for_reset_password_to_empty_phone_at_lk(self):
+		message = ['Проверка кода подтверждения для восстановления пароля. Отправка пустого номера.']
+		expected_message = ['Проверка кода подтверждения для восстановления пароля. Отправка пустого номера.']
+
+		lktest_url = "https://api.lk.bezlimit.ru/v1"
+		params = {"phone": None}
+		headers = {"accept": "application/json"}
+
+		request_url = f'{lktest_url}/user/auth/request-password-reset/'
+		response = requests.get(request_url, headers=headers, params=params)
+
+		try:
+			assert response.status_code == 400
+		except:
+			message.append(f'Код ответа {response.status_code}, а не 400.')
+		try:
+			assert response.reason == 'Bad Request'
+		except:
+			message.append(f'Причина {response.reason}, а не "Bad Request".')
+		try:
+			assert type(response.json()) == dict
+		except AssertionError:
+			message.append(f'Тип данных в ответе {type(response.json())}, а не "dict".')
+		try:
+			assert response.json()['message'] == 'Отсутствуют обязательные параметры: phone'
+		except:
+			message.append('Ошибка в тексте ошибки.')
+
+		assert message == expected_message, message
 

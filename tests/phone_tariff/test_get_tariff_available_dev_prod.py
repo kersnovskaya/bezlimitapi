@@ -1,242 +1,392 @@
 import requests
 
-
 class TestProd:
 
-    def test_successful_getting_available_tariffs_at_lk(self):
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
-        lktest_url = "https://api.lk.bezlimit.ru/v1"
-        number = 9006471111
-        request_url = f"{lktest_url}/phone/tariff/available/{number}"
+	def test_successful_getting_available_tariffs_at_lk(self):
+		message = ['Выводит доступные для смены тарифы. Корректный запрос.']
+		expected_message = ['Выводит доступные для смены тарифы. Корректный запрос.']
 
-        headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}'}
+		token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+		lktest_url = "https://api.lk.bezlimit.ru/v1"
+		number = 9006471111
+		request_url = f"{lktest_url}/phone/tariff/available/{number}"
 
-        response = requests.get(request_url, headers=headers)
-        print(response)
-        print(response.json())
+		headers = {'accept': 'application/json', 'Authorization': f'Bearer {token}'}
 
-        assert response.status_code == 200, f'Код ответа {response.status_code}, а не 200.'
-        assert type(response.json()) == list, f'Тип данных тела ответа {type(response.json())}, а не "list".'
-        for i in response.json():
-            assert type(i['id']) == int, f'Тип данных параметра "id" не "int".'
-            assert i['name'] is not None
+		response = requests.get(request_url, headers=headers)
 
+		try:
+			assert response.status_code == 200
+		except AssertionError:
+			message.append(f'Код ответа {response.status_code}, а не 200.')
+		try:
+			assert type(response.json()) == list
+		except AssertionError:
+			message.append(f'Тип данных тела ответа {type(response.json())}, а не "list".')
+		for i in response.json():
+			try:
+				assert type(i['id']) == int
+			except AssertionError:
+				message.append(f'Тип данных параметра "id" не "int".')
+			try:
+				assert i['name'] is not None
+			except AssertionError:
+				message.append(f'Параметр "name" пустой.')
 
-    def test_successful_getting_available_tariffs_for_second_phone_at_lk(self):
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
-        lktest_url = "https://api.lk.bezlimit.ru/v1"
-        number = 9682220793
-        request_url = f"{lktest_url}/phone/tariff/available/{number}"
-
-        headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}'}
-
-        response = requests.get(request_url, headers=headers)
-        print(response)
-        print(response.json())
-
-        assert response.status_code == 200, f'Код ответа {response.status_code}, а не 200.'
-        assert type(response.json()) == list, f'Тип данных тела ответа {type(response.json())}, а не "list".'
-        for i in response.json():
-            assert type(i['id']) == int, f'Тип данных параметра "id" не "int".'
-            assert i['name']
+		assert message == expected_message, message
 
 
-    def test_unsuccessful_getting_available_tariffs_for_side_phone_at_lk(self):
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
-        lktest_url = "https://api.lk.bezlimit.ru/v1"
-        number = 9696588825
-        request_url = f"{lktest_url}/phone/tariff/available/{number}"
+	def test_successful_getting_available_tariffs_for_second_phone_at_lk(self):
+		message = ['Выводит доступные для смены тарифы. Корректный запрос для стороннего номера аккаунта.']
+		expected_message = ['Выводит доступные для смены тарифы. Корректный запрос для стороннего номера аккаунта.']
 
-        headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}'}
+		token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+		lktest_url = "https://api.lk.bezlimit.ru/v1"
+		number = 9039944222
+		request_url = f"{lktest_url}/phone/tariff/available/{number}"
 
-        response = requests.get(request_url, headers=headers)
-        print(response)
-        print(response.json())
+		headers = {'accept': 'application/json', 'Authorization': f'Bearer {token}'}
 
-        assert response.status_code == 404, f'Код ответа {response.status_code}, а не 404.'
-        assert response.reason == 'Not Found', f'Причина ошибки {response.reason}, а не "Not Found".'
-        assert response.json()['message'] == 'Номер телефона не привязан к аккаунту.', 'Ошибка в параметре "message".'
-        assert type(response.json()) == dict, f'Тип данных тела ответа {type(response.json())}, а не "dict".'
+		response = requests.get(request_url, headers=headers)
 
+		try:
+			assert response.status_code == 200
+		except AssertionError:
+			message.append(f'Код ответа {response.status_code}, а не 200.')
+		try:
+			assert type(response.json()) == list
+		except AssertionError:
+			message.append(f'Тип данных тела ответа {type(response.json())}, а не "list".')
+		for i in response.json():
+			try:
+				assert type(i['id']) == int
+			except AssertionError:
+				message.append(f'Тип данных параметра "id" не "int".')
+			try:
+				assert i['name'] is not None
+			except AssertionError:
+				message.append(f'Параметр "name" пустой.')
 
-    def test_unsuccessful_getting_available_tariffs_for_wrong_phone_at_lk(self):
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
-        lktest_url = "https://api.lk.bezlimit.ru/v1"
-        number = 917980661313
-        request_url = f"{lktest_url}/phone/tariff/available/{number}"
-
-        headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}'}
-
-        response = requests.get(request_url, headers=headers)
-        print(response)
-        print(response.json())
-
-        assert response.status_code == 404, f'Код ответа {response.status_code}, а не 404.'
-        assert response.reason == 'Not Found', f'Причина ошибки {response.reason}, а не "Not Found".'
-        assert response.json()['message'] == 'Введите номер телефона в формате 9001112233.', \
-                                             'Ошибка в параметре "message".'
-        assert type(response.json()) == dict, f'Тип данных тела ответа {type(response.json())}, а не "dict".'
+		assert message == expected_message, message
 
 
-    def test_unsuccessful_getting_available_tariffs_not_bezlimit_phone_at_lk(self):
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
-        lktest_url = "https://api.lk.bezlimit.ru/v1"
-        number = 9000000000
-        request_url = f"{lktest_url}/phone/tariff/available/{number}"
+	def test_unsuccessful_getting_available_tariffs_for_side_phone_at_lk(self):
+		message = ['Выводит доступные для смены тарифы. Запрос для стороннего номера.']
+		expected_message = ['Выводит доступные для смены тарифы. Запрос для стороннего номера.']
 
-        headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}'}
+		token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+		lktest_url = "https://api.lk.bezlimit.ru/v1"
+		number = 9696588825
+		request_url = f"{lktest_url}/phone/tariff/available/{number}"
 
-        response = requests.get(request_url, headers=headers)
-        print(response)
-        print(response.json())
+		headers = {'accept': 'application/json', 'Authorization': f'Bearer {token}'}
 
-        assert response.status_code == 404, f'Код ответа {response.status_code}, а не 404.'
-        assert response.reason == 'Not Found', f'Причина ошибки {response.reason}, а не "Not Found".'
-        assert response.json()['message'] == 'Введенный номер не обслуживается в Безлимит!', \
-                                             'Ошибка в параметре "message".'
-        assert type(response.json()) == dict, f'Тип данных тела ответа {type(response.json())}, а не "dict".'
+		response = requests.get(request_url, headers=headers)
+
+		try:
+			assert response.status_code == 404
+		except AssertionError:
+			message.append(f'Код ответа {response.status_code}, а не 404.')
+		try:
+			assert response.reason == 'Not Found'
+		except AssertionError:
+			message.append(f'Причина ошибки {response.reason}, а не "Not Found".')
+		try:
+			assert response.json()['message'] == 'Номер телефона не привязан к аккаунту.'
+		except AssertionError:
+			message.append('Ошибка в параметре "message".')
+		try:
+			assert type(response.json()) == dict
+		except AssertionError:
+			message.append(f'Тип данных тела ответа {type(response.json())}, а не "dict".')
+
+		assert message == expected_message, message
+
+	def test_unsuccessful_getting_available_tariffs_for_wrong_phone_at_lk(self):
+		message = ['Выводит доступные для смены тарифы. Некорректный номер.']
+		expected_message = ['Выводит доступные для смены тарифы. Некорректный номер.']
+
+		token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+		lktest_url = "https://api.lk.bezlimit.ru/v1"
+		number = 917980661313
+		request_url = f"{lktest_url}/phone/tariff/available/{number}"
+
+		headers = {'accept': 'application/json', 'Authorization': f'Bearer {token}'}
+
+		response = requests.get(request_url, headers=headers)
+
+		try:
+			assert response.status_code == 404
+		except AssertionError:
+			message.append(f'Код ответа {response.status_code}, а не 404.')
+		try:
+			assert response.reason == 'Not Found'
+		except AssertionError:
+			message.append(f'Причина ошибки {response.reason}, а не "Not Found".')
+		try:
+			assert response.json()['message'] == 'Введите номер телефона в формате 9001112233.'
+		except AssertionError:
+			message.append('Ошибка в параметре "message".')
+		try:
+			assert type(response.json()) == dict
+		except AssertionError:
+			message.append(f'Тип данных тела ответа {type(response.json())}, а не "dict".')
+
+		assert message == expected_message, message
 
 
-    def test_unsuccessful_getting_available_tariffs_without_token_at_lk(self):
-        token = 'kurwa'
-        lktest_url = "https://api.lk.bezlimit.ru/v1"
-        number = 9000000000
-        request_url = f"{lktest_url}/phone/tariff/available/{number}"
+	def test_unsuccessful_getting_available_tariffs_not_bezlimit_phone_at_lk(self):
+		message = ['Выводит доступные для смены тарифы. Номер не Безлимит.']
+		expected_message = ['Выводит доступные для смены тарифы. Номер не Безлимит.']
 
-        headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}'}
+		token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+		lktest_url = "https://api.lk.bezlimit.ru/v1"
+		number = 9000000000
+		request_url = f"{lktest_url}/phone/tariff/available/{number}"
 
-        response = requests.get(request_url, headers=headers)
-        print(response)
-        print(response.json())
+		headers = {'accept': 'application/json', 'Authorization': f'Bearer {token}'}
 
-        assert response.status_code == 401, f'Код ответа {response.status_code}, а не 401.'
-        assert response.reason == 'Unauthorized', f'Причина ошибки {response.reason}, а не "Unauthorized".'
-        assert response.json()['message'] == 'Your request was made with invalid credentials.', \
-                                             'Ошибка в параметре "message".'
+		response = requests.get(request_url, headers=headers)
+
+		try:
+			assert response.status_code == 404
+		except AssertionError:
+			message.append(f'Код ответа {response.status_code}, а не 404.')
+		try:
+			assert response.reason == 'Not Found'
+		except AssertionError:
+			message.append(f'Причина ошибки {response.reason}, а не "Not Found".')
+		try:
+			assert response.json()['message'] == 'Введенный номер не обслуживается в Безлимит!'
+		except AssertionError:
+			message.append('Ошибка в параметре "message".')
+		try:
+			assert type(response.json()) == dict
+		except AssertionError:
+			message.append(f'Тип данных тела ответа {type(response.json())}, а не "dict".')
+
+		assert message == expected_message, message
+
+
+	def test_unsuccessful_getting_available_tariffs_without_token_at_lk(self):
+		message = ['Выводит доступные для смены тарифы. Номер не Безлимит.']
+		expected_message = ['Выводит доступные для смены тарифы. Номер не Безлимит.']
+
+		token = 'kurwa'
+		lktest_url = "https://api.lk.bezlimit.ru/v1"
+		number = 9000000000
+		request_url = f"{lktest_url}/phone/tariff/available/{number}"
+
+		headers = {'accept': 'application/json', 'Authorization': f'Bearer {token}'}
+
+		response = requests.get(request_url, headers=headers)
+
+		try:
+			assert response.status_code == 401
+		except AssertionError:
+			message.append(f'Код ответа {response.status_code}, а не 401.')
+		try:
+			assert response.reason == 'Unauthorized'
+		except AssertionError:
+			message.append(f'Причина ошибки {response.reason}, а не "Unauthorized".')
+		try:
+			assert response.json()['message'] == 'Your request was made with invalid credentials.'
+		except AssertionError:
+			message.append('Ошибка в параметре "message".')
+
+		assert message == expected_message, message
 
 
 class TestDev:
 
-    def test_successful_getting_available_tariffs_at_lk(self):
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
-        lktest_url = "https://lktest.bezlimit.ru/v1"
-        number = 9006471111
-        request_url = f"{lktest_url}/phone/tariff/available/{number}"
+	def test_successful_getting_available_tariffs_at_lk(self):
+		message = ['Выводит доступные для смены тарифы. Корректный запрос.']
+		expected_message = ['Выводит доступные для смены тарифы. Корректный запрос.']
 
-        headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}'}
+		token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+		lktest_url = "https://lktest.bezlimit.ru/v1"
+		number = 9006471111
+		request_url = f"{lktest_url}/phone/tariff/available/{number}"
 
-        response = requests.get(request_url, headers=headers)
-        print(response)
-        print(response.json())
+		headers = {'accept': 'application/json', 'Authorization': f'Bearer {token}'}
 
-        assert response.status_code == 200, f'Код ответа {response.status_code}, а не 200.'
-        assert type(response.json()) == list, f'Тип данных тела ответа {type(response.json())}, а не "list".'
-        for i in response.json():
-            assert type(i['id']) == int, f'Тип данных параметра "id" не "int".'
-            assert i['name'] is not None
+		response = requests.get(request_url, headers=headers)
 
+		try:
+			assert response.status_code == 200
+		except AssertionError:
+			message.append(f'Код ответа {response.status_code}, а не 200.')
+		try:
+			assert type(response.json()) == list
+		except AssertionError:
+			message.append(f'Тип данных тела ответа {type(response.json())}, а не "list".')
+		for i in response.json():
+			try:
+				assert type(i['id']) == int
+			except AssertionError:
+				message.append(f'Тип данных параметра "id" не "int".')
+			try:
+				assert i['name'] is not None
+			except AssertionError:
+				message.append(f'Параметр "name" пустой.')
 
-    def test_successful_getting_available_tariffs_for_second_phone_at_lk(self):
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
-        lktest_url = "https://lktest.bezlimit.ru/v1"
-        number = 9682220793
-        request_url = f"{lktest_url}/phone/tariff/available/{number}"
+		assert message == expected_message, message
 
-        headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}'}
+	def test_successful_getting_available_tariffs_for_second_phone_at_lk(self):
+		message = ['Выводит доступные для смены тарифы. Корректный запрос для стороннего номера аккаунта.']
+		expected_message = ['Выводит доступные для смены тарифы. Корректный запрос для стороннего номера аккаунта.']
 
-        response = requests.get(request_url, headers=headers)
-        print(response)
-        print(response.json())
+		token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+		lktest_url = "https://lktest.bezlimit.ru/v1"
+		number = 9032417766
+		request_url = f"{lktest_url}/phone/tariff/available/{number}"
 
-        assert response.status_code == 200, f'Код ответа {response.status_code}, а не 200.'
-        assert type(response.json()) == list, f'Тип данных тела ответа {type(response.json())}, а не "list".'
-        for i in response.json():
-            assert type(i['id']) == int, f'Тип данных параметра "id" не "int".'
-            assert i['name']
+		headers = {'accept': 'application/json', 'Authorization': f'Bearer {token}'}
 
+		response = requests.get(request_url, headers=headers)
 
-    def test_unsuccessful_getting_available_tariffs_for_side_phone_at_lk(self):
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
-        lktest_url = "https://lktest.bezlimit.ru/v1"
-        number = 9696588825
-        request_url = f"{lktest_url}/phone/tariff/available/{number}"
+		try:
+			assert response.status_code == 200
+		except AssertionError:
+			message.append(f'Код ответа {response.status_code}, а не 200.')
+		try:
+			assert type(response.json()) == list
+		except AssertionError:
+			message.append(f'Тип данных тела ответа {type(response.json())}, а не "list".')
+		for i in response.json():
+			try:
+				assert type(i['id']) == int
+			except AssertionError:
+				message.append(f'Тип данных параметра "id" не "int".')
+			try:
+				assert i['name'] is not None
+			except AssertionError:
+				message.append(f'Параметр "name" пустой.')
 
-        headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}'}
+		assert message == expected_message, message
 
-        response = requests.get(request_url, headers=headers)
-        print(response)
-        print(response.json())
+	def test_unsuccessful_getting_available_tariffs_for_side_phone_at_lk(self):
+		message = ['Выводит доступные для смены тарифы. Запрос для стороннего номера.']
+		expected_message = ['Выводит доступные для смены тарифы. Запрос для стороннего номера.']
 
-        assert response.status_code == 404, f'Код ответа {response.status_code}, а не 404.'
-        assert response.reason == 'Not Found', f'Причина ошибки {response.reason}, а не "Not Found".'
-        assert response.json()['message'] == 'Номер телефона не привязан к аккаунту.', 'Ошибка в параметре "message".'
-        assert type(response.json()) == dict, f'Тип данных тела ответа {type(response.json())}, а не "dict".'
+		token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+		lktest_url = "https://lktest.bezlimit.ru/v1"
+		number = 9696588825
+		request_url = f"{lktest_url}/phone/tariff/available/{number}"
 
+		headers = {'accept': 'application/json', 'Authorization': f'Bearer {token}'}
 
-    def test_unsuccessful_getting_available_tariffs_for_wrong_phone_at_lk(self):
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
-        lktest_url = "https://lktest.bezlimit.ru/v1"
-        number = 917980661313
-        request_url = f"{lktest_url}/phone/tariff/available/{number}"
+		response = requests.get(request_url, headers=headers)
 
-        headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}'}
+		try:
+			assert response.status_code == 404
+		except AssertionError:
+			message.append(f'Код ответа {response.status_code}, а не 404.')
+		try:
+			assert response.reason == 'Not Found'
+		except AssertionError:
+			message.append(f'Причина ошибки {response.reason}, а не "Not Found".')
+		try:
+			assert response.json()['message'] == 'Номер телефона не привязан к аккаунту.'
+		except AssertionError:
+			message.append('Ошибка в параметре "message".')
+		try:
+			assert type(response.json()) == dict
+		except AssertionError:
+			message.append(f'Тип данных тела ответа {type(response.json())}, а не "dict".')
 
-        response = requests.get(request_url, headers=headers)
-        print(response)
-        print(response.json())
+		assert message == expected_message, message
 
-        assert response.status_code == 404, f'Код ответа {response.status_code}, а не 404.'
-        assert response.reason == 'Not Found', f'Причина ошибки {response.reason}, а не "Not Found".'
-        assert response.json()['message'] == 'Введите номер телефона в формате 9001112233.', \
-                                             'Ошибка в параметре "message".'
-        assert type(response.json()) == dict, f'Тип данных тела ответа {type(response.json())}, а не "dict".'
+	def test_unsuccessful_getting_available_tariffs_for_wrong_phone_at_lk(self):
+		message = ['Выводит доступные для смены тарифы. Некорректный номер.']
+		expected_message = ['Выводит доступные для смены тарифы. Некорректный номер.']
 
+		token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+		lktest_url = "https://lktest.bezlimit.ru/v1"
+		number = 917980661313
+		request_url = f"{lktest_url}/phone/tariff/available/{number}"
 
-    def test_unsuccessful_getting_available_tariffs_not_bezlimit_phone_at_lk(self):
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
-        lktest_url = "https://lktest.bezlimit.ru/v1"
-        number = 9000000000
-        request_url = f"{lktest_url}/phone/tariff/available/{number}"
+		headers = {'accept': 'application/json', 'Authorization': f'Bearer {token}'}
 
-        headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}'}
+		response = requests.get(request_url, headers=headers)
 
-        response = requests.get(request_url, headers=headers)
-        print(response)
-        print(response.json())
+		try:
+			assert response.status_code == 404
+		except AssertionError:
+			message.append(f'Код ответа {response.status_code}, а не 404.')
+		try:
+			assert response.reason == 'Not Found'
+		except AssertionError:
+			message.append(f'Причина ошибки {response.reason}, а не "Not Found".')
+		try:
+			assert response.json()['message'] == 'Введите номер телефона в формате 9001112233.'
+		except AssertionError:
+			message.append('Ошибка в параметре "message".')
+		try:
+			assert type(response.json()) == dict
+		except AssertionError:
+			message.append(f'Тип данных тела ответа {type(response.json())}, а не "dict".')
 
-        assert response.status_code == 404, f'Код ответа {response.status_code}, а не 404.'
-        assert response.reason == 'Not Found', f'Причина ошибки {response.reason}, а не "Not Found".'
-        assert response.json()['message'] == 'Введенный номер не обслуживается в Безлимит!', \
-                                             'Ошибка в параметре "message".'
-        assert type(response.json()) == dict, f'Тип данных тела ответа {type(response.json())}, а не "dict".'
+		assert message == expected_message, message
 
+	def test_unsuccessful_getting_available_tariffs_not_bezlimit_phone_at_lk(self):
+		message = ['Выводит доступные для смены тарифы. Номер не Безлимит.']
+		expected_message = ['Выводит доступные для смены тарифы. Номер не Безлимит.']
 
-    def test_unsuccessful_getting_available_tariffs_without_token_at_lk(self):
-        token = 'kurwa'
-        lktest_url = "https://lktest.bezlimit.ru/v1"
-        number = 9000000000
-        request_url = f"{lktest_url}/phone/tariff/available/{number}"
+		token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+		lktest_url = "https://lktest.bezlimit.ru/v1"
+		number = 9000000000
+		request_url = f"{lktest_url}/phone/tariff/available/{number}"
 
-        headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}'}
+		headers = {'accept': 'application/json', 'Authorization': f'Bearer {token}'}
 
-        response = requests.get(request_url, headers=headers)
-        print(response)
-        print(response.json())
+		response = requests.get(request_url, headers=headers)
 
-        assert response.status_code == 401, f'Код ответа {response.status_code}, а не 401.'
-        assert response.reason == 'Unauthorized', f'Причина ошибки {response.reason}, а не "Unauthorized".'
-        assert response.json()['message'] == 'Your request was made with invalid credentials.', \
-                                             'Ошибка в параметре "message".'
+		try:
+			assert response.status_code == 404
+		except AssertionError:
+			message.append(f'Код ответа {response.status_code}, а не 404.')
+		try:
+			assert response.reason == 'Not Found'
+		except AssertionError:
+			message.append(f'Причина ошибки {response.reason}, а не "Not Found".')
+		try:
+			assert response.json()['message'] == 'Введенный номер не обслуживается в Безлимит!'
+		except AssertionError:
+			message.append('Ошибка в параметре "message".')
+		try:
+			assert type(response.json()) == dict
+		except AssertionError:
+			message.append(f'Тип данных тела ответа {type(response.json())}, а не "dict".')
 
+		assert message == expected_message, message
+
+	def test_unsuccessful_getting_available_tariffs_without_token_at_lk(self):
+		message = ['Выводит доступные для смены тарифы. Неавторизован.']
+		expected_message = ['Выводит доступные для смены тарифы. Неавторизован.']
+
+		token = 'kurwa'
+		lktest_url = "https://lktest.bezlimit.ru/v1"
+		number = 9000000000
+		request_url = f"{lktest_url}/phone/tariff/available/{number}"
+
+		headers = {'accept': 'application/json', 'Authorization': f'Bearer {token}'}
+
+		response = requests.get(request_url, headers=headers)
+		print(response)
+		print(response.json())
+
+		try:
+			assert response.status_code == 401
+		except AssertionError:
+			message.append(f'Код ответа {response.status_code}, а не 401.')
+		try:
+			assert response.reason == 'Unauthorized'
+		except AssertionError:
+			message.append(f'Причина ошибки {response.reason}, а не "Unauthorized".')
+		try:
+			assert response.json()['message'] == 'Your request was made with invalid credentials.'
+		except AssertionError:
+			message.append('Ошибка в параметре "message".')
+
+		assert message == expected_message, message

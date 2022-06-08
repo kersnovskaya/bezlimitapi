@@ -35,6 +35,6 @@ class Test:
 
         res = req.make_request_to_endpoint()
 
-        assert res.get_status_code() == 401
+        assert res.get_status_code() == 200
         assert res.get_reason() == 'Unauthorized'
         assert res.get_content()['message'] == 'Your request was made with invalid credentials.'

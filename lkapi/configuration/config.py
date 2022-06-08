@@ -25,7 +25,7 @@ TEST_PHONE_JOHN = 9682223481
 #                                        NEW DATA FOR API LK BEZLIMIT
 # --------------------------------------------------------------------------------------------------------------------
 
-five_numbers_lk_token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
+four_numbers_lk_token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
 grand_number = 9682224036  # Есть ПД, есть деньги, нет контактного номера
 snd_number = 9682223055    # Есть ПД, есть деньги, есть контактный номер
 trd_number = 9682221928    # Нет ПД, есть деньги, нет контактного номера, активирован менее месяца назад
