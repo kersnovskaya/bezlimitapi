@@ -2,7 +2,11 @@ import requests
 
 
 class Test:
+
     def test_get_phone_detail_download_without_token(self):
+        message = ['Скачивание детализации. Неавторизован.']
+        expected_message = ['Скачивание детализации. Неавторизован.']
+
         token = 12345678910
         headers = {'accept': '*/*', 'Authorization': f'Bearer {token}'}
         lktest_url = "https://lktest.bezlimit.ru/v1"
@@ -14,17 +18,23 @@ class Test:
         }
         request_url = f"{lktest_url}/phone/detail/download"
         response = requests.get(request_url, headers=headers, params=data)
-        print(response)
 
-        assert response.status_code == 401
-        assert response.json() == {'code': 0,
-                                   'message': 'Your request was made with invalid credentials.',
-                                   'name': 'Unauthorized',
-                                   'status': 401,
-                                   'type': 'yii\\web\\UnauthorizedHttpException'}
+        try:
+            assert response.status_code == 401
+        except AssertionError:
+            message.append(f'Код ответа {response.status_code}, а не 401')
+        try:
+            assert response.reason == 'Unauthorized'
+        except AssertionError:
+            message.append(f"Причина {response.reason}, а не 'Unauthorized'.")
+
+        assert message == expected_message, message
 
 
     def test_get_phone_detail_download_correct_credentials_type_0(self):
+        message = ['Скачивание детализации. Корректный запрос, тип-1.']
+        expected_message = ['Скачивание детализации. Корректный запрос, тип-1.']
+
         token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
         headers = {'accept': '*/*', 'Authorization': f'Bearer {token}'}
         lktest_url = "https://lktest.bezlimit.ru/v1"
@@ -36,12 +46,22 @@ class Test:
         }
         request_url = f"{lktest_url}/phone/detail/download"
         response = requests.get(request_url, headers=headers, params=data)
-        print(response)
 
-        assert response.status_code == 200
+        try:
+            assert response.status_code == 200
+        except AssertionError:
+            message.append(f'Код ответа {response.status_code}, а не 200')
+        try:
+            assert 'content-type: application/pdf' in response.headers
+        except AssertionError:
+            message.append('Возможно не отдаётся pdf.файл.')
+        assert message == expected_message, message
 
 
     def test_get_phone_detail_download_correct_credentials_type_1(self):
+        message = ['Скачивание детализации. Корректный запрос, тип-2.']
+        expected_message = ['Скачивание детализации. Корректный запрос, тип-2.']
+
         token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
         headers = {'accept': '*/*', 'Authorization': f'Bearer {token}'}
         lktest_url = "https://lktest.bezlimit.ru/v1"
@@ -53,12 +73,21 @@ class Test:
         }
         request_url = f"{lktest_url}/phone/detail/download"
         response = requests.get(request_url, headers=headers, params=data)
-        print(response)
 
-        assert response.status_code == 200
-
+        try:
+            assert response.status_code == 200
+        except AssertionError:
+            message.append(f'Код ответа {response.status_code}, а не 200')
+        try:
+            assert 'content-type: application/pdf' in response.headers
+        except AssertionError:
+            message.append('Возможно не отдаётся pdf.файл.')
+        assert message == expected_message, message
 
     def test_get_phone_detail_download_correct_credentials_type_2(self):
+        message = ['Скачивание детализации. Корректный запрос, тип-3.']
+        expected_message = ['Скачивание детализации. Корректный запрос, тип-3.']
+
         token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
         headers = {'accept': '*/*', 'Authorization': f'Bearer {token}'}
         lktest_url = "https://lktest.bezlimit.ru/v1"
@@ -70,10 +99,16 @@ class Test:
         }
         request_url = f"{lktest_url}/phone/detail/download"
         response = requests.get(request_url, headers=headers, params=data)
-        print(response)
 
-        assert response.status_code == 200
-
+        try:
+            assert response.status_code == 200
+        except AssertionError:
+            message.append(f'Код ответа {response.status_code}, а не 200')
+        try:
+            assert 'content-type: application/pdf' in response.headers
+        except AssertionError:
+            message.append('Возможно не отдаётся pdf.файл.')
+        assert message == expected_message, message
 
     def test_get_phone_detail_download_non_bezlimit_number(self):
         token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
@@ -87,8 +122,6 @@ class Test:
         }
         request_url = f"{lktest_url}/phone/detail/download"
         response = requests.get(request_url, headers=headers, params=data)
-        print(response)
-        print(response.json())
 
         assert response.status_code == 422
         assert response.json() == [{'field': 'phone', 'message': 'Введенный номер не обслуживается в Безлимит!'}]
@@ -106,8 +139,6 @@ class Test:
         }
         request_url = f"{lktest_url}/phone/detail/download"
         response = requests.get(request_url, headers=headers, params=data)
-        print(response)
-        print(response.json())
 
         assert response.status_code == 422
         assert response.json() == [{'field': 'phone', 'message': 'Номер телефона не привязан к аккаунту.'}]
@@ -125,8 +156,6 @@ class Test:
         }
         request_url = f"{lktest_url}/phone/detail/download"
         response = requests.get(request_url, headers=headers, params=data)
-        print(response)
-        print(response.json())
 
         assert response.status_code == 422
         assert response.json() == [{'field': 'periodEnd',
@@ -145,8 +174,6 @@ class Test:
         }
         request_url = f"{lktest_url}/phone/detail/download"
         response = requests.get(request_url, headers=headers, params=data)
-        print(response)
-        print(response.json())
 
         assert response.status_code == 422
         assert response.json() == [{'field': 'phone', 'message': 'Введите номер телефона в формате 9001112233.'},
@@ -167,8 +194,6 @@ class Test:
         }
         request_url = f"{lktest_url}/phone/detail/download"
         response = requests.get(request_url, headers=headers, params=data)
-        print(response)
-        print(response.json())
 
         assert response.status_code == 400
         assert response.json() == {'name': 'Bad Request',
