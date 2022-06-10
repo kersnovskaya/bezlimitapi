@@ -29,16 +29,18 @@ class Test:
 
         queries_fields = ['phone', 'name', 'is_disable_delete', 'is_adding_confirmed']
         random_field = queries_fields[random.randrange(0, len(queries_fields), 1)]
+        params = {'fields': random_field}
+
 
         request_url = f'{lk_url}/account/phone'
-        response = requests.get(request_url, headers=headers)
+        response = requests.get(request_url, headers=headers, params=params)
 
         print(response.status_code)
         print(response.json())
 
         assert response.status_code == 200
         assert type(response.json()) == list
-        assert set([len(i) for i in response.json()]) == {4}
+        assert set([len(i) for i in response.json()]) == {1}
         assert all([i.get(random_field, None) for i in response.json()]) is not None
 
     def test_getting_phone_list_with_one_query_expand_at_lk(self):
