@@ -177,8 +177,4 @@ count = 0
 for i in a_list:
     shit = a_list[:]
     shit.remove(i)
-    print(shit)
-
-    print(a_list)
-    print(i)
     count += 1

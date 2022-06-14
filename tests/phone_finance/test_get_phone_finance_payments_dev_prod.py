@@ -1,63 +1,20 @@
 import requests
-
-
-def get_transfer_token(phone_from, phone_to):
-    token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
-    headers = {'accept': 'application/json',
-                'Authorization': f'Bearer {token}',
-               'Content-Type': 'application/x-www-form-urlencoded'
-               }
-    lktest_url = "https://api.lk.bezlimit.ru/v1"
-    data = {
-        "phoneFrom": phone_from,
-        "phoneTo": phone_to,
-        "sum": 150
-    }
-    request_url = f"{lktest_url}/phone/finance/money-transfer-client-bezlimit"
-    response = requests.post(request_url, headers=headers, data=data)
-    money_transfer_token = str(response.json()['money_transfer_token'])
-
-    return money_transfer_token
-
-
-def get_code(phone_from):
-    token = 'Z1RseVcn9twtKLY84eYQf57Pw8ENZ1yks436TJHXaC2dJhcRZLJ2mGsgRBpTuFp7'
-    url = "https://api.bezlimit.ru/v1"
-    headers = {'accept': 'application/json',
-               'authorization': 'Basic YXBpOldHZnpzQWlKYkxa',
-               'Api-Token': token}
-    params = {'phone': int(phone_from)}
-    request_url = f"{url}/queue/sms"
-    response = requests.get(request_url, headers=headers, params=params)
-    asshole = response.json()
-
-    for i in asshole['items']:
-        raw_code = i['text']
-        code = raw_code[-6::]
-        break
-
-    return code
+import random
 
 
 class TestDev:
 
-
-    def test_post_transfer_code_confirmation_invalid_token(self):
-        message = ['Подтверждение перевода средств. Неавторизован.']
-        expected_message = ['Подтверждение перевода средств. Неавторизован.']
+    def test_get_phone_finance_payments_invalid_token(self):
+        message = ['Список платежей за период. Неавторизован.']
+        expected_message = ['Список платежей за период. Неавторизован.']
 
         token = 12345678910
+        lktest_url = "https://lktest.bezlimit.ru/v1"
+        request_url = f"{lktest_url}/phone/finance/payments"
+
         headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}',
-                   'Content-Type': 'application/x-www-form-urlencoded'
-                   }
-        lktest_url = "https://api.lk.bezlimit.ru/v1"
-        data = {
-            "moneyTransferToken": '',
-            "code": 123456
-        }
-        request_url = f"{lktest_url}/phone/finance/money-transfer-code-confirmation"
-        response = requests.post(request_url, headers=headers, data=data)
+                   'Authorization': f'Bearer {token}'}
+        response = requests.get(request_url, headers=headers)
 
         try:
             assert response.status_code == 401
@@ -74,116 +31,243 @@ class TestDev:
 
         assert message == expected_message, message
 
+    def test_get_phone_finance_payments_incorrect_phone(self):
+        message = ['Список платежей за период. Запрос для стороннего номера.']
+        expected_message = ['Список платежей за период. Запрос для стороннего номера.']
 
-    def test_post_transfer_code_confirmation_invalid_data(self):
-        message = ['Подтверждение перевода средств. Некорректные данные.']
-        expected_message = ['Подтверждение перевода средств. Некорректные данные.']
+        token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
+        lktest_url = "https://lktest.bezlimit.ru/v1"
+        request_url = f"{lktest_url}/phone/finance/payments/"
 
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
         headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}',
-                   'Content-Type': 'application/x-www-form-urlencoded'
-                   }
-
-        lktest_url = "https://api.lk.bezlimit.ru/v1"
-        data = {
-            "moneyTransferToken": 123546,
-            "code": '123456'
-        }
-
-        request_url = f"{lktest_url}/phone/finance/money-transfer-code-confirmation"
-        response = requests.post(request_url, headers=headers, data=data)
+                   'Authorization': f'Bearer {token}'}
+        params = {'phone': 9696588825}
+        response = requests.get(request_url, headers=headers, params=params)
 
         try:
             assert response.status_code == 422
         except AssertionError:
             message.append(f"Код ответа {response.status_code}, а не 422.")
         try:
-            assert response.json() == [{'field': 'money_transfer_token',
-                                        'message': 'Запрос на перевод денег не найден.'}]
+            assert response.json() == [{
+                                     "field": "phone",
+                                     "message": "Номер телефона не привязан к аккаунту."
+                                    }]
         except AssertionError:
-            message.append('В тексте ответа ошибка.')
+            message.append('Ошибка в теле ответа.')
 
         assert message == expected_message, message
 
+    def test_get_phone_finance_payments_shitty_phone(self):
+        message = ['Список платежей за период. Запрос для стороннего номера.']
+        expected_message = ['Список платежей за период. Запрос для стороннего номера.']
 
-    def test_post_transfer_code_confirmation_correct_and_incorrect(self):
-        message = ['Подтверждение перевода средств. Подтверждение перевода.']
-        expected_message = ['Подтверждение перевода средств. Подтверждение перевода.']
+        token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
+        lktest_url = "https://lktest.bezlimit.ru/v1"
+        request_url = f"{lktest_url}/phone/finance/payments/"
 
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
         headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}',
-                   'Content-Type': 'application/x-www-form-urlencoded'
-                   }
-        lktest_url = "https://api.lk.bezlimit.ru/v1"
-
-        transfer_token = get_transfer_token(9682223055, 9682224036)
-        code = get_code(9682223055)
-
-        data1 = {
-            "moneyTransferToken": transfer_token,
-            "code": 100000
-        }
-
-        request_url = f"{lktest_url}/phone/finance/money-transfer-code-confirmation"
-        response = requests.post(request_url, headers=headers, data=data1)
+                   'Authorization': f'Bearer {token}'}
+        params = {'phone': 1545}
+        response = requests.get(request_url, headers=headers, params=params)
 
         try:
             assert response.status_code == 422
         except AssertionError:
-            message.append(f"Некорректный токен и код."
-                           f"Код ответа {response.status_code}, а не 422.")
+            message.append(f"Код ответа {response.status_code}, а не 422.")
         try:
-            assert response.json() == [{"field": "code", "message": "Неправильный код подтверждения."}]
+            assert response.json() == [{
+                                     "field": "phone",
+                                     "message": "Введите номер телефона в формате 9001112233."
+                                    }]
         except AssertionError:
-            message.append('Некорректный токен и код. В тексте ответа ошибка.')
-
-        data2 = {
-            "moneyTransferToken": transfer_token,
-            "code": code
-        }
-
-        request_url = f"{lktest_url}/phone/finance/money-transfer-code-confirmation"
-        response = requests.post(request_url, headers=headers, data=data2)
-
-        try:
-            assert response.status_code == 204
-        except AssertionError:
-            message.append(f"Корректный токен и код."
-                           f"Код ответа {response.status_code}, а не 204.")
+            message.append('Ошибка в теле ответа.')
 
         assert message == expected_message, message
 
+    def test_get_phone_finance_payments_correct_week(self):
+        message = ['Список платежей за период. Корректный запрос, неделя.']
+        expected_message = ['Список платежей за период. Корректный запрос, неделя.']
 
-    def test_post_transfer_code_confirmation_correct_and_incorrect_again(self):
         token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+        lktest_url = "https://lktest.bezlimit.ru/v1"
+        request_url = f"{lktest_url}/phone/finance/payments/"
+
         headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}',
-                   'Content-Type': 'application/x-www-form-urlencoded'
-                   }
-        lktest_url = "https://api.lk.bezlimit.ru/v1"
+                   'Authorization': f'Bearer {token}'}
+        params = {'phone': 9006471111,
+                  'dateStart': '2022-04-15',
+                  'dateEnd': '2022-04-21'}
+        response = requests.get(request_url, headers=headers, params=params)
 
-        transfer_token = get_transfer_token(9682224036, 9682223055)
-        code = get_code(9682224036)
+        try:
+            assert response.status_code == 200
+        except AssertionError:
+            message.append(f"Код ответа {response.status_code}, а не 200.")
+        try:
+            for i in response.json():
+                assert type(i['amount']) == int
+                assert type(i['payment_date']) == str
+                assert type(i['created_at']) == str
+        except AssertionError:
+            message.append(f'В параметрах ответа некорректные типы данных.')
 
-        data1 = {
-            "moneyTransferToken": transfer_token,
-            "code": 100000
-        }
+        assert message == expected_message, message
 
-        request_url = f"{lktest_url}/phone/finance/money-transfer-code-confirmation"
-        response = requests.post(request_url, headers=headers, data=data1)
+    def test_get_phone_finance_payments_correct_month(self):
+        message = ['Список платежей за период. Корректный запрос, месяц.']
+        expected_message = ['Список платежей за период. Корректный запрос, месяц.']
 
-        assert response.status_code == 422
-        assert response.json() == [{"field": "code", "message": "Неправильный код подтверждения."}]
+        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+        lktest_url = "https://lktest.bezlimit.ru/v1"
+        request_url = f"{lktest_url}/phone/finance/payments/"
 
-        data2 = {
-            "moneyTransferToken": transfer_token,
-            "code": code
-        }
+        headers = {'accept': 'application/json',
+                   'Authorization': f'Bearer {token}'}
+        params = {'phone': 9006471111,
+                  'dateStart': '2022-05-01',
+                  'dateEnd': '2022-06-01'}
+        response = requests.get(request_url, headers=headers, params=params)
 
-        request_url = f"{lktest_url}/phone/finance/money-transfer-code-confirmation"
-        response = requests.post(request_url, headers=headers, data=data2)
+        try:
+            assert response.status_code == 200
+        except AssertionError:
+            message.append(f"Код ответа {response.status_code}, а не 200.")
+        try:
+            for i in response.json():
+                assert type(i['amount']) == int
+                assert type(i['payment_date']) == str
+                assert type(i['created_at']) == str
+        except AssertionError:
+            message.append(f'В параметрах ответа некорректные типы данных.')
 
-        assert response.status_code == 204
+        assert message == expected_message, message
+
+    def test_get_phone_finance_payments_correct_month_more(self):
+        message = ['Список платежей за период. Корректный запрос, другой период.']
+        expected_message = ['Список платежей за период. Корректный запрос, другой период.']
+
+        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+        lktest_url = "https://lktest.bezlimit.ru/v1"
+        request_url = f"{lktest_url}/phone/finance/payments/"
+
+        headers = {'accept': 'application/json',
+                   'Authorization': f'Bearer {token}'}
+        params = {'phone': 9006471111,
+                  'dateStart': '2022-04-10',
+                  'dateEnd': '2022-06-08'}
+        response = requests.get(request_url, headers=headers, params=params)
+
+        try:
+            assert response.status_code == 200
+        except AssertionError:
+            message.append(f"Код ответа {response.status_code}, а не 200.")
+        try:
+            for i in response.json():
+                assert type(i['amount']) == int
+                assert type(i['payment_date']) == str
+                assert type(i['created_at']) == str
+        except AssertionError:
+            message.append(f'В параметрах ответа некорректные типы данных.')
+
+        assert message == expected_message, message
+
+    def test_get_phone_finance_payments_correct_random_page(self):
+        message = ['Список платежей за период. Параметры "page", "per-page".']
+        expected_message = ['Список платежей за период. Параметры "page", "per-page".']
+
+        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+        lktest_url = "https://lktest.bezlimit.ru/v1"
+        request_url = f"{lktest_url}/phone/finance/payments/"
+
+        page = [1, 2, 3]
+        per_page = [5, 4, 6]
+        for i in per_page:
+            for j in page:
+                headers = {'accept': 'application/json',
+                           'Authorization': f'Bearer {token}'}
+                params = {'phone': 9006471111,
+                          'dateStart': '2022-04-10',
+                          'dateEnd': '2022-06-08',
+                          'per-page': i,
+                          'page': j}
+                response = requests.get(request_url, headers=headers, params=params)
+
+                try:
+                    assert response.status_code == 200
+                except AssertionError:
+                    message.append(f"Код ответа {response.status_code}, а не 200.")
+                try:
+                    for i in response.json():
+                        assert type(i['amount']) == int
+                        assert type(i['payment_date']) == str
+                        assert type(i['created_at']) == str
+                except AssertionError:
+                    message.append(f'В параметрах ответа некорректные типы данных.')
+
+        assert message == expected_message, message
+
+    def test_get_phone_finance_payments_correct_fields(self):
+        message = ['Список платежей за период. Параметры "fields".']
+        expected_message = ['Список платежей за период. Параметры "fields".']
+
+        fields = ['amount', 'payment_date', 'created_at']
+        for field in fields:
+            token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+            lktest_url = "https://lktest.bezlimit.ru/v1"
+            request_url = f"{lktest_url}/phone/finance/payments/"
+            headers = {'accept': 'application/json',
+                       'Authorization': f'Bearer {token}'}
+            params = {'phone': 9006471111,
+                      'dateStart': '2022-04-10',
+                      'dateEnd': '2022-06-08',
+                      'fields': field}
+            response = requests.get(request_url, headers=headers, params=params)
+
+            try:
+                assert response.status_code == 200
+            except AssertionError:
+                message.append(f"Код ответа {response.status_code}, а не 200.")
+
+            for i in response.json():
+                if field == 'amount':
+                    assert type(i[field]) == int
+                else:
+                    assert type(i[field]) == str
+                short_fields = fields[:]
+                short_fields.remove(field)
+                try:
+                    assert i not in short_fields
+                except AssertionError:
+                    message.append(f'В параметрах ответа присутствуют исключённые типы данных.')
+                    break
+
+        assert message == expected_message, message
+
+    def test_get_phone_finance_payments_correct_expand(self):
+        message = ['Список платежей за период. Параметры "expand".']
+        expected_message = ['Список платежей за период. Параметры "expand".']
+
+        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+        lktest_url = "https://lktest.bezlimit.ru/v1"
+        request_url = f"{lktest_url}/phone/finance/payments/"
+        headers = {'accept': 'application/json',
+                   'Authorization': f'Bearer {token}'}
+        params = {'phone': 9006471111,
+                  'dateStart': '2022-04-10',
+                  'dateEnd': '2022-06-08',
+                  'expand': 'category'}
+        response = requests.get(request_url, headers=headers, params=params)
+
+        try:
+            assert response.status_code == 200
+        except AssertionError:
+            message.append(f"Код ответа {response.status_code}, а не 200.")
+        try:
+            for i in response.json():
+                assert type(i['category']) == dict
+                assert type(i['category']['name']) == str
+        except AssertionError:
+            message.append('Некорректный ответ в параметре "category".')
+
+        assert message == expected_message, message

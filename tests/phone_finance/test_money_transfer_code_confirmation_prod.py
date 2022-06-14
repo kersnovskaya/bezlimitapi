@@ -4,7 +4,7 @@ import requests
 def get_transfer_token(phone_from, phone_to):
     token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
     headers = {'accept': 'application/json',
-                'Authorization': f'Bearer {token}',
+               'Authorization': f'Bearer {token}',
                'Content-Type': 'application/x-www-form-urlencoded'
                }
     lk_url = "https://api.lk.bezlimit.ru/v1"
@@ -43,6 +43,9 @@ class TestProd:
 
 
     def test_post_transfer_code_confirmation_invalid_token(self):
+        message = ['Подтверждение перевода средств. Неавторизован.']
+        expected_message = ['Подтверждение перевода средств. Неавторизован.']
+
         token = 12345678910
         headers = {'accept': 'application/json',
                    'Authorization': f'Bearer {token}',
@@ -55,17 +58,27 @@ class TestProd:
         }
         request_url = f"{lk_url}/phone/finance/money-transfer-code-confirmation"
         response = requests.post(request_url, headers=headers, data=data)
-        print(response)
-        print(response.json())
 
-        assert response.status_code == 401
-        assert response.json() == {'name': 'Unauthorized',
-                                   'message': 'Your request was made with invalid credentials.',
-                                   'code': 0,
-                                   'status': 401}
+        try:
+            assert response.status_code == 401
+        except AssertionError:
+            message.append(f"Код ответа {response.status_code}, а не 401.")
+        try:
+            assert response.reason == 'Unauthorized'
+        except AssertionError:
+            message.append(f"Причина {response.reason}, а не 'Unauthorized'.")
+        try:
+            assert response.json()['message'] == 'Your request was made with invalid credentials.'
+        except AssertionError:
+            message.append('Ошибка в тексте ошибки.')
+
+        assert message == expected_message, message
 
 
     def test_post_transfer_code_confirmation_invalid_data(self):
+        message = ['Подтверждение перевода средств. Некорректные данные.']
+        expected_message = ['Подтверждение перевода средств. Некорректные данные.']
+
         token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
         headers = {'accept': 'application/json',
                    'Authorization': f'Bearer {token}',
@@ -81,39 +94,23 @@ class TestProd:
         request_url = f"{lk_url}/phone/finance/money-transfer-code-confirmation"
         response = requests.post(request_url, headers=headers, data=data)
 
-        print(response)
-        print(response.json())
+        try:
+            assert response.status_code == 422
+        except AssertionError:
+            message.append(f"Код ответа {response.status_code}, а не 422.")
+        try:
+            assert response.json() == [{'field': 'money_transfer_token',
+                                        'message': 'Запрос на перевод денег не найден.'}]
+        except AssertionError:
+            message.append('В тексте ответа ошибка.')
 
-        assert response.status_code == 422
-        assert response.json() == [{'field': 'money_transfer_token',
-                                    'message': 'Запрос на перевод денег не найден.'}]
-
-
-    def test_post_transfer_code_confirmation_invalid_code(self):
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
-        headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}',
-                   'Content-Type': 'application/x-www-form-urlencoded'
-                   }
-
-        lk_url = "https://api.lk.bezlimit.ru/v1"
-        data = {
-            "moneyTransferToken": 123546,
-            "code": '123456'
-        }
-
-        request_url = f"{lk_url}/phone/finance/money-transfer-code-confirmation"
-        response = requests.post(request_url, headers=headers, data=data)
-
-        print(response)
-        print(response.json())
-
-        assert response.status_code == 422
-        assert response.json() == [{'field': 'money_transfer_token',
-                                    'message': 'Запрос на перевод денег не найден.'}]
+        assert message == expected_message, message
 
 
     def test_post_transfer_code_confirmation_correct_and_incorrect(self):
+        message = ['Подтверждение перевода средств. Подтверждение перевода.']
+        expected_message = ['Подтверждение перевода средств. Подтверждение перевода.']
+
         token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
         headers = {'accept': 'application/json',
                    'Authorization': f'Bearer {token}',
@@ -132,9 +129,15 @@ class TestProd:
         request_url = f"{lk_url}/phone/finance/money-transfer-code-confirmation"
         response = requests.post(request_url, headers=headers, data=data1)
 
-        print(response.json())
-        assert response.status_code == 422
-        assert response.json() == [{"field": "code", "message": "Неправильный код подтверждения."}]
+        try:
+            assert response.status_code == 422
+        except AssertionError:
+            message.append(f"Некорректный токен и код."
+                           f"Код ответа {response.status_code}, а не 422.")
+        try:
+            assert response.json() == [{"field": "code", "message": "Неправильный код подтверждения."}]
+        except AssertionError:
+            message.append('Некорректный токен и код. В тексте ответа ошибка.')
 
         data2 = {
             "moneyTransferToken": transfer_token,
@@ -144,11 +147,19 @@ class TestProd:
         request_url = f"{lk_url}/phone/finance/money-transfer-code-confirmation"
         response = requests.post(request_url, headers=headers, data=data2)
 
-        print(response)
-        assert response.status_code == 204
+        try:
+            assert response.status_code == 204
+        except AssertionError:
+            message.append(f"Корректный токен и код."
+                           f"Код ответа {response.status_code}, а не 204.")
+
+        assert message == expected_message, message
 
 
     def test_post_transfer_code_confirmation_correct_and_incorrect_again(self):
+        message = ['Подтверждение перевода средств. Подтверждение перевода.']
+        expected_message = ['Подтверждение перевода средств. Подтверждение перевода.']
+
         token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
         headers = {'accept': 'application/json',
                    'Authorization': f'Bearer {token}',
@@ -167,9 +178,15 @@ class TestProd:
         request_url = f"{lk_url}/phone/finance/money-transfer-code-confirmation"
         response = requests.post(request_url, headers=headers, data=data1)
 
-        print(response.json())
-        assert response.status_code == 422
-        assert response.json() == [{"field": "code", "message": "Неправильный код подтверждения."}]
+        try:
+            assert response.status_code == 422
+        except AssertionError:
+            message.append(f"Некорректный токен и код."
+                           f"Код ответа {response.status_code}, а не 422.")
+        try:
+            assert response.json() == [{"field": "code", "message": "Неправильный код подтверждения."}]
+        except AssertionError:
+            message.append('Некорректный токен и код. В тексте ответа ошибка.')
 
         data2 = {
             "moneyTransferToken": transfer_token,
@@ -179,6 +196,10 @@ class TestProd:
         request_url = f"{lk_url}/phone/finance/money-transfer-code-confirmation"
         response = requests.post(request_url, headers=headers, data=data2)
 
-        print(response)
+        try:
+            assert response.status_code == 204
+        except AssertionError:
+            message.append(f"Корректный токен и код."
+                           f"Код ответа {response.status_code}, а не 204.")
 
-        assert response.status_code == 204
+        assert message == expected_message, message
