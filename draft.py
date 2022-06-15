@@ -1,3 +1,5 @@
+import requests
+
 # porn = [
 #   {
 #     "phone": 9006471111
@@ -171,10 +173,34 @@
 # print(set(anal).difference(shmex))
 
 
-a_list = [1, 2, 3]
-count = 0
+# a_list = [1, 2, 3]
+# count = 0
+#
+# for i in a_list:
+#     shit = a_list[:]
+#     shit.remove(i)
+#     count += 1
 
-for i in a_list:
-    shit = a_list[:]
-    shit.remove(i)
-    count += 1
+import random
+from datetime import datetime
+from datetime import timedelta
+
+
+def date_generate(days):
+    start = datetime.today() + (datetime.today() - datetime(year=2021, month=3, day=1)) * random.random()
+    maxdate = str(start).split()[0]
+    maxfiledate = maxdate.split('-')
+    maxfiledate.reverse()
+    endfiledate = '.'.join(maxfiledate)
+
+    end = start - timedelta(days=days)
+    mindate = str(end).split()[0]
+    minfiledate = mindate.split('-')
+    minfiledate.reverse()
+    startfiledate = '.'.join(minfiledate)
+
+    return maxdate, endfiledate, mindate, startfiledate
+
+
+print(date_generate(30)[0])
+
