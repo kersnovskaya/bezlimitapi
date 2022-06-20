@@ -27,7 +27,6 @@ def authorize():
 
     button_enter.click()
 
-
 authorize()
 
 driver.get('https://bill.bezlimit.ru/phone/card/tasks/9612224930')

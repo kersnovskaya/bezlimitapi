@@ -3,8 +3,8 @@ import requests
 class TestDev:
 
 	def test_successful_request_for_reset_password_at_lk(self):
-		message = ['Проверка кода подтверждения для восстановления пароля. Корректный запрос.']
-		expected_message = ['Проверка кода подтверждения для восстановления пароля. Корректный запрос.']
+		message = ['Запрос на восстановление пароля. Корректный запрос.']
+		expected_message = ['Запрос на восстановление пароля. Корректный запрос.']
 
 		lktest_url = "https://lktest.bezlimit.ru/v1"
 		phone = 9006471111
@@ -31,8 +31,8 @@ class TestDev:
 
 
 	def test_validation_request_for_reset_password_to_side_phone_at_lk(self):
-		message = ['Проверка кода подтверждения для восстановления пароля. Ввод не основного номера.']
-		expected_message = ['Проверка кода подтверждения для восстановления пароля. Ввод не основного номера.']
+		message = ['Запрос на восстановление пароля. Ввод не основного номера.']
+		expected_message = ['Запрос на восстановление пароля. Ввод не основного номера.']
 
 		lktest_url = "https://lktest.bezlimit.ru/v1"
 		phone = 9614828609
@@ -44,26 +44,26 @@ class TestDev:
 
 		try:
 			assert response.status_code == 422
-		except:
+		except AssertionError:
 			message.append(f'Код ответа {response.status_code}, а не 422.')
 		try:
 			assert response.reason == 'Data Validation Failed.'
-		except:
+		except AssertionError:
 			message.append(f'Причина {response.reason}, а не "Data Validation Failed".')
 		try:
 			assert response.json()[0]['field'] == 'phone'
-		except:
+		except AssertionError:
 			message.append(f"В причине ошибки указано поле {response.json()[0]['field']}, а не 'phone'.")
 		try:
 			assert response.json()[0]['message'] == 'Восстановить пароль можно только на номере, с которого зарегистрирован аккаунт.'
-		except:
+		except AssertionError:
 			message.append('Ошибка в тексте ошибки.')
 		assert message == expected_message, message
 
 
 	def test_validation_request_for_reset_password_to_second_phone_at_lk(self):
-		message = ['Проверка кода подтверждения для восстановления пароля. Ввод не основного номера.']
-		expected_message = ['Проверка кода подтверждения для восстановления пароля. Ввод не основного номера.']
+		message = ['Запрос на восстановление пароля. Ввод не основного номера.']
+		expected_message = ['Запрос на восстановление пароля. Ввод не основного номера.']
 
 		lktest_url = "https://lktest.bezlimit.ru/v1"
 		phone = 9682224854
@@ -75,27 +75,27 @@ class TestDev:
 
 		try:
 			assert response.status_code == 422
-		except:
+		except AssertionError:
 			message.append(f'Код ответа {response.status_code}, а не 422.')
 		try:
 			assert response.reason == 'Data Validation Failed.'
-		except:
+		except AssertionError:
 			message.append(f'Причина {response.reason}, а не "Data Validation Failed".')
 		try:
 			assert response.json()[0]['field'] == 'phone'
-		except:
+		except AssertionError:
 			message.append(f"В причине ошибки указано поле {response.json()[0]['field']}, а не 'phone'.")
 		try:
 			assert response.json()[0]['message'] == 'Восстановить пароль можно только на номере, с которого зарегистрирован аккаунт.'
-		except:
+		except AssertionError:
 			message.append('Ошибка в тексте ошибки.')
 
 		assert message == expected_message, message
 
 
 	def test_validation_request_for_reset_password_to_not_bezlimit_phone_at_lk(self):
-		message = ['Проверка кода подтверждения для восстановления пароля. Ввод номера не Безлимит.']
-		expected_message = ['Проверка кода подтверждения для восстановления пароля. Ввод номера не Безлимит.']
+		message = ['Запрос на восстановление пароля. Ввод номера не Безлимит.']
+		expected_message = ['Запрос на восстановление пароля. Ввод номера не Безлимит.']
 
 		lktest_url = "https://lktest.bezlimit.ru/v1"
 		phone = 9000000000
@@ -107,27 +107,27 @@ class TestDev:
 
 		try:
 			assert response.status_code == 422
-		except:
+		except AssertionError:
 			message.append(f'Код ответа {response.status_code}, а не 422.')
 		try:
 			assert response.reason == 'Data Validation Failed.'
-		except:
+		except AssertionError:
 			message.append(f'Причина {response.reason}, а не "Data Validation Failed".')
 		try:
 			assert response.json()[0]['field'] == 'phone'
-		except:
+		except AssertionError:
 			message.append(f"В причине ошибки указано поле {response.json()[0]['field']}, а не 'phone'.")
 		try:
 			assert response.json()[0]['message'] == 'Введенный номер не обслуживается в Безлимит!'
-		except:
+		except AssertionError:
 			message.append('Ошибка в тексте ошибки.')
 
 		assert message == expected_message, message
 
 
 	def test_validation_request_for_reset_password_to_wrong_phone_at_lk(self):
-		message = ['Проверка кода подтверждения для восстановления пароля. Некорректный номер.']
-		expected_message = ['Проверка кода подтверждения для восстановления пароля. Некорректный номер.']
+		message = ['Запрос на восстановление пароля. Некорректный номер.']
+		expected_message = ['Запрос на восстановление пароля. Некорректный номер.']
 
 		lktest_url = "https://lktest.bezlimit.ru/v1"
 		phone = 90000000
@@ -139,27 +139,27 @@ class TestDev:
 
 		try:
 			assert response.status_code == 422
-		except:
+		except AssertionError:
 			message.append(f'Код ответа {response.status_code}, а не 422.')
 		try:
 			assert response.reason == 'Data Validation Failed.'
-		except:
+		except AssertionError:
 			message.append(f'Причина {response.reason}, а не "Data Validation Failed".')
 		try:
 			assert response.json()[0]['field'] == 'phone'
-		except:
+		except AssertionError:
 			message.append(f"В причине ошибки указано поле {response.json()[0]['field']}, а не 'phone'.")
 		try:
 			assert response.json()[0]['message'] == 'Введите номер телефона в формате 9001112233.'
-		except:
+		except AssertionError:
 			message.append('Ошибка в тексте ошибки.')
 
 		assert message == expected_message, message
 
 
 	def test_validation_request_for_reset_password_to_non_numeric_phone_at_lk(self):
-		message = ['Проверка кода подтверждения для восстановления пароля. Ввод номера в формате строки.']
-		expected_message = ['Проверка кода подтверждения для восстановления пароля. Ввод номера в формате строки.']
+		message = ['Запрос на восстановление пароля. Ввод номера в формате строки.']
+		expected_message = ['Запрос на восстановление пароля. Ввод номера в формате строки.']
 
 		lktest_url = "https://lktest.bezlimit.ru/v1"
 		phone = 'dick'
@@ -171,23 +171,23 @@ class TestDev:
 
 		try:
 			assert response.status_code == 400
-		except:
+		except AssertionError:
 			message.append(f'Код ответа {response.status_code}, а не 400.')
 		try:
 			assert response.reason == 'Bad Request'
-		except:
+		except AssertionError:
 			message.append(f'Причина {response.reason}, а не "Bad Request".')
 		try:
 			assert response.json()['message'] == 'Неправильное значение параметра "phone".'
-		except:
+		except AssertionError:
 			message.append('Ошибка в тексте ошибки.')
 
 		assert message == expected_message, message
 
 
 	def test_validation_request_for_reset_password_to_empty_phone_at_lk(self):
-		message = ['Проверка кода подтверждения для восстановления пароля. Отправка пустого номера.']
-		expected_message = ['Проверка кода подтверждения для восстановления пароля. Отправка пустого номера.']
+		message = ['Запрос на восстановление пароля. Отправка пустого номера.']
+		expected_message = ['Запрос на восстановление пароля. Отправка пустого номера.']
 
 		lktest_url = "https://lktest.bezlimit.ru/v1"
 		params = {"phone": None}
@@ -198,11 +198,11 @@ class TestDev:
 
 		try:
 			assert response.status_code == 400
-		except:
+		except AssertionError:
 			message.append(f'Код ответа {response.status_code}, а не 400.')
 		try:
 			assert response.reason == 'Bad Request'
-		except:
+		except AssertionError:
 			message.append(f'Причина {response.reason}, а не "Bad Request".')
 		try:
 			assert type(response.json()) == dict
@@ -210,7 +210,7 @@ class TestDev:
 			message.append(f'Тип данных в ответе {type(response.json())}, а не "dict".')
 		try:
 			assert response.json()['message'] == 'Отсутствуют обязательные параметры: phone'
-		except:
+		except AssertionError:
 			message.append('Ошибка в тексте ошибки.')
 
 		assert message == expected_message, message
@@ -219,8 +219,8 @@ class TestDev:
 class TestProd:
 
 	def test_successful_request_for_reset_password_at_lk(self):
-		message = ['Проверка кода подтверждения для восстановления пароля. Корректный запрос.']
-		expected_message = ['Проверка кода подтверждения для восстановления пароля. Корректный запрос.']
+		message = ['Запрос на восстановление пароля. Корректный запрос.']
+		expected_message = ['Запрос на восстановление пароля. Корректный запрос.']
 
 		lktest_url = "https://api.lk.bezlimit.ru/v1"
 		phone = 9006471111
@@ -242,12 +242,12 @@ class TestProd:
 			assert type(response.json()['sending_repeated_notify']) == int
 		except AssertionError:
 			message.append((f"Тип данных в параметре 'sending_repeated_notify' "
-							f"{type(response.json()['sending_repeated_notify'])}, а не 'int'."))
+						    f"{type(response.json()['sending_repeated_notify'])}, а не 'int'."))
 		assert message == expected_message, message
 
 	def test_validation_request_for_reset_password_to_side_phone_at_lk(self):
-		message = ['Проверка кода подтверждения для восстановления пароля. Ввод не основного номера.']
-		expected_message = ['Проверка кода подтверждения для восстановления пароля. Ввод не основного номера.']
+		message = ['Запрос на восстановление пароля. Ввод не основного номера.']
+		expected_message = ['Запрос на восстановление пароля. Ввод не основного номера.']
 
 		lktest_url = "https://api.lk.bezlimit.ru/v1"
 		phone = 9614828609
@@ -259,26 +259,26 @@ class TestProd:
 
 		try:
 			assert response.status_code == 422
-		except:
+		except AssertionError:
 			message.append(f'Код ответа {response.status_code}, а не 422.')
 		try:
 			assert response.reason == 'Data Validation Failed.'
-		except:
+		except AssertionError:
 			message.append(f'Причина {response.reason}, а не "Data Validation Failed".')
 		try:
 			assert response.json()[0]['field'] == 'phone'
-		except:
+		except AssertionError:
 			message.append(f"В причине ошибки указано поле {response.json()[0]['field']}, а не 'phone'.")
 		try:
 			assert response.json()[0][
 					   'message'] == 'Восстановить пароль можно только на номере, с которого зарегистрирован аккаунт.'
-		except:
+		except AssertionError:
 			message.append('Ошибка в тексте ошибки.')
 		assert message == expected_message, message
 
 	def test_validation_request_for_reset_password_to_second_phone_at_lk(self):
-		message = ['Проверка кода подтверждения для восстановления пароля. Ввод не основного номера.']
-		expected_message = ['Проверка кода подтверждения для восстановления пароля. Ввод не основного номера.']
+		message = ['Запрос на восстановление пароля. Ввод не основного номера.']
+		expected_message = ['Запрос на восстановление пароля. Ввод не основного номера.']
 
 		lktest_url = "https://api.lk.bezlimit.ru/v1"
 		phone = 9682224854
@@ -290,27 +290,27 @@ class TestProd:
 
 		try:
 			assert response.status_code == 422
-		except:
+		except AssertionError:
 			message.append(f'Код ответа {response.status_code}, а не 422.')
 		try:
 			assert response.reason == 'Data Validation Failed.'
-		except:
+		except AssertionError:
 			message.append(f'Причина {response.reason}, а не "Data Validation Failed".')
 		try:
 			assert response.json()[0]['field'] == 'phone'
-		except:
+		except AssertionError:
 			message.append(f"В причине ошибки указано поле {response.json()[0]['field']}, а не 'phone'.")
 		try:
 			assert response.json()[0][
 					   'message'] == 'Восстановить пароль можно только на номере, с которого зарегистрирован аккаунт.'
-		except:
+		except AssertionError:
 			message.append('Ошибка в тексте ошибки.')
 
 		assert message == expected_message, message
 
 	def test_validation_request_for_reset_password_to_not_bezlimit_phone_at_lk(self):
-		message = ['Проверка кода подтверждения для восстановления пароля. Ввод номера не Безлимит.']
-		expected_message = ['Проверка кода подтверждения для восстановления пароля. Ввод номера не Безлимит.']
+		message = ['Запрос на восстановление пароля. Ввод номера не Безлимит.']
+		expected_message = ['Запрос на восстановление пароля. Ввод номера не Безлимит.']
 
 		lktest_url = "https://api.lk.bezlimit.ru/v1"
 		phone = 9000000000
@@ -322,26 +322,26 @@ class TestProd:
 
 		try:
 			assert response.status_code == 422
-		except:
+		except AssertionError:
 			message.append(f'Код ответа {response.status_code}, а не 422.')
 		try:
 			assert response.reason == 'Data Validation Failed.'
-		except:
+		except AssertionError:
 			message.append(f'Причина {response.reason}, а не "Data Validation Failed".')
 		try:
 			assert response.json()[0]['field'] == 'phone'
-		except:
+		except AssertionError:
 			message.append(f"В причине ошибки указано поле {response.json()[0]['field']}, а не 'phone'.")
 		try:
 			assert response.json()[0]['message'] == 'Введенный номер не обслуживается в Безлимит!'
-		except:
+		except AssertionError:
 			message.append('Ошибка в тексте ошибки.')
 
 		assert message == expected_message, message
 
 	def test_validation_request_for_reset_password_to_wrong_phone_at_lk(self):
-		message = ['Проверка кода подтверждения для восстановления пароля. Некорректный номер.']
-		expected_message = ['Проверка кода подтверждения для восстановления пароля. Некорректный номер.']
+		message = ['Запрос на восстановление пароля. Некорректный номер.']
+		expected_message = ['Запрос на восстановление пароля. Некорректный номер.']
 
 		lktest_url = "https://api.lk.bezlimit.ru/v1"
 		phone = 90000000
@@ -353,26 +353,26 @@ class TestProd:
 
 		try:
 			assert response.status_code == 422
-		except:
+		except AssertionError:
 			message.append(f'Код ответа {response.status_code}, а не 422.')
 		try:
 			assert response.reason == 'Data Validation Failed.'
-		except:
+		except AssertionError:
 			message.append(f'Причина {response.reason}, а не "Data Validation Failed".')
 		try:
 			assert response.json()[0]['field'] == 'phone'
-		except:
+		except AssertionError:
 			message.append(f"В причине ошибки указано поле {response.json()[0]['field']}, а не 'phone'.")
 		try:
 			assert response.json()[0]['message'] == 'Введите номер телефона в формате 9001112233.'
-		except:
+		except AssertionError:
 			message.append('Ошибка в тексте ошибки.')
 
 		assert message == expected_message, message
 
 	def test_validation_request_for_reset_password_to_non_numeric_phone_at_lk(self):
-		message = ['Проверка кода подтверждения для восстановления пароля. Ввод номера в формате строки.']
-		expected_message = ['Проверка кода подтверждения для восстановления пароля. Ввод номера в формате строки.']
+		message = ['Запрос на восстановление пароля. Ввод номера в формате строки.']
+		expected_message = ['Запрос на восстановление пароля. Ввод номера в формате строки.']
 
 		lktest_url = "https://api.lk.bezlimit.ru/v1"
 		phone = 'dick'
@@ -384,22 +384,22 @@ class TestProd:
 
 		try:
 			assert response.status_code == 400
-		except:
+		except AssertionError:
 			message.append(f'Код ответа {response.status_code}, а не 400.')
 		try:
 			assert response.reason == 'Bad Request'
-		except:
+		except AssertionError:
 			message.append(f'Причина {response.reason}, а не "Bad Request".')
 		try:
 			assert response.json()['message'] == 'Неправильное значение параметра "phone".'
-		except:
+		except AssertionError:
 			message.append('Ошибка в тексте ошибки.')
 
 		assert message == expected_message, message
 
 	def test_validation_request_for_reset_password_to_empty_phone_at_lk(self):
-		message = ['Проверка кода подтверждения для восстановления пароля. Отправка пустого номера.']
-		expected_message = ['Проверка кода подтверждения для восстановления пароля. Отправка пустого номера.']
+		message = ['Запрос на восстановление пароля. Отправка пустого номера.']
+		expected_message = ['Запрос на восстановление пароля. Отправка пустого номера.']
 
 		lktest_url = "https://api.lk.bezlimit.ru/v1"
 		params = {"phone": None}
@@ -410,11 +410,11 @@ class TestProd:
 
 		try:
 			assert response.status_code == 400
-		except:
+		except AssertionError:
 			message.append(f'Код ответа {response.status_code}, а не 400.')
 		try:
 			assert response.reason == 'Bad Request'
-		except:
+		except AssertionError:
 			message.append(f'Причина {response.reason}, а не "Bad Request".')
 		try:
 			assert type(response.json()) == dict
@@ -422,7 +422,7 @@ class TestProd:
 			message.append(f'Тип данных в ответе {type(response.json())}, а не "dict".')
 		try:
 			assert response.json()['message'] == 'Отсутствуют обязательные параметры: phone'
-		except:
+		except AssertionError:
 			message.append('Ошибка в тексте ошибки.')
 
 		assert message == expected_message, message

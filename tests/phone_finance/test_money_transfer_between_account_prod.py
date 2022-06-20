@@ -4,8 +4,8 @@ import requests
 class Test:
 
     def test_post_phone_finance_money_transfer_between_account_invalid_token(self):
-        message = ['Запрос на перевод денег между номерами аккаунта. Неавторизован.']
-        expected_message = ['Запрос на перевод денег между номерами аккаунта. Неавторизован.']
+        message = ['Запрос на перевод денег между номерами аккаунта.Неавторизован.']
+        expected_message = ['Запрос на перевод денег между номерами аккаунта.Неавторизован.']
 
         token = 12345678910
         headers = {'accept': 'application/json',
@@ -37,8 +37,8 @@ class Test:
         assert message == expected_message, message
 
     def test_post_phone_finance_money_transfer_between_account_not_bezlimit_both(self):
-        message = ['Запрос на перевод денег между номерами аккаунта. Оба номера не Безлимит.']
-        expected_message = ['Запрос на перевод денег между номерами аккаунта. Оба номера не Безлимит.']
+        message = ['Запрос на перевод денег между номерами аккаунта.Оба номера не Безлимит.']
+        expected_message = ['Запрос на перевод денег между номерами аккаунта.Оба номера не Безлимит.']
 
         token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
         headers = {'accept': 'application/json',
@@ -69,8 +69,8 @@ class Test:
         assert message == expected_message, message
 
     def test_post_phone_finance_money_transfer_between_account_not_bezlimit_phone_from(self):
-        message = ['Запрос на перевод денег между номерами аккаунта. Номер "phone_from" не Безлимит.']
-        expected_message = ['Запрос на перевод денег между номерами аккаунта. '
+        message = ['Запрос на перевод денег между номерами аккаунта.Номер "phone_from" не Безлимит.']
+        expected_message = ['Запрос на перевод денег между номерами аккаунта.'
                             'Номер "phone_from" не Безлимит.']
 
         token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
@@ -100,8 +100,8 @@ class Test:
         assert message == expected_message, message
 
     def test_post_phone_finance_money_transfer_between_account_not_bezlimit_phone_to(self):
-        message = ['Запрос на перевод денег между номерами аккаунта. Номер "phone_to" не Безлимит.']
-        expected_message = ['Запрос на перевод денег между номерами аккаунта. '
+        message = ['Запрос на перевод денег между номерами аккаунта.Номер "phone_to" не Безлимит.']
+        expected_message = ['Запрос на перевод денег между номерами аккаунта.'
                             'Номер "phone_to" не Безлимит.']
 
         token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
@@ -131,8 +131,8 @@ class Test:
         assert message == expected_message, message
 
     def test_post_phone_finance_money_transfer_between_account_not_in_account_both(self):
-        message = ['Запрос на перевод денег между номерами аккаунта. Оба номера не привязаны к аккаунту.']
-        expected_message = ['Запрос на перевод денег между номерами аккаунта. '
+        message = ['Запрос на перевод денег между номерами аккаунта.Оба номера не привязаны к аккаунту.']
+        expected_message = ['Запрос на перевод денег между номерами аккаунта.'
                             'Оба номера не привязаны к аккаунту.']
 
         token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
@@ -164,9 +164,9 @@ class Test:
         assert message == expected_message, message
 
     def test_post_phone_finance_money_transfer_between_account_not_in_account_phone_from(self):
-        message = ['Запрос на перевод денег между номерами аккаунта. '
+        message = ['Запрос на перевод денег между номерами аккаунта.'
                    'Номер "phone_from" не привязан к аккаунту.']
-        expected_message = ['Запрос на перевод денег между номерами аккаунта. '
+        expected_message = ['Запрос на перевод денег между номерами аккаунта.'
                             'Номер "phone_from" не привязан к аккаунту.']
 
         token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
@@ -196,9 +196,9 @@ class Test:
         assert message == expected_message, message
 
     def test_post_phone_finance_money_transfer_between_account_not_in_account_phone_to(self):
-        message = ['Запрос на перевод денег между номерами аккаунта. '
+        message = ['Запрос на перевод денег между номерами аккаунта.'
                    'Номер "phone_to" не привязан к аккаунту.']
-        expected_message = ['Запрос на перевод денег между номерами аккаунта. '
+        expected_message = ['Запрос на перевод денег между номерами аккаунта.'
                             'Номер "phone_to" не привязан к аккаунту.']
 
         token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
@@ -228,9 +228,9 @@ class Test:
         assert message == expected_message, message
 
     def test_post_phone_finance_money_transfer_between_account_without_passport_phone_from(self):
-        message = ['Запрос на перевод денег между номерами аккаунта. '
+        message = ['Запрос на перевод денег между номерами аккаунта.'
                    'Номер "phoneFrom" без паспортных данных.']
-        expected_message = ['Запрос на перевод денег между номерами аккаунта. '
+        expected_message = ['Запрос на перевод денег между номерами аккаунта.'
                             'Номер "phoneFrom" без паспортных данных.']
 
         token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
@@ -260,9 +260,9 @@ class Test:
         assert message == expected_message, message
 
     def test_post_phone_finance_money_transfer_between_account_empty_params(self):
-        message = ['Запрос на перевод денег между номерами аккаунта. '
+        message = ['Запрос на перевод денег между номерами аккаунта.'
                    'Пустые "params".']
-        expected_message = ['Запрос на перевод денег между номерами аккаунта. '
+        expected_message = ['Запрос на перевод денег между номерами аккаунта.'
                             'Пустые "params".']
 
         token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
@@ -292,9 +292,9 @@ class Test:
         assert message == expected_message, message
 
     def test_post_phone_finance_money_transfer_between_account_min_sum(self):
-        message = ['Запрос на перевод денег между номерами аккаунта. '
+        message = ['Запрос на перевод денег между номерами аккаунта.'
                    'Сумма в запросе менее 100 р.']
-        expected_message = ['Запрос на перевод денег между номерами аккаунта. '
+        expected_message = ['Запрос на перевод денег между номерами аккаунта.'
                             'Сумма в запросе менее 100 р.']
 
         token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
@@ -325,9 +325,9 @@ class Test:
         assert message == expected_message, message
 
     def test_post_phone_finance_money_transfer_between_account_max_sum(self):
-        message = ['Запрос на перевод денег между номерами аккаунта. '
+        message = ['Запрос на перевод денег между номерами аккаунта.'
                    'Сумма в запросе более 3000 р.']
-        expected_message = ['Запрос на перевод денег между номерами аккаунта. '
+        expected_message = ['Запрос на перевод денег между номерами аккаунта.'
                             'Сумма в запросе более 3000 р.']
 
         token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
@@ -358,9 +358,9 @@ class Test:
         assert message == expected_message, message
 
     def test_post_phone_finance_money_transfer_between_account_not_enough_money(self):
-        message = ['Запрос на перевод денег между номерами аккаунта. '
+        message = ['Запрос на перевод денег между номерами аккаунта.'
                    'На балансе недостаточно средств.']
-        expected_message = ['Запрос на перевод денег между номерами аккаунта. '
+        expected_message = ['Запрос на перевод денег между номерами аккаунта.'
                             'На балансе недостаточно средств.']
 
         token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
@@ -391,9 +391,9 @@ class Test:
         assert message == expected_message, message
 
     def test_post_phone_finance_money_transfer_between_account_not_100(self):
-        message = ['Запрос на перевод денег между номерами аккаунта. '
+        message = ['Запрос на перевод денег между номерами аккаунта.'
                    'После перевода на балансе останется менее 100 р.']
-        expected_message = ['Запрос на перевод денег между номерами аккаунта. '
+        expected_message = ['Запрос на перевод денег между номерами аккаунта.'
                             'После перевода на балансе останется менее 100 р.']
 
         token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
@@ -424,9 +424,9 @@ class Test:
         assert message == expected_message, message
 
     def test_post_phone_finance_money_transfer_between_account_same_phones(self):
-        message = ['Запрос на перевод денег между номерами аккаунта. '
+        message = ['Запрос на перевод денег между номерами аккаунта.'
                    '"phoneFrom" и "phoneTo" совпадают.']
-        expected_message = ['Запрос на перевод денег между номерами аккаунта. '
+        expected_message = ['Запрос на перевод денег между номерами аккаунта.'
                             '"phoneFrom" и "phoneTo" совпадают.']
 
         token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
@@ -457,9 +457,9 @@ class Test:
         assert message == expected_message, message
 
     def test_post_phone_finance_money_transfer_between_account_correct(self):
-        message = ['Запрос на перевод денег между номерами аккаунта. '
+        message = ['Запрос на перевод денег между номерами аккаунта.'
                    'Корректный запрос.']
-        expected_message = ['Запрос на перевод денег между номерами аккаунта. '
+        expected_message = ['Запрос на перевод денег между номерами аккаунта.'
                             'Корректный запрос.']
 
         token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
@@ -488,9 +488,9 @@ class Test:
         assert message == expected_message, message
 
     def test_post_phone_finance_money_transfer_between_account_correct_again(self):
-        message = ['Запрос на перевод денег между номерами аккаунта. '
+        message = ['Запрос на перевод денег между номерами аккаунта.'
                    'Повторный корректный запрос.']
-        expected_message = ['Запрос на перевод денег между номерами аккаунта. '
+        expected_message = ['Запрос на перевод денег между номерами аккаунта.'
                             'Повторный корректный запрос.']
 
         token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'

@@ -181,26 +181,32 @@ import requests
 #     shit.remove(i)
 #     count += 1
 
-import random
-from datetime import datetime
-from datetime import timedelta
+# import random
+# from datetime import datetime
+# from datetime import timedelta
+#
+#
+# def date_generate(days):
+#     start = datetime.today() + (datetime.today() - datetime(year=2021, month=3, day=1)) * random.random()
+#     maxdate = str(start).split()[0]
+#     maxfiledate = maxdate.split('-')
+#     maxfiledate.reverse()
+#     endfiledate = '.'.join(maxfiledate)
+#
+#     end = start - timedelta(days=days)
+#     mindate = str(end).split()[0]
+#     minfiledate = mindate.split('-')
+#     minfiledate.reverse()
+#     startfiledate = '.'.join(minfiledate)
+#
+#     return maxdate, endfiledate, mindate, startfiledate
+#
+#
+# print(date_generate(30)[0])
 
+aaaaaaa = [{'field': 'phone', 'message': 'Не указан номер телефона.'}]
 
-def date_generate(days):
-    start = datetime.today() + (datetime.today() - datetime(year=2021, month=3, day=1)) * random.random()
-    maxdate = str(start).split()[0]
-    maxfiledate = maxdate.split('-')
-    maxfiledate.reverse()
-    endfiledate = '.'.join(maxfiledate)
-
-    end = start - timedelta(days=days)
-    mindate = str(end).split()[0]
-    minfiledate = mindate.split('-')
-    minfiledate.reverse()
-    startfiledate = '.'.join(minfiledate)
-
-    return maxdate, endfiledate, mindate, startfiledate
-
-
-print(date_generate(30)[0])
-
+for i, v in enumerate(aaaaaaa):
+    print(i)
+    print(v['field'])
+    print(v['message'])

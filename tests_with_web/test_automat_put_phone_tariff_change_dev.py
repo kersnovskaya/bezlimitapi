@@ -57,7 +57,7 @@ class Test:
         lktest_url = "https://lktest.bezlimit.ru/v1"
         data = {
             "phone": 9006471111,
-            "tariffId": 8014
+            "tariffId": 8019
         }
         request_url = f"{lktest_url}/phone/tariff/change"
         response = requests.get(request_url, headers=headers, data=data)
@@ -79,7 +79,7 @@ class Test:
         lktest_url = "https://lktest.bezlimit.ru/v1"
         data = {
             "phone": 9612224930,
-            "tariffId": 8014
+            "tariffId": 8019
         }
         request_url = f"{lktest_url}/phone/tariff/change"
         response = requests.get(request_url, headers=headers, data=data)
@@ -99,7 +99,7 @@ class Test:
         lktest_url = "https://lktest.bezlimit.ru/v1"
         data = {
             "phone": 9612224930,
-            "tariffId": 8014
+            "tariffId": 8019
         }
         request_url = f"{lktest_url}/phone/tariff/change"
         response = requests.get(request_url, headers=headers, data=data)
