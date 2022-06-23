@@ -76,7 +76,7 @@ class TestDev:
 
         token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
         lktest_url = "https://lktest.bezlimit.ru/v1"
-        phones = [9682224036, 9682223055, 9618880491]
+        phones = [9682224036, 9621110832, 9618880491]
         request_url = f"{lktest_url}/phone/notify/count-new-notifications?phones%5B%5D={phones[0]}" \
                       f"&phones%5B%5D={phones[1]}" \
                       f"&phones%5B%5D={phones[2]}"
@@ -119,7 +119,7 @@ class TestDev:
 
         headers = {'Authorization': f'Bearer {token}'}
         response = requests.get(request_url, headers=headers)
-        phones = [9682224036, 9682223055, 9682221928, 9618880491]
+        phones = [9682224036, 9621110832, 9682221928, 9618880491]
 
         try:
             assert response.status_code == 200
@@ -155,7 +155,7 @@ class TestDev:
         lktest_url = "https://lktest.bezlimit.ru/v1"
 
         headers = {'Authorization': f'Bearer {token}'}
-        phones = [9682224036, 9682223055, 9682221928, 9618880491]
+        phones = [9682224036, 9621110832, 9682221928, 9618880491]
         shitty_phones = [9006471111, 9682220854, 9682220793]
 
         request_url = f"{lktest_url}/phone/notify/count-new-notifications?phones%5B%5D={phones[0]}" \
@@ -271,7 +271,7 @@ class TestProd:
 
         token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
         lktest_url = "https://api.lk.bezlimit.ru/v1"
-        phones = [9682224036, 9682223055, 9618880491]
+        phones = [9682224036, 9621110832, 9618880491]
         request_url = f"{lktest_url}/phone/notify/count-new-notifications?phones%5B%5D={phones[0]}" \
                       f"&phones%5B%5D={phones[1]}" \
                       f"&phones%5B%5D={phones[2]}"
@@ -314,7 +314,7 @@ class TestProd:
 
         headers = {'Authorization': f'Bearer {token}'}
         response = requests.get(request_url, headers=headers)
-        phones = [9682224036, 9682223055, 9682221928, 9618880491]
+        phones = [9682224036, 9621110832, 9682221928, 9618880491]
 
         try:
             assert response.status_code == 200
@@ -350,7 +350,7 @@ class TestProd:
         lktest_url = "https://api.lk.bezlimit.ru/v1"
 
         headers = {'Authorization': f'Bearer {token}'}
-        phones = [9682224036, 9682223055, 9682221928, 9618880491]
+        phones = [9682224036, 9621110832, 9682221928, 9618880491]
         shitty_phones = [9006471111, 9682220854, 9682220793]
 
         request_url = f"{lktest_url}/phone/notify/count-new-notifications?phones%5B%5D={phones[0]}" \

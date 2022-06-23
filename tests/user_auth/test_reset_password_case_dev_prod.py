@@ -51,6 +51,9 @@ def password_reset_token(phone, url):
     return token
 
 
+phone_number = 9682224036
+
+
 class TestDev:
 
     def test_code(self):
@@ -58,8 +61,8 @@ class TestDev:
         expected_message = ['Кейс восстановления пароля. Запрос на восстановление пароля.']
 
         lktest_url = "https://lktest.bezlimit.ru/v1"
-        phone = 9682224036
-        params = {"phone": phone}
+        
+        params = {"phone": phone_number}
         headers = {"accept": "application/json"}
 
         request_url = f'{lktest_url}/user/auth/request-password-reset/'
@@ -86,9 +89,9 @@ class TestDev:
         expected_message = ['Кейс восстановления пароля. Смена пароля.']
 
         lktest_url = "https://lktest.bezlimit.ru/v1"
-        phone = 9682224036
-        token = password_reset_token(phone, lktest_url)
-        params = {"phone": phone,
+        
+        token = password_reset_token(phone_number, lktest_url)
+        params = {"phone": phone_number,
                   "confirmedToken": token,
                   "newPassword": "AutotestsLk123456",
                   "newPasswordRepeat": "AutotestsLk123456"}
@@ -113,8 +116,8 @@ class TestDev:
         expected_message = ['Кейс восстановления пароля. Повторный запрос на восстановление пароля.']
 
         lktest_url = "https://lktest.bezlimit.ru/v1"
-        phone = 9682224036
-        params = {"phone": phone}
+        
+        params = {"phone": phone_number}
         headers = {"accept": "application/json"}
 
         request_url = f'{lktest_url}/user/auth/request-password-reset/'
@@ -143,8 +146,8 @@ class TestProd:
         expected_message = ['Кейс восстановления пароля. Запрос на восстановление пароля.']
 
         lktest_url = "https://api.lk.bezlimit.ru/v1"
-        phone = 9682224036
-        params = {"phone": phone}
+        
+        params = {"phone": phone_number}
         headers = {"accept": "application/json"}
 
         request_url = f'{lktest_url}/user/auth/request-password-reset/'
@@ -171,9 +174,9 @@ class TestProd:
         expected_message = ['Кейс восстановления пароля. Смена пароля.']
 
         lktest_url = "https://api.lk.bezlimit.ru/v1"
-        phone = 9682224036
-        token = password_reset_token(phone, lktest_url)
-        params = {"phone": phone,
+        
+        token = password_reset_token(phone_number, lktest_url)
+        params = {"phone": phone_number,
                   "confirmedToken": token,
                   "newPassword": "AutotestsLk123456",
                   "newPasswordRepeat": "AutotestsLk123456"}
@@ -198,8 +201,8 @@ class TestProd:
         expected_message = ['Кейс восстановления пароля. Повторный запрос на восстановление пароля.']
 
         lktest_url = "https://api.lk.bezlimit.ru/v1"
-        phone = 9682224036
-        params = {"phone": phone}
+        
+        params = {"phone": phone_number}
         headers = {"accept": "application/json"}
 
         request_url = f'{lktest_url}/user/auth/request-password-reset/'

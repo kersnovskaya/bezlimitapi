@@ -3,10 +3,8 @@ import requests
 
 class Test:
 
-
     def test_resource_office_images_prod(self):
         lk_url = "https://api.lk.bezlimit.ru/v1"
-
         request_url = f"{lk_url}/resource/office-images"
         response = requests.get(request_url)
 
@@ -18,7 +16,6 @@ class Test:
 
     def test_resource_office_images_dev(self):
         lk_url = "https://lktest.bezlimit.ru/v1"
-
         request_url = f"{lk_url}/resource/office-images"
         response = requests.get(request_url)
 

@@ -172,7 +172,7 @@ class TestDev:
         expected_message = ['Запрос на восстановление пароля. На номере нет аккаунта ЛК/Сторонний аккаунт ЛК.']
 
         lktest_url = "https://lktest.bezlimit.ru/v1"
-        phone = 9682223055
+        phone = 9621110832
         data = {"phone": phone,
                 "code": None}
         headers = {"accept": "application/json"}
@@ -207,7 +207,7 @@ class TestDev:
         expected_message = ['Запрос на восстановление пароля. На номере нет аккаунта ЛК/Сторонний аккаунт ЛК.']
 
         lktest_url = "https://lktest.bezlimit.ru/v1"
-        phone = 9682223055
+        phone = 9621110832
         data = {"phone": phone,
                 "code": 'None'}
         headers = {"accept": "application/json"}

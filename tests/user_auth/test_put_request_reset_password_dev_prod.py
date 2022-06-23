@@ -231,7 +231,7 @@ class TestProd:
         message = ['Смена забытого пароля. Пустые "data".']
         expected_message = ['Смена забытого пароля. Пустые "data".']
 
-        lktest_url = "https://api/lk.bezlimit.ru/v1"
+        lktest_url = "https://api.lk.bezlimit.ru/v1"
         params = {'phone': None,
                   'confirmedToken': None,
                   'newPassword': None,
@@ -263,7 +263,7 @@ class TestProd:
         message = ['Смена забытого пароля. Некорректные "data".']
         expected_message = ['Смена забытого пароля. Некорректные "data".']
 
-        lktest_url = "https://api/lk.bezlimit.ru/v1"
+        lktest_url = "https://api.lk.bezlimit.ru/v1"
         params = {'phone': 1234,
                   'confirmedToken': 'None',
                   'newPassword': 'None',
@@ -331,7 +331,7 @@ class TestProd:
         message = ['Смена забытого пароля. Пароли не совпадают.']
         expected_message = ['Смена забытого пароля. Пароли не совпадают.']
 
-        lktest_url = "https://api/lk.bezlimit.ru/v1"
+        lktest_url = "https://api.lk.bezlimit.ru/v1"
         phone = 9682224036
         token = password_reset_token(phone)
         params = {'phone': phone,
@@ -368,7 +368,7 @@ class TestProd:
         message = ['Смена забытого пароля. Пароли не совпадают.']
         expected_message = ['Смена забытого пароля. Пароли не совпадают.']
 
-        lktest_url = "https://api/lk.bezlimit.ru/v1"
+        lktest_url = "https://api.lk.bezlimit.ru/v1"
         phone = 9682224036
         token = password_reset_token(phone)
         params = {'phone': phone,

@@ -118,8 +118,8 @@ class TestProd:
                    }
         lk_url = "https://api.lk.bezlimit.ru/v1"
 
-        transfer_token = get_transfer_token(9682223055, 9682224036)
-        code = get_code(9682223055)
+        transfer_token = get_transfer_token(9621110832, 9682224036)
+        code = get_code(9621110832)
 
         data1 = {
             "moneyTransferToken": transfer_token,
@@ -167,7 +167,7 @@ class TestProd:
                    }
         lk_url = "https://api.lk.bezlimit.ru/v1"
 
-        transfer_token = get_transfer_token(9682224036, 9682223055)
+        transfer_token = get_transfer_token(9682224036, 9621110832)
         code = get_code(9682224036)
 
         data1 = {

@@ -18,19 +18,21 @@ def get_code(phone):
     return code
 
 
+lk_token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
+lktest_url = "https://api.lk.bezlimit.ru/v1"
 
-class TestDev:
 
-    def test_post_account_phone_invalid_token(self):
+class TestProd:
+
+    def test_post_account_phone_invalid_lk_token(self):
         message = ['Добавление номера в аккаунт пользователя. Неавторизован.']
         expected_message = ['Добавление номера в аккаунт пользователя. Неавторизован.']
 
-        token = 12345678910
+        incorrect_lk_token = 12345678910
         headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}',
+                   'Authorization': f'Bearer {incorrect_lk_token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
-        lktest_url = "https://api.lk.bezlimit.ru/v1"
         data = {
             "phone": 9682220854
         }
@@ -52,17 +54,15 @@ class TestDev:
 
         assert message == expected_message, message
 
-
     def test_post_account_phone_not_bezlimit(self):
         message = ['Добавление номера в аккаунт пользователя. Номер не Безлимит.']
         expected_message = ['Добавление номера в аккаунт пользователя. Номер не Безлимит.']
 
-        token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
         headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}',
+                   'Authorization': f'Bearer {lk_token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
-        lktest_url = "https://api.lk.bezlimit.ru/v1"
+
         data = {
             "phone": 9000000000
         }
@@ -81,17 +81,15 @@ class TestDev:
 
         assert message == expected_message, message
 
-
     def test_post_account_phone_not_activated(self):
         message = ['Добавление номера в аккаунт пользователя. Номер на первичной авторизации.']
         expected_message = ['Добавление номера в аккаунт пользователя. Номер на первичной авторизации.']
 
-        token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
         headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}',
+                   'Authorization': f'Bearer {lk_token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
-        lktest_url = "https://api.lk.bezlimit.ru/v1"
+
         data = {
             "phone": 9612225034
         }
@@ -110,17 +108,15 @@ class TestDev:
 
         assert message == expected_message, message
 
-
     def test_post_account_phone_invalid_phone(self):
         message = ['Добавление номера в аккаунт пользователя. Некорректный номер.']
         expected_message = ['Добавление номера в аккаунт пользователя. Некорректный номер.']
 
-        token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
         headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}',
+                   'Authorization': f'Bearer {lk_token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
-        lktest_url = "https://api.lk.bezlimit.ru/v1"
+
         data = {
             "phone": 1540
         }
@@ -139,17 +135,15 @@ class TestDev:
 
         assert message == expected_message, message
 
-
     def test_post_account_phone_correct_without_name(self):
         message = ['Добавление номера в аккаунт пользователя. Корректный запрос без имени.']
         expected_message = ['Добавление номера в аккаунт пользователя. Корректный запрос без имени.']
 
-        token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
         headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}',
+                   'Authorization': f'Bearer {lk_token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
-        lktest_url = "https://api.lk.bezlimit.ru/v1"
+
         data = {
             "phone": 9682220854
         }
@@ -192,17 +186,15 @@ class TestDev:
 
         assert message == expected_message, message
 
-
     def test_post_account_phone_correct_with_name(self):
         message = ['Добавление номера в аккаунт пользователя. Корректный запрос с указанием имени.']
         expected_message = ['Добавление номера в аккаунт пользователя. Корректный запрос с указанием имени.']
 
-        token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
         headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}',
+                   'Authorization': f'Bearer {lk_token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
-        lktest_url = "https://api.lk.bezlimit.ru/v1"
+
         data = {
             "phone": 9682220854,
             "name": 'KuRwA'
@@ -246,14 +238,13 @@ class TestDev:
 
         assert message == expected_message, message
 
-
     def test_post_account_phone_code_confirmation(self):
-        token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
+
         headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}',
+                   'Authorization': f'Bearer {lk_token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
-        lktest_url = "https://api.lk.bezlimit.ru/v1"
+
         code = get_code(9682220854)
         print(code)
         data = {
@@ -266,17 +257,15 @@ class TestDev:
         assert response.status_code == 201, f'Проверка кода подтверждения для добавление номера в аккаунт пользователя.' \
                                             f'Код ответа {response.status_code}, а не "201".'
 
-
     def test_get_account_phone_after_adding(self):
         message = ['Данные по номеру в аккаунте. Проверка добавления номера.']
         expected_message = ['Данные по номеру в аккаунте. Проверка добавления номера.']
 
-        token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
         headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}',
+                   'Authorization': f'Bearer {lk_token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
-        lktest_url = "https://api.lk.bezlimit.ru/v1"
+
         data = {
             "phone": 9682220854
         }
@@ -308,17 +297,15 @@ class TestDev:
 
         assert message == expected_message, message
 
-
     def test_post_account_phone_correct_again(self):
         message = ['Добавление номера в аккаунт пользователя. Корректный запрос после добавления номера.']
         expected_message = ['Добавление номера в аккаунт пользователя. Корректный запрос после добавления номера.']
 
-        token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
         headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}',
+                   'Authorization': f'Bearer {lk_token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
-        lktest_url = "https://api.lk.bezlimit.ru/v1"
+
         data = {
             "phone": 9682220854,
             "name": 'KuRwA'
@@ -342,17 +329,16 @@ class TestDev:
 
         assert message == expected_message, message
 
-
-    def test_delete_account_phone_invalid_token(self):
+    def test_delete_account_phone_invalid_lk_token(self):
         message = ['Удаление номера из аккаунта пользователя. Не авторизован.']
         expected_message = ['Удаление номера из аккаунта пользователя. Не авторизован.']
 
-        token = 'kzkzkzkz'
+        defect_token = 'kzkzkzkz'
         headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}',
+                   'Authorization': f'Bearer {defect_token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
-        lktest_url = "https://api.lk.bezlimit.ru/v1"
+
         data = {
             "phone": 9682220854
         }
@@ -374,17 +360,15 @@ class TestDev:
 
         assert message == expected_message, message
 
-
     def test_delete_account_phone_invalid_phone(self):
         message = ['Удаление номера из аккаунта пользователя. Номер не привязан к аккаунту.']
         expected_message = ['Удаление номера из аккаунта пользователя. Номер не привязан к аккаунту.']
 
-        token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
         headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}',
+                   'Authorization': f'Bearer {lk_token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
-        lktest_url = "https://api.lk.bezlimit.ru/v1"
+
         data = {
             "phone": 9696588825
         }
@@ -406,17 +390,15 @@ class TestDev:
 
         assert message == expected_message, message
 
-
     def test_delete_account_phone_correct(self):
         message = ['Удаление номера из аккаунта пользователя. Корректный запрос на удаление.']
         expected_message = ['Удаление номера из аккаунта пользователя. Корректный запрос на удаление.']
 
-        token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
         headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}',
+                   'Authorization': f'Bearer {lk_token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
-        lktest_url = "https://api.lk.bezlimit.ru/v1"
+
         data = {
             "phone": 9682220854
         }
@@ -430,17 +412,15 @@ class TestDev:
 
         assert message == expected_message, message
 
-
     def test_get_account_phone_after_delete(self):
         message = ['Данные по номеру в аккаунте. Проверка добавления номера.']
         expected_message = ['Данные по номеру в аккаунте. Проверка добавления номера.']
 
-        token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
         headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}',
+                   'Authorization': f'Bearer {lk_token}',
                    'Content-Type': 'application/x-www-form-urlencoded'
                    }
-        lktest_url = "https://api.lk.bezlimit.ru/v1"
+
         data = {
             "phone": 9682220854
         }

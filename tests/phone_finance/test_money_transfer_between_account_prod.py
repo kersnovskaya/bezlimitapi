@@ -404,7 +404,7 @@ class Test:
         lktest_url = "https://api.lk.bezlimit.ru/v1"
         data = {
             "phoneFrom": 9682224036,
-            "phoneTo": 9682223055,
+            "phoneTo": 9621110832,
             "sum": 351
         }
 
@@ -470,7 +470,7 @@ class Test:
         lktest_url = "https://api.lk.bezlimit.ru/v1"
         data = {
             "phoneFrom": 9682224036,
-            "phoneTo": 9682223055,
+            "phoneTo": 9621110832,
             "sum": 150
         }
         request_url = f"{lktest_url}/phone/finance/money-transfer-between-account-phones"
@@ -501,7 +501,7 @@ class Test:
         lktest_url = "https://api.lk.bezlimit.ru/v1"
         data = {
             "phoneFrom": 9682224036,
-            "phoneTo": 9682223055,
+            "phoneTo": 9621110832,
             "sum": 150
         }
         request_url = f"{lktest_url}/phone/finance/money-transfer-between-account-phones"
