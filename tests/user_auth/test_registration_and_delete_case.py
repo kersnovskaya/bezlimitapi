@@ -13,7 +13,7 @@ def registration_code_confirmation(phone):
     }
     response = requests.get(url, headers=headers, data=data)
 
-    confirmed_token = response.json()['confirm_token']
+    confirmed_token = response.json()['confirmed_token']
 
     return confirmed_token
 

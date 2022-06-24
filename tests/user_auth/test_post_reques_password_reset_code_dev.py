@@ -241,7 +241,7 @@ class TestDev:
         expected_message = ['Запрос на восстановление пароля. На номере нет аккаунта ЛК/Сторонний номер аккаунта.']
 
         lktest_url = "https://lktest.bezlimit.ru/v1"
-        phone = 9612224930
+        phone = 9682224036
         data = {"phone": phone,
                 "code": 12345}
         headers = {"accept": "application/json"}
@@ -254,12 +254,7 @@ class TestDev:
         except AssertionError:
             message.append(f'Код ответа {response.status_code}, а не 422.')
         try:
-            assert response.json() == [
-                {
-                    "field": "code",
-                    "message": "Проверочный код указан не верно!"
-                }
-            ]
+            assert response.json() == {'message': 'Номер не найден в системе "Безлимит ID"'}
         except AssertionError:
             message.append(f'Ошибка в теле ответа - {response.json()[0]["message"]}, '
                            f'должно быть "Проверочный код указан не верно!".')

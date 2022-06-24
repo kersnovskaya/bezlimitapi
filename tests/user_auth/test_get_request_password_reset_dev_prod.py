@@ -26,7 +26,7 @@ class TestDev:
         expected_message = ['Запрос на восстановление пароля. Корректный запрос.']
 
         lktest_url = "https://lktest.bezlimit.ru/v1"
-        phone = 9006471111
+        phone = 9682224036
         params = {"phone": phone}
         headers = {"accept": "application/json"}
 
@@ -34,9 +34,9 @@ class TestDev:
         response = requests.get(request_url, headers=headers, params=params)
 
         try:
-            assert response.status_code == 201
+            assert response.status_code == 200
         except AssertionError:
-            message.append(f'Код ответа {response.status_code}, а не 201.')
+            message.append(f'Код ответа {response.status_code}, а не 200.')
         try:
             assert type(response.json()) == dict
         except AssertionError:
@@ -242,7 +242,7 @@ class TestProd:
         expected_message = ['Запрос на восстановление пароля. Корректный запрос.']
 
         lktest_url = "https://api.lk.bezlimit.ru/v1"
-        phone = 9006471111
+        phone = 9682224036
         params = {"phone": phone}
         headers = {"accept": "application/json"}
 
@@ -250,9 +250,9 @@ class TestProd:
         response = requests.get(request_url, headers=headers, params=params)
 
         try:
-            assert response.status_code == 201
+            assert response.status_code == 200
         except AssertionError:
-            message.append(f'Код ответа {response.status_code}, а не 201.')
+            message.append(f'Код ответа {response.status_code}, а не 200.')
         try:
             assert type(response.json()) == dict
         except AssertionError:

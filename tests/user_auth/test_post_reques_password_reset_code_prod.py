@@ -236,12 +236,12 @@ class TestDev:
 
         assert message == expected_message, message
 
-    def test_post_request_password_reset_code_phone_incorrect_code(self):
+    def test_post_request_password_reset_code_phone_side_phone(self):
         message = ['Запрос на восстановление пароля. На номере нет аккаунта ЛК/Сторонний номер аккаунта.']
         expected_message = ['Запрос на восстановление пароля. На номере нет аккаунта ЛК/Сторонний номер аккаунта.']
 
         lktest_url = "https://api.lk.bezlimit.ru/v1"
-        phone = 9612224930
+        phone = 9621110832
         data = {"phone": phone,
                 "code": 12345}
         headers = {"accept": "application/json"}
@@ -250,16 +250,13 @@ class TestDev:
         response = requests.post(request_url, headers=headers, data=data)
 
         try:
-            assert response.status_code == 422
+            assert response.status_code == 200
         except AssertionError:
-            message.append(f'Код ответа {response.status_code}, а не 422.')
+            message.append(f'Код ответа {response.status_code}, а не 200.')
         try:
-            assert response.json() == [
-                {
-                    "field": "code",
-                    "message": "Проверочный код указан не верно!"
-                }
-            ]
+            assert response.json() == {
+                "message": "Номер не найден в системе \"Безлимит ID\""
+            }
         except AssertionError:
             message.append(f'Ошибка в теле ответа - {response.json()[0]["message"]}, '
                            f'должно быть "Проверочный код указан не верно!".')

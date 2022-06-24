@@ -157,6 +157,6 @@ class TestDev:
                            "можете авторизоваться используя данный пароль."
             }
         except AssertionError:
-            message.append('Ошибка в теле ответа.')
+            message.append(f'Ошибка в теле ответа: {response.json()}.')
 
         assert message == expected_message, message
