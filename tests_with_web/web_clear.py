@@ -27,27 +27,29 @@ def authorize():
 
     button_enter.click()
 
+
 authorize()
 
 driver.get('https://bill.bezlimit.ru/phone/card/tasks/9612224930')
 
+time.sleep(2)
 
-status_list = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div[2]/div/div[5]/div/div[1]/div[2]/div[1]/div/div/div[2]/div[3]/table/tbody/tr[1]/td[8]/a')
+status_list = driver.find_element(By.XPATH, '(//*[contains(@class, "editable editable-click")])[1]')
 status_list.click()
 
-select = Select(driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div[2]/div/div[5]/div/div[1]/div[2]/div[1]/div/div/div[2]/div[3]/table/tbody/tr[1]/td[8]/div/div[2]/div/form/div/div[1]/div[1]/select'))
+select = Select(driver.find_element(By.XPATH, '(//*[contains(@class, "form-control input-sm")])[2]'))
 select.select_by_value('3')
 
-button1 = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div[2]/div/div[5]/div/div[1]/div[2]/div[1]/div/div/div[2]/div[3]/table/tbody/tr[1]/td[8]/div/div[2]/div/form/div/div[1]/div[2]/button[1]')
+button1 = driver.find_element(By.XPATH, '//*[@class="btn btn-primary btn-sm editable-submit"]')
 button1.click()
 
 time.sleep(2)
 
-status_list = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div[2]/div/div[5]/div/div[1]/div[2]/div[1]/div/div/div[2]/div[3]/table/tbody/tr[2]/td[8]/a')
+status_list = driver.find_element(By.XPATH, '(//*[contains(@class, "editable editable-click")])[2]')
 status_list.click()
 
-select = Select(driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div[2]/div/div[5]/div/div[1]/div[2]/div[1]/div/div/div[2]/div[3]/table/tbody/tr[2]/td[8]/div/div[2]/div/form/div/div[1]/div[1]/select'))
+select = Select(driver.find_element(By.XPATH, '(//*[contains(@class, "form-control input-sm")])[2]'))
 select.select_by_value('3')
 
-button2 = driver.find_element(By.XPATH,'/html/body/div[1]/div/div/div[2]/div/div[5]/div/div[1]/div[2]/div[1]/div/div/div[2]/div[3]/table/tbody/tr[2]/td[8]/div/div[2]/div/form/div/div[1]/div[2]/button[1]')
+button2 = driver.find_element(By.XPATH, '//*[@class="btn btn-primary btn-sm editable-submit"]')
 button2.click()
