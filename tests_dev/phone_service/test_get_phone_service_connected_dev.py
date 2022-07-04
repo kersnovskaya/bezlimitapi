@@ -223,6 +223,8 @@ class TestDev:
                    'Authorization': f'Bearer {token}'}
         response = requests.get(request_url, headers=headers)
 
+        print('\n', response.json())
+
         try:
             assert response.status_code == 200
         except AssertionError:
@@ -237,12 +239,13 @@ class TestDev:
             message.append(f'Тип данных тела ответа {type(response.json())}, а не "list".')
         for i in response.json():
             for j in i['connectionTask']:
+                print('\n', i['connectionTask']['date'])
                 try:
                     assert j is not None
                 except AssertionError:
                     message.append(f'В "услуге {i["title"]}" пустой "connectionTask".')
                 try:
-                    assert datetime.strptime(j['date'], '%Y-%m-%d %H:%M:%S') > datetime.now()
+                    assert datetime.strptime(i['connectionTask']['date'], '%Y-%m-%d %H:%M:%S') > datetime.now()
                 except AssertionError:
                     message.append(f'В услуге {i["title"]} указана некорректная дата подключения.')
             try:

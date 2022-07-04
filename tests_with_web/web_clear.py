@@ -30,7 +30,7 @@ def authorize():
 
 authorize()
 
-driver.get('https://bill.bezlimit.ru/phone/card/tasks/9612224930')
+driver.get('https://bill.bezlimit.ru/phone/card/tasks/9621110832')
 
 time.sleep(2)
 

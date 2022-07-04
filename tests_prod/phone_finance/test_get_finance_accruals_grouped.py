@@ -3,6 +3,10 @@ from datetime import datetime, timedelta
 import requests
 import random
 
+req_url = 'https://api.lk.bezlimit.ru/v1/phone/finance/accruals-grouped'
+acc_token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
+fake_acc_token = 12345678910
+
 
 def date_generate(days):
     """
@@ -35,21 +39,14 @@ def sexy_bitches_fucking_with_huge_black_cocks():
           f'\nНачальная дата файла "startfiledate": {dates[3]}')
 
 
-
-
-class TestProd:
-
-    def test_get_phone_finance_accruals_invalid_token(self):
+class TestValidation:
+    def test_invalid_acc_token(self):
         message = ['Список платежей за период. Неавторизован.']
         expected_message = ['Список платежей за период. Неавторизован.']
 
-        token = 12345678910
-        lktest_url = "https://api.lk.bezlimit.ru/v1"
-        request_url = f"{lktest_url}/phone/finance/accruals"
-
         headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}'}
-        response = requests.get(request_url, headers=headers)
+                   'Authorization': f'Bearer {fake_acc_token}'}
+        response = requests.get(req_url, headers=headers)
 
         try:
             assert response.status_code == 401
@@ -66,18 +63,14 @@ class TestProd:
 
         assert message == expected_message, message
 
-    def test_get_phone_finance_accruals_incorrect_phone(self):
+    def test_get_phone_finance_payments_incorrect_phone(self):
         message = ['Список платежей за период. Запрос для стороннего номера.']
         expected_message = ['Список платежей за период. Запрос для стороннего номера.']
 
-        token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
-        lktest_url = "https://api.lk.bezlimit.ru/v1"
-        request_url = f"{lktest_url}/phone/finance/accruals/"
-
         headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}'}
+                   'Authorization': f'Bearer {acc_token}'}
         params = {'phone': 9696588825}
-        response = requests.get(request_url, headers=headers, params=params)
+        response = requests.get(req_url, headers=headers, params=params)
 
         try:
             assert response.status_code == 422
@@ -93,18 +86,14 @@ class TestProd:
 
         assert message == expected_message, message
 
-    def test_get_phone_finance_accruals_shitty_phone(self):
+    def test_get_phone_finance_payments_shitty_phone(self):
         message = ['Список платежей за период. Запрос для стороннего номера.']
         expected_message = ['Список платежей за период. Запрос для стороннего номера.']
 
-        token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
-        lktest_url = "https://api.lk.bezlimit.ru/v1"
-        request_url = f"{lktest_url}/phone/finance/accruals/"
-
         headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}'}
+                   'Authorization': f'Bearer {acc_token}'}
         params = {'phone': 1545}
-        response = requests.get(request_url, headers=headers, params=params)
+        response = requests.get(req_url, headers=headers, params=params)
 
         try:
             assert response.status_code == 422
@@ -120,22 +109,18 @@ class TestProd:
 
         assert message == expected_message, message
 
-    def test_get_phone_finance_accruals_correct_week(self):
+    def test_get_phone_finance_payments_correct_week(self):
         message = ['Список платежей за период. Корректный запрос, неделя.']
         expected_message = ['Список платежей за период. Корректный запрос, неделя.']
 
         dates = date_generate(7)
 
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
-        lktest_url = "https://api.lk.bezlimit.ru/v1"
-        request_url = f"{lktest_url}/phone/finance/accruals/"
-
         headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}'}
+                   'Authorization': f'Bearer {acc_token}'}
         params = {'phone': 9006471111,
                   'dateStart': dates[2],
                   'dateEnd': dates[0]}
-        response = requests.get(request_url, headers=headers, params=params)
+        response = requests.get(req_url, headers=headers, params=params)
 
         try:
             assert response.status_code == 200
@@ -151,22 +136,18 @@ class TestProd:
 
         assert message == expected_message, message
 
-    def test_get_phone_finance_accruals_correct_month(self):
+    def test_get_phone_finance_payments_correct_month(self):
         message = ['Список платежей за период. Корректный запрос, месяц.']
         expected_message = ['Список платежей за период. Корректный запрос, месяц.']
 
         dates = date_generate(30)
 
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
-        lktest_url = "https://api.lk.bezlimit.ru/v1"
-        request_url = f"{lktest_url}/phone/finance/accruals/"
-
         headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}'}
+                   'Authorization': f'Bearer {acc_token}'}
         params = {'phone': 9006471111,
                   'dateStart': dates[2],
                   'dateEnd': dates[0]}
-        response = requests.get(request_url, headers=headers, params=params)
+        response = requests.get(req_url, headers=headers, params=params)
 
         try:
             assert response.status_code == 200
@@ -182,22 +163,18 @@ class TestProd:
 
         assert message == expected_message, message
 
-    def test_get_phone_finance_accruals_correct_month_more(self):
+    def test_get_phone_finance_payments_correct_month_more(self):
         message = ['Список платежей за период. Корректный запрос, другой период.']
         expected_message = ['Список платежей за период. Корректный запрос, другой период.']
 
-        dates = date_generate(30)
-
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
-        lktest_url = "https://api.lk.bezlimit.ru/v1"
-        request_url = f"{lktest_url}/phone/finance/accruals/"
+        dates = date_generate(71)
 
         headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}'}
+                   'Authorization': f'Bearer {acc_token}'}
         params = {'phone': 9006471111,
                   'dateStart': dates[2],
                   'dateEnd': dates[0]}
-        response = requests.get(request_url, headers=headers, params=params)
+        response = requests.get(req_url, headers=headers, params=params)
 
         try:
             assert response.status_code == 200
@@ -213,26 +190,22 @@ class TestProd:
 
         assert message == expected_message, message
 
-    def test_get_phone_finance_accruals_correct_random_page(self):
+    def test_get_phone_finance_payments_correct_random_page(self):
         message = ['Список платежей за период. Параметры "page", "per-page".']
         expected_message = ['Список платежей за период. Параметры "page", "per-page".']
-
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
-        lktest_url = "https://api.lk.bezlimit.ru/v1"
-        request_url = f"{lktest_url}/phone/finance/accruals/"
 
         page = [1, 2, 3]
         per_page = [5, 4, 6]
         for i in per_page:
             for j in page:
                 headers = {'accept': 'application/json',
-                           'Authorization': f'Bearer {token}'}
+                           'Authorization': f'Bearer {acc_token}'}
                 params = {'phone': 9006471111,
                           'dateStart': '2022-04-10',
                           'dateEnd': '2022-06-08',
                           'per-page': i,
                           'page': j}
-                response = requests.get(request_url, headers=headers, params=params)
+                response = requests.get(req_url, headers=headers, params=params)
 
                 try:
                     assert response.status_code == 200
@@ -248,22 +221,19 @@ class TestProd:
 
         assert message == expected_message, message
 
-    def test_get_phone_finance_accruals_correct_fields(self):
+    def test_get_phone_finance_payments_correct_fields(self):
         message = ['Список платежей за период. Параметры "fields".']
         expected_message = ['Список платежей за период. Параметры "fields".']
 
         fields = ['amount', 'payment_date', 'created_at']
         for field in fields:
-            token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
-            lktest_url = "https://api.lk.bezlimit.ru/v1"
-            request_url = f"{lktest_url}/phone/finance/accruals/"
             headers = {'accept': 'application/json',
-                       'Authorization': f'Bearer {token}'}
+                       'Authorization': f'Bearer {acc_token}'}
             params = {'phone': 9006471111,
                       'dateStart': '2022-04-10',
                       'dateEnd': '2022-06-08',
                       'fields': field}
-            response = requests.get(request_url, headers=headers, params=params)
+            response = requests.get(req_url, headers=headers, params=params)
 
             try:
                 assert response.status_code == 200
@@ -285,20 +255,17 @@ class TestProd:
 
         assert message == expected_message, message
 
-    def test_get_phone_finance_accruals_correct_expand(self):
+    def test_get_phone_finance_payments_correct_expand(self):
         message = ['Список платежей за период. Параметры "expand".']
         expected_message = ['Список платежей за период. Параметры "expand".']
 
-        token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
-        lktest_url = "https://api.lk.bezlimit.ru/v1"
-        request_url = f"{lktest_url}/phone/finance/accruals/"
         headers = {'accept': 'application/json',
-                   'Authorization': f'Bearer {token}'}
+                   'Authorization': f'Bearer {acc_token}'}
         params = {'phone': 9006471111,
                   'dateStart': '2022-04-10',
                   'dateEnd': '2022-06-08',
                   'expand': 'category'}
-        response = requests.get(request_url, headers=headers, params=params)
+        response = requests.get(req_url, headers=headers, params=params)
 
         try:
             assert response.status_code == 200

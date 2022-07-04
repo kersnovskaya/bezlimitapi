@@ -242,7 +242,7 @@ class TestProd:
                 except AssertionError:
                     message.append(f'В "услуге {i["title"]}" пустой "connectionTask".')
                 try:
-                    assert datetime.strptime(j['date'], '%Y-%m-%d %H:%M:%S') > datetime.now()
+                    assert datetime.strptime(i['connectionTask']['date'], '%Y-%m-%d %H:%M:%S') > datetime.now()
                 except AssertionError:
                     message.append(f'В услуге {i["title"]} указана некорректная дата подключения.')
             try:

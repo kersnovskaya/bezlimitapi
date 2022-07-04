@@ -1,5 +1,40 @@
+from datetime import datetime, timedelta
+
 import requests
 import random
+
+
+def date_generate(days):
+    """
+    Данная функция генерирует случайные даты в промежутке с 2202-03-01 по текущую дату.
+    В переменной функции передаётся количество дней между начальной и конечной датой.
+    """
+    start = datetime.today() + (datetime.today() - datetime(year=2021, month=3, day=1)) * random.random()
+    maxdate = str(start).split()[0]
+    maxfiledate = maxdate.split('-')
+    maxfiledate.reverse()
+    endfiledate = '.'.join(maxfiledate)
+
+    end = start - timedelta(days=days)
+    mindate = str(end).split()[0]
+    minfiledate = mindate.split('-')
+    minfiledate.reverse()
+    startfiledate = '.'.join(minfiledate)
+
+    return maxdate, endfiledate, mindate, startfiledate
+
+
+def sexy_bitches_fucking_with_huge_black_cocks():
+    """
+    Пример использования сгенерированных дат:
+    """
+    dates = date_generate(7)
+    print(f'\nКонечная дата "maxdate": {dates[0]}'
+          f'\nКонечная дата файла "endfiledate": {dates[1]}'
+          f'\nНачальная дата "mindate": {dates[2]}'
+          f'\nНачальная дата файла "startfiledate": {dates[3]}')
+
+
 
 
 class TestProd:
@@ -88,6 +123,7 @@ class TestProd:
     def test_get_phone_finance_payments_correct_week(self):
         message = ['Список платежей за период. Корректный запрос, неделя.']
         expected_message = ['Список платежей за период. Корректный запрос, неделя.']
+        dates = date_generate(7)
 
         token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
         lktest_url = "https://api.lk.bezlimit.ru/v1"
@@ -96,8 +132,8 @@ class TestProd:
         headers = {'accept': 'application/json',
                    'Authorization': f'Bearer {token}'}
         params = {'phone': 9006471111,
-                  'dateStart': '2022-04-15',
-                  'dateEnd': '2022-04-21'}
+                  'dateStart': dates[2],
+                  'dateEnd': dates[0]}
         response = requests.get(request_url, headers=headers, params=params)
 
         try:
@@ -117,6 +153,7 @@ class TestProd:
     def test_get_phone_finance_payments_correct_month(self):
         message = ['Список платежей за период. Корректный запрос, месяц.']
         expected_message = ['Список платежей за период. Корректный запрос, месяц.']
+        dates = date_generate(30)
 
         token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
         lktest_url = "https://api.lk.bezlimit.ru/v1"
@@ -125,8 +162,8 @@ class TestProd:
         headers = {'accept': 'application/json',
                    'Authorization': f'Bearer {token}'}
         params = {'phone': 9006471111,
-                  'dateStart': '2022-05-01',
-                  'dateEnd': '2022-06-01'}
+                  'dateStart': dates[2],
+                  'dateEnd': dates[0]}
         response = requests.get(request_url, headers=headers, params=params)
 
         try:
@@ -146,6 +183,7 @@ class TestProd:
     def test_get_phone_finance_payments_correct_month_more(self):
         message = ['Список платежей за период. Корректный запрос, другой период.']
         expected_message = ['Список платежей за период. Корректный запрос, другой период.']
+        dates = date_generate(71)
 
         token = 'iP0vKgl5ODvOIDkRDINyKDw6DL4SVurnZoBW1wu-PPS84W3X_0MZennm9G7Vea6_'
         lktest_url = "https://api.lk.bezlimit.ru/v1"
@@ -154,8 +192,8 @@ class TestProd:
         headers = {'accept': 'application/json',
                    'Authorization': f'Bearer {token}'}
         params = {'phone': 9006471111,
-                  'dateStart': '2022-04-10',
-                  'dateEnd': '2022-06-08'}
+                  'dateStart': dates[2],
+                  'dateEnd': dates[0]}
         response = requests.get(request_url, headers=headers, params=params)
 
         try:
