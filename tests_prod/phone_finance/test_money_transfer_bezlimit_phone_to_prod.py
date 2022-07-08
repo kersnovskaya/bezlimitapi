@@ -262,7 +262,7 @@ class Test:
             assert response.json() == [{'field': 'sum',
                                         'message': 'Минимальная сумма перевода 100 руб'}]
         except AssertionError:
-            message.append('Ошибка в тексте ответа.')
+            message.append(f'Ошибка в тексте ответа:{response.json()}.')
 
         assert message == expected_message, message
 
@@ -350,7 +350,7 @@ class Test:
         data = {
             "phoneFrom": 9682224036,
             "phoneTo": 9621110832,
-            "sum": 351
+            "sum": 400
         }
 
         request_url = f"{lktest_url}/phone/finance/money-transfer-client-bezlimit"
