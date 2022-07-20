@@ -273,3 +273,16 @@ import requests
 #
 # print(set(keys).difference(sex_dick_asshole))
 # print(set(sex_dick_asshole).difference(keys))
+
+from zeep import Client, Settings
+
+
+settings = Settings(strict=False, xml_huge_tree=True)
+client = Client('http://my-wsdl/wsdl', settings=settings)
+
+with client.settings(raw_response=True):
+    response = client.service.myoperation()
+
+client = zeep.AsyncClient("http://localhost:8000/?wsdl")
+
+response = await client.service.myoperation()

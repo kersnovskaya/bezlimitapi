@@ -1,5 +1,4 @@
 import time
-
 import requests
 from selenium.webdriver import Chrome, ActionChains, Keys
 from selenium.webdriver.chrome.options import Options
@@ -181,7 +180,8 @@ class TestValidation:
 
         assert message == expected_message, message
 
-class Test200WithWeb:
+class Test200WithWeb(object):
+    @pytest.mark.dependency()
     def test_put_payment(self, set_up_browser):
         driver = set_up_browser
         action_chains = ActionChains(driver)
@@ -201,6 +201,7 @@ class Test200WithWeb:
         driver.find_element(By.XPATH, '//button[@class="btn btn-primary btn-sm btn-labeled fal fa-ruble"]').click()
         assert driver.find_element(By.XPATH, '//div[@class="alert-success alert fade in"]').text == "×\nПринят платёж [сумма: 15,00 ₽]"
 
+    @pytest.mark.dependency()
     def test_correct(self):
         message = ['Обещанный платёж. Корректный запрос.']
         expected_message = ['Обещанный платёж. Корректный запрос.']
@@ -229,6 +230,7 @@ class Test200WithWeb:
 
         assert message == expected_message, message
 
+    @pytest.mark.dependency()
     def test_correct_again(self):
         message = ['Обещанный платёж. Запрос с активным ОП.']
         expected_message = ['Обещанный платёж. Запрос с активным ОП.']
@@ -259,7 +261,7 @@ class Test200WithWeb:
 
         assert message == expected_message, message
 
-    @pytest.mark.skipif()
+    @pytest.mark.dependency(depends=["Test200WithWeb::test_correct", "Test200WithWeb::test_put_payment"])
     def test_delete_promised_payment(self, set_up_browser):
         driver = set_up_browser
 
@@ -277,5 +279,4 @@ class Test200WithWeb:
         )
         driver.find_element(By.XPATH, '//button[@title="Удалить"]').click()
         driver.find_element(By.ID, 'plusdeleteform-deletion_comment').send_keys('Автотест ОП')
-        driver.find_element(By.XPATH, '//div[@class="modal-footer"]/button[contains(text(), "Удалить")]')
-        pass
+        driver.find_element(By.XPATH, '//div[@class="modal-footer"]/button[contains(text(), "Удалить")]').click()
