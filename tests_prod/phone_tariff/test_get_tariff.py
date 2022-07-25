@@ -97,7 +97,7 @@ class TestProd:
 		try:
 			assert response.json()[random_field]
 		except AssertionError:
-			message.append(f'В ответе отдаётся параметр, не соответствующий параметру в запросе{random_field}.')
+			message.append(f'В ответе отдаётся параметр, не соответствующий параметру в запросе {random_field}.')
 
 		assert message == expected_message
 
