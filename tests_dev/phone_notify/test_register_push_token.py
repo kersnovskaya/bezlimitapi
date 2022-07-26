@@ -1,7 +1,7 @@
 import requests
 
 
-url = 'https://api.lk.bezlimit.ru/v1/phone/notify/register-push-token'
+url = 'https://lktest.bezlimit.ru/v1/phone/notify/register-push-token'
 token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
 headers = {
     'accept': 'application/json',
