@@ -32,7 +32,7 @@ class TestValidation:
         response = requests.put(url, headers=headers, data=params)
 
         assert response.status_code == 422
-        assert response.json() == [{'field': 'email', 'message': 'Указанный email не найден в системе'}]
+        assert response.json() == [{'field': 'email', 'message': 'Неверный формат email'}]
 
     def test_phone_small(self):
         params = {

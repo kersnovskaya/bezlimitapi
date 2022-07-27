@@ -60,7 +60,7 @@ class TestPositive:
 
         response = requests.post(url, headers=headers, data=data)
 
-        assert response.status_code == 200
+        assert response.status_code == 201
 
     def test_correct_android(self):
         data = {
@@ -76,4 +76,4 @@ class TestPositive:
 
         response = requests.post(url, headers=headers, data=data)
 
-        assert response.status_code == 200
+        assert response.status_code == 201

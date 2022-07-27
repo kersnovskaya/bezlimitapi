@@ -26,7 +26,7 @@ def set_up_browser():
 req_url = 'https://lktest.bezlimit.ru/v1/phone/finance/promised-payment'
 test_phone = 9682221928
 not_bezlimit_phone = 9000000000
-not_in_account_phone = 9006471111
+not_in_account_phone = 9612224930
 not_repaid_phone = 9618880491
 
 invalid_token = 'asshole'

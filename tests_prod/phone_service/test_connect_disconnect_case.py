@@ -3,7 +3,7 @@ import requests
 import datetime
 
 
-url = 'https://lktest.bezlimit.ru/v1'
+url = 'https://api.lk.bezlimit.ru/v1'
 test_phone = 9682221928
 acc_token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
 

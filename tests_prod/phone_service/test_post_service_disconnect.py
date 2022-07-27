@@ -169,7 +169,7 @@ class TestValidationProd:
 
         data = {
             "id": 8019,
-            "phone": 9006471111
+            "phone": 9612224930
         }
 
         response = requests.post(req_url, headers=headers, data=data)

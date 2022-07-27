@@ -1,7 +1,7 @@
 import requests
 
 
-url = 'https://api.store.dev.bezlimit.ru/v2/users/restore-password'
+url = 'https://api.store.bezlimit.ru/v2/users/restore-password'
 email = 'api_store_autotest@bezlimit.ru'
 headers = {
     'Authorization': 'Basic YXBpU3RvcmU6VkZ6WFdOSmhwNTVtc3JmQXV1dU0zVHBtcnFTRw==',
@@ -32,7 +32,7 @@ class TestValidation:
         response = requests.put(url, headers=headers, data=params)
 
         assert response.status_code == 422
-        assert response.json() == [{'field': 'email', 'message': 'Указанный email не найден в системе'}]
+        assert response.json() == [{'field': 'email', 'message': 'Неверный формат email'}]
 
     def test_phone_small(self):
         params = {

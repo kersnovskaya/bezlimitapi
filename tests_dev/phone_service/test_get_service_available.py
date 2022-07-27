@@ -121,7 +121,7 @@ class TestValidationDev:
         }
 
         params = {
-            "phone": 9006471111
+            "phone": 9612224930
         }
 
         response = requests.get(req_url, headers=headers, params=params)

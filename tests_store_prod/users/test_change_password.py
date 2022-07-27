@@ -1,7 +1,7 @@
 import requests
 
 
-url = 'https://api.store.dev.bezlimit.ru/v2/users/change-password'
+url = 'https://api.store.bezlimit.ru/v2/users/change-password'
 email = 'api_store_autotest@bezlimit.ru'
 headers = {
     'Authorization': 'Basic YXBpU3RvcmU6VkZ6WFdOSmhwNTVtc3JmQXV1dU0zVHBtcnFTRw==',
@@ -51,11 +51,10 @@ class TestNegative:
 
         assert response.status_code == 401
         assert response.json() == {
-            "name": "Unauthorized",
-            "message": "Your request was made with invalid credentials.",
-            "code": 0,
-            "status": 401,
-            "type": "yii\\web\\UnauthorizedHttpException"
+            'code': 0,
+            'message': 'Your request was made with invalid credentials.',
+            'name': 'Unauthorized',
+            'status': 401
         }
 
     def test_incorrect_password(self):
