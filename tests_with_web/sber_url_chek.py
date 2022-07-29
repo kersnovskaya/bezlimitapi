@@ -32,13 +32,13 @@ print(url_prod)
 print(url_dev)
 
 chrome_options = Options()
-chrome_options.add_argument("--headless")
+# chrome_options.add_argument("--headless")
 driver = webdriver.Chrome(chrome_options=chrome_options,
                           executable_path=r'C:\Users\morozov_i\PycharmProjects\bezlimitapi\driver\chromedriver.exe')
 
 input_card = 2202201766660126
 input_date = 325
-input_cvc = 594
+input_cvc = 111
 
 for url in (url_prod, url_dev):
     time.sleep(8)
@@ -61,7 +61,7 @@ for url in (url_prod, url_dev):
         button_pay.click()
         time.sleep(8)
 
-        button_cancel = driver.find_element(By.XPATH, '/html/body/div/div[3]/div/div/div[1]/a')
+        button_cancel = driver.find_element(By.XPATH, '//a[contains(text(), "Отменить")]')
         button_cancel.click()
         time.sleep(8)
 
