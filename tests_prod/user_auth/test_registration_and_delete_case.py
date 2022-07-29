@@ -59,7 +59,7 @@ DOMAIN_DEV = 'https://api.lk.bezlimit.ru/v1'
 
 lk_admin_token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
 
-test_phone = 9618880491
+test_phone = 9612224930
 test_password = 'Aa123456'
 
 
