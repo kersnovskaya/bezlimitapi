@@ -55,8 +55,7 @@ class TestCommonService:
 
         response = requests.post(req_url, headers=headers, data=data)
 
-        assert type(response.json()['connectionTask']) == dict, \
-            'Подключение услуги. Не указана задача на подключение услуги.'
+        assert type(response.json()['connectionTask']) == dict, 'Подключение услуги. Не указана задача на подключение услуги.'
 
     def test_service_disconnect(self):
         req_url = f'{url}/phone/service/disconnect'

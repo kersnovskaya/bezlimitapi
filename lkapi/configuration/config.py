@@ -37,3 +37,15 @@ one_number_lk_token = 'g6w9Csyh-yhrZQTcXjDEJ9-5kLqqJDNDKpAllfprIG3J8fk2WX8rqCRFI
 fst_number = 9612224930  # Есть ПД, есть деньги, есть контактный номер
 
 clear_phone = 9612225034  # Вообще ничего нет, ПА
+
+# --------------------------------------------------------------------------------------------------------------------
+#                                        NEW DATA FOR API STORE BEZLIMIT
+# --------------------------------------------------------------------------------------------------------------------
+
+token_store = 'IJMcp2KDTiGU05YpYwvd2zWqcfiVJzfsyazLPppAfr-iB5GWkTIoW0tFZZ3UP4Tq'
+phone_store = 9682224036
+password_store = 'QualityAssurance'
+
+token0 = 'Kyu8SyaqOyCQCOBTJQ93580ig_xLh1UsU2JS2i07Tt5WnJ9tc6XGqXHlrDXEUyiH'
+token1 = 'jxrOOpE33Zb944m8w5KUXhgIHPGHS1V0zO1wbphFnXNZSjL-Sa5_KGwYwndejafJ'
+token2 = 'plq-rqmPaSlZ1bpN-LFYZX_WMQOjiuWVK8-2WnUG8n-AyBhprQgSVdXfE58Al9nW'

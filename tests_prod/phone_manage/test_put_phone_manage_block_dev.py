@@ -119,7 +119,7 @@ class TestDev:
         token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
         lktest_url = "https://lktest.bezlimit.ru/v1"
         request_url = f"{lktest_url}/phone/manage/block-save"
-        phone = 9682223055
+        phone = 9618880491
 
         headers = {'accept': 'application/json',
                    'Authorization': f'Bearer {token}',
@@ -128,7 +128,7 @@ class TestDev:
 
         response = requests.put(request_url, headers=headers, data=data)
 
-        assert response.status_code == 200
+        assert response.status_code == 422
         assert type(response.json()) == list
         for i in response.json():
             assert i['message'] == 'Блокировка по сохранению не выполнена.'
@@ -250,7 +250,7 @@ class TestDev:
         token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
         lktest_url = "https://lktest.bezlimit.ru/v1"
         request_url = f"{lktest_url}/phone/manage/block-save"
-        phone = 9682223055
+        phone = 9682221928
 
         headers = {'accept': 'application/json',
                    'Authorization': f'Bearer {token}',
@@ -259,7 +259,7 @@ class TestDev:
 
         response = requests.put(request_url, headers=headers, data=data)
 
-        assert response.status_code == 200
+        assert response.status_code == 422
         assert type(response.json()) == list
         for i in response.json():
             assert i['message'] == 'Блокировка по сохранению не выполнена.'

@@ -274,15 +274,192 @@ import requests
 # print(set(keys).difference(sex_dick_asshole))
 # print(set(sex_dick_asshole).difference(keys))
 
-from zeep import Client, Settings
+ass = {
+  "items": [],
+  "_meta": {
+    "totalCount": 0,
+    "pageCount": 0,
+    "currentPage": 1,
+    "perPage": 50
+  }
+}
 
+dick = {
+  "items": [
+    {
+      "id": 2943440,
+      "fio": "TEST TESST TESST",
+      "phone": 9684398678,
+      "address": "г Москва, 1-й Магистральный тупик, д 5А",
+      "comment": "ТЕСТ",
+      "logistic_comment": "",
+      "track_number": "",
+      "track_url": "",
+      "status": "closed",
+      "status_name": "Доставлено (Без оплаты)",
+      "created_at": "2022-07-20",
+      "shipped_at": "2022-07-28"
+    },
+    {
+      "id": 2873250,
+      "fio": "tttt",
+      "phone": 9889665885,
+      "address": "г Москва, ул Гагарина, д 1",
+      "comment": "ghjhhhh",
+      "logistic_comment": "",
+      "track_number": "",
+      "track_url": "",
+      "status": "process",
+      "status_name": "в обработке",
+      "created_at": "2022-06-28",
+      "shipped_at": "2022-06-30"
+    },
+    {
+      "id": 2873248,
+      "fio": "tttt",
+      "phone": 9889665885,
+      "address": "г Москва, ул Гагарина, д 1",
+      "comment": "ghjhhhh",
+      "logistic_comment": "",
+      "track_number": "",
+      "track_url": "",
+      "status": "process",
+      "status_name": "в обработке",
+      "created_at": "2022-06-28",
+      "shipped_at": "2022-06-30"
+    },
+    {
+      "id": 2860932,
+      "fio": "Данильчук Владислав Викторович",
+      "phone": 9587774144,
+      "address": "г Москва, 1-й Магистральный тупик, д 5А",
+      "comment": "",
+      "logistic_comment": "",
+      "track_number": "",
+      "track_url": "",
+      "status": "process",
+      "status_name": "в обработке",
+      "created_at": "2022-06-24",
+      "shipped_at": "2022-06-25"
+    },
+    {
+      "id": 2859062,
+      "fio": "Данильчук Владислав Викторович",
+      "phone": 9587774144,
+      "address": "г Москва, 1-й Магистральный тупик, д 5А",
+      "comment": "",
+      "logistic_comment": "",
+      "track_number": "",
+      "track_url": "",
+      "status": "process",
+      "status_name": "в обработке",
+      "created_at": "2022-06-24",
+      "shipped_at": "2022-06-25"
+    },
+    {
+      "id": 2859002,
+      "fio": "Данильчук Владислав Викторович",
+      "phone": 9587774144,
+      "address": "г Москва, 1-й Магистральный тупик, д 5А",
+      "comment": "",
+      "logistic_comment": "",
+      "track_number": "",
+      "track_url": "",
+      "status": "process",
+      "status_name": "в обработке",
+      "created_at": "2022-06-24",
+      "shipped_at": "2022-06-25"
+    },
+    {
+      "id": 2858706,
+      "fio": "Данильчук Владислав Викторович",
+      "phone": 9587774144,
+      "address": "г Москва, 1-й Магистральный тупик, д 5А",
+      "comment": "Тест",
+      "logistic_comment": "",
+      "track_number": "",
+      "track_url": "",
+      "status": "process",
+      "status_name": "в обработке",
+      "created_at": "2022-06-24",
+      "shipped_at": "2022-06-25"
+    },
+    {
+      "id": 2858606,
+      "fio": "Данильчук Владислав Викторович",
+      "phone": 9587774144,
+      "address": "г Москва, 1-й Магистральный тупик, д 5А",
+      "comment": "Тест",
+      "logistic_comment": "",
+      "track_number": "",
+      "track_url": "",
+      "status": "process",
+      "status_name": "в обработке",
+      "created_at": "2022-06-24",
+      "shipped_at": "2022-06-25"
+    },
+    {
+      "id": 2849910,
+      "fio": "test",
+      "phone": 9006471111,
+      "address": "Самарская обл, г Тольятти, Автозаводское шоссе, д 24",
+      "comment": "koooo",
+      "logistic_comment": "",
+      "track_number": "80097773056088",
+      "track_url": "https://www.pochta.ru/TRACKING#80097773056088",
+      "status": "closed",
+      "status_name": "Ожидает получателя в отделении \"Почты России\"",
+      "created_at": "2022-06-23",
+      "shipped_at": "2022-06-29"
+    },
+    {
+      "id": 2849842,
+      "fio": "test name",
+      "phone": 9378887755,
+      "address": "Самарская обл, г Тольятти, Автозаводское шоссе, д 24 стр 1",
+      "comment": "comment",
+      "logistic_comment": "",
+      "track_number": "",
+      "track_url": "",
+      "status": "new",
+      "status_name": "новый",
+      "created_at": "2022-06-23",
+      "shipped_at": "2022-06-24"
+    },
+    {
+      "id": 2849820,
+      "fio": "test name",
+      "phone": 9378887755,
+      "address": "Самарская обл, г Тольятти, Автозаводское шоссе, д 24",
+      "comment": "comment",
+      "logistic_comment": "",
+      "track_number": "",
+      "track_url": "",
+      "status": "new",
+      "status_name": "новый",
+      "created_at": "2022-06-23",
+      "shipped_at": "2022-06-24"
+    },
+    {
+      "id": 2836824,
+      "fio": "test",
+      "phone": 9684398678,
+      "address": "г Москва, 1-й Магистральный тупик, д 5А",
+      "comment": "тест",
+      "logistic_comment": "",
+      "track_number": "",
+      "track_url": "",
+      "status": "process",
+      "status_name": "в обработке",
+      "created_at": "2022-06-16",
+      "shipped_at": "2022-06-17"
+    }
+  ],
+  "_meta": {
+    "totalCount": 12,
+    "pageCount": 1,
+    "currentPage": 1,
+    "perPage": 50
+  }
+}
 
-settings = Settings(strict=False, xml_huge_tree=True)
-client = Client('http://my-wsdl/wsdl', settings=settings)
-
-with client.settings(raw_response=True):
-    response = client.service.myoperation()
-
-client = zeep.AsyncClient("http://localhost:8000/?wsdl")
-
-response = await client.service.myoperation()

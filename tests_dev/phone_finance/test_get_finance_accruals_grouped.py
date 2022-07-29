@@ -212,10 +212,10 @@ class TestValidation:
                 except AssertionError:
                     message.append(f"Код ответа {response.status_code}, а не 200.")
                 try:
-                    for i in response.json():
-                        assert type(i['amount']) == int
-                        assert type(i['payment_date']) == str
-                        assert type(i['created_at']) == str
+                    for i_s in response.json():
+                        assert type(i_s['amount']) == int
+                        assert type(i_s['payment_date']) == str
+                        assert type(i_s['created_at']) == str
                 except AssertionError:
                     message.append(f'В параметрах ответа некорректные типы данных.')
 
