@@ -61,7 +61,7 @@ class Test:
                    }
         lktest_url = "https://lktest.bezlimit.ru/v1"
         data = {
-            "phone": 9006471111,
+            "phone": 9612224930,
             "tariffId": 8019
         }
         request_url = f"{lktest_url}/phone/tariff/change"
@@ -73,7 +73,7 @@ class Test:
         assert response.json() == [
             {
                 "field": "phone",
-                "message": "Номер не привязан к аккаунту."
+                "message": "Номер телефона не привязан к аккаунту."
             },
             {
                 'field': 'tariffId',

@@ -57,7 +57,7 @@ class Test:
                    }
         lktest_url = "https://api.lk.bezlimit.ru/v1"
         data = {
-            "phone": 9696588825,
+            "phone": 9612224930,
             "tariffId": 8019
         }
         request_url = f"{lktest_url}/phone/tariff/change"
@@ -66,9 +66,16 @@ class Test:
         print(response.json())
 
         assert response.status_code == 422
-        assert response.json() == [{"field": "phone",
-                                    "message": "Номер не привязан к аккаунту."
-                                    }]
+        assert response.json() == [
+            {
+                "field": "phone",
+                "message": "Номер телефона не привязан к аккаунту."
+            },
+            {
+                'field': 'tariffId',
+                'message': 'Нельзя перейти на этот тариф.'
+            }
+        ]
 
 
     def test_put_phone_tariff_change_valid_credentials(self):
