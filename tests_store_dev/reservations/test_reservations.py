@@ -20,8 +20,7 @@ class TestNegative:
             "name": "Unauthorized",
             "message": "Your request was made with invalid credentials.",
             "code": 0,
-            "status": 401,
-            "type": "yii\\web\\UnauthorizedHttpException"
+            "status": 401
         }
 
     def test_incorrect_data(self):

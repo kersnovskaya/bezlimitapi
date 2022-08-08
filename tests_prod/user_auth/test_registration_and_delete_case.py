@@ -123,7 +123,7 @@ class TestProd:
         except AssertionError:
             message.append(f'Код ответа {response.status_code}, а не 201.')
         try:
-            assert str(response.json()).startswith('{"sending_repeated_notify":')
+            assert str(response.json()).startswith("{'sending_repeated_notify':")
         except AssertionError:
             message.append(f'Ошибка в теле ответа. Тело ответа: {response.json()}')
 

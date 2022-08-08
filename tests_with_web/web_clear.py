@@ -22,7 +22,7 @@ def authorize():
 
 authorize()
 driver.get('https://bill.bezlimit.ru/phone/card/tasks/9621110832')
-time.sleep(2)
+time.sleep(10)
 status_list = driver.find_elements(By.XPATH, '//a[@class="editable editable-click"]')
 status_list[0].click()
 driver.find_element(By.XPATH, '//select[@class="form-control input-sm"]').click()

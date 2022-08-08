@@ -51,5 +51,5 @@ class TestPositive:
 
         assert response.json() == {
             "name": "тест Рахимов",
-            "phone": 9682229543
+            "phone": 9067111159
         }

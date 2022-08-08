@@ -11,7 +11,6 @@ def sber_url(lk_url):
                'Authorization': f'Bearer {token}',
                'Content-Type': 'application/x-www-form-urlencoded'
                }
-    lk_url = "https://api.lk.bezlimit.ru/v1"
     data = {
         "phone": 9006471111,
         "amount": 30,
