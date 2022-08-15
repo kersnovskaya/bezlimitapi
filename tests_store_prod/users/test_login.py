@@ -69,7 +69,7 @@ class TestNegative:
         assert des_res == [
             {
                 'field': 'password',
-                'message': 'Введен неверный логин или пароль.'
+                'message': 'Введен неверный пароль'
             }
         ]
 
@@ -86,7 +86,7 @@ class TestNegative:
         assert des_res == [
             {
                 'field': 'login',
-                'message': 'Введенный логин не найден в системе'
+                'message': 'Пользователя по данному логину не существует'
             }
         ]
 

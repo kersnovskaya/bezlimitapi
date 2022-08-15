@@ -27,11 +27,10 @@ class TestNegative:
 
         assert response.status_code == 401
         assert response.json() == {
-            "name": "Unauthorized",
-            "message": "Your request was made with invalid credentials.",
-            "code": 0,
-            "status": 401,
-            "type": "yii\\web\\UnauthorizedHttpException"
+            'code': 0,
+            'message': 'Your request was made with invalid credentials.',
+            'name': 'Unauthorized',
+            'status': 401
         }
 
     def test_shitty_expand_and_fields(self):
@@ -65,7 +64,7 @@ class TestPositive:
             response = requests.get(url, headers=headers, params=params)
             des_res = response.json()
 
-            check.equal(response.status_code, 202, 'Всё плохо.')
+            check.equal(response.status_code, 200, 'Всё плохо.')
             assert exp_field in des_res.keys()
 
     def test_fields(self):

@@ -51,6 +51,6 @@ class TestPositive:
         response = requests.get(url, headers=headers)
 
         assert response.json() == {
-            "name": "тест Рахимов",
-            "phone": 9067111159
+            "name": "Test AutoInp1",
+            "phone": 9682220793
         }
