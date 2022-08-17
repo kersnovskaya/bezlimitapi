@@ -1,5 +1,4 @@
 import requests
-import pytest_check as check
 
 
 url = 'https://api.store.dev.bezlimit.ru/v2/users'
@@ -65,7 +64,7 @@ class TestPositive:
             response = requests.get(url, headers=headers, params=params)
             des_res = response.json()
 
-            check.equal(response.status_code, 200, 'Всё плохо.')
+            assert response.status_code == 200, 'Всё плохо.'
             assert exp_field in des_res.keys()
 
     def test_fields(self):
