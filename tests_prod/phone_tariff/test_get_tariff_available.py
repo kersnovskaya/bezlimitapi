@@ -124,7 +124,7 @@ class TestProd:
 		except AssertionError:
 			message.append(f'Причина ошибки {response.reason}, а не "Not Found".')
 		try:
-			assert response.json()['message'] == 'Введите номер телефона в формате 9001112233.'
+			assert response.json()['message'] == 'Введите Номер телефона в формате 9001112233.'
 		except AssertionError:
 			message.append('Ошибка в параметре "message".')
 		try:

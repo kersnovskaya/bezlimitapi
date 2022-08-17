@@ -167,7 +167,7 @@ class TestProd:
         except AssertionError:
             message.append(f"В причине ошибки указано поле {response.json()[0]['field']}, а не 'phone'.")
         try:
-            assert response.json()[0]['message'] == 'Введите номер телефона в формате 9001112233.'
+            assert response.json()[0]['message'] == 'Введите Номер телефона в формате 9001112233.'
         except AssertionError:
             message.append('Ошибка в тексте ошибки.')
 

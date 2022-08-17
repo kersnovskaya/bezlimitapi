@@ -64,7 +64,7 @@ class TestValidationProd:
             assert response.json() == [
                 {
                     'field': 'phone',
-                    'message': 'Введите номер телефона в формате 9001112233.'
+                    'message': 'Введите Номер телефона в формате 9001112233.'
                 },
                 {
                     'field': 'id',
@@ -144,7 +144,7 @@ class TestValidationProd:
             assert response.json() == [
                 {
                     'field': 'phone',
-                    'message': 'Введите номер телефона в формате 9001112233.'
+                    'message': 'Введите Номер телефона в формате 9001112233.'
                 },
                 {
                     'field': 'id',

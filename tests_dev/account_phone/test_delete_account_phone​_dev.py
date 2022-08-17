@@ -129,7 +129,7 @@ class TestDev:
             message.append(f"Код ответа {response.status_code}, а не 422.")
         try:
             assert response.json() == [{"field": "phone",
-                                        "message": "Введите номер телефона в формате 9001112233."}]
+                                        "message": "Введите Номер телефона в формате 9001112233."}]
         except AssertionError:
             message.append('Ошибка в тексте ответа.')
 

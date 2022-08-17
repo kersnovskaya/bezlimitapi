@@ -75,7 +75,7 @@ class TestDev:
         assert response.reason == 'Data Validation Failed.'
         assert type(response.json()) == list
         for i in response.json():
-            assert i['message'] == 'Введите номер телефона в формате 9001112233.'
+            assert i['message'] == 'Введите Номер телефона в формате 9001112233.'
 
     def test_phone_manage_block_without_contact_phone(self):
         token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
@@ -206,7 +206,7 @@ class TestDev:
         assert response.reason == 'Data Validation Failed.'
         assert type(response.json()) == list
         for i in response.json():
-            assert i['message'] == 'Введите номер телефона в формате 9001112233.'
+            assert i['message'] == 'Введите Номер телефона в формате 9001112233.'
 
     def test_phone_manage_unblock_without_contact_phone(self):
         token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'

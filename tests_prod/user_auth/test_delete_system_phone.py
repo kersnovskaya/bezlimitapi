@@ -61,7 +61,7 @@ class TestProd:
 
         assert message == expected_message, message
 
-    def test_not_incorrect_phone(self):
+    def test_incorrect_phone(self):
         message = ['Удаление аккаунта ЛК. Не авторизован.']
         expected_message = ['Удаление аккаунта ЛК. Не авторизован.']
 
@@ -84,7 +84,7 @@ class TestProd:
             assert response.json() == [
                 {
                     'field': 'phone',
-                    'message': 'Введите номер телефона в формате 9001112233.'
+                    'message': 'Введите Номер телефона в формате 9001112233.'
                 }
             ]
         except AssertionError:

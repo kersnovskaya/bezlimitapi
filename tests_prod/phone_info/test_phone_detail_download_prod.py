@@ -261,13 +261,13 @@ class Test:
         }
         request_url = f"{lktest_url}/phone/detail/download"
         response = requests.get(request_url, headers=headers, params=data)
-
+        print(response.json())
         try:
             assert response.status_code == 422
         except AssertionError:
             message.append(f'Код ответа {response.status_code}, а не 422')
         try:
-            assert response.json() == [{'field': 'phone', 'message': 'Введите номер телефона в формате 9001112233.'},
+            assert response.json() == [{'field': 'phone', 'message': 'Введите Номер телефона в формате 9001112233.'},
                                    {'field': 'periodStart', 'message': 'Дата должна быть в формате Y-m-d'},
                                    {'field': 'periodEnd', 'message': 'Дата должна быть в формате Y-m-d'},
                                    {'field': 'type', 'message': 'Разрешенные типы детализаций: 0, 1, 2'}]

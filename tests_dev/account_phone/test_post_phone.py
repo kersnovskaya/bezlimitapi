@@ -61,7 +61,7 @@ class Test:
 
         assert response.status_code == 422, f'Код ответа "{response.status_code}", а не "422".'
         assert response.reason == 'Data Validation Failed.'
-        assert response.json() == [{'field': 'phone', 'message': 'Введите номер телефона в формате 9001112233.'}],\
+        assert response.json() == [{'field': 'phone', 'message': 'Введите Номер телефона в формате 9001112233.'}],\
             f'Ошибка в теле ответа: "{response.json()}"'
 
 
