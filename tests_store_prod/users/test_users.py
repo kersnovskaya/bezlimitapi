@@ -1,10 +1,9 @@
 import requests
 
-
 url = 'https://api.store.bezlimit.ru/v2/users'
 token = 'IJMcp2KDTiGU05YpYwvd2zWqcfiVJzfsyazLPppAfr-iB5GWkTIoW0tFZZ3UP4Tq'
 
-fields = ['id', 'login', 'profile', 'personal_data', 'level', 'dealer']
+fields = ('id', 'login')
 expand = ('profile', 'personal_data', 'level', 'dealer')
 headers = {
     'authorization': 'Basic YXBpU3RvcmU6VkZ6WFdOSmhwNTVtc3JmQXV1dU0zVHBtcnFTRw==',
@@ -66,6 +65,74 @@ class TestPositive:
             assert response.status_code == 200, 'Всё плохо.'
             assert exp_field in des_res.keys()
 
+    def test_all_expand(self):
+        params = {
+            'expand': 'profile, personal_data, level, dealer, loyalty'
+        }
+
+        response = requests.get(url, params=params, headers=headers)
+
+        assert response.status_code == 200
+        assert response.json() == {
+            "id": 285986,
+            "login": "autotest",
+            "profile":
+                {
+                    "id": 285965,
+                    "email": "api_store_autotest@bezlimit.ru",
+                    "email_status": "confirmed",
+                    "avatar": ""
+                },
+            "personal_data":
+                {
+                    "id": 107095,
+                    "user_id": 285986,
+                    "phone": 9696588825,
+                    "phone_status": "reject",
+                    "is_phone_bezlimit": 1,
+                    "first_name": "",
+                    "second_name": "",
+                    "last_name": "",
+                    "gender": None,
+                    "birthday": "1970-01-01",
+                    "series": "",
+                    "number": "",
+                    "department_code": "",
+                    "issued_by": "",
+                    "issue_date": "1970-01-01",
+                    "passport_status": "reject",
+                    "passport_comment": ""
+                },
+            "level":
+                {
+                    "id": 136875,
+                    "user_id": 285986,
+                    "login": "autotest",
+                    "name": "autotest",
+                    "phone": 9696588825,
+                    "level": 1
+                },
+            "dealer":
+                {
+                    "id": 365151,
+                    "sas_user_id": 285986,
+                    "path": "ID 4001: Дистрибьюторская Сеть / ID 141875: Поддержка продаж / ID 22434: Store Bezlimit / ID 43949: Аккаунт для теста / ID 365151: autotest"
+                },
+            "loyalty":
+                {
+                    "id": 5,
+                    "code": "bronze",
+                    "name": "Бронза"
+                }
+        }
+
     def test_fields(self):
         for field in fields:
-            pass
+            params = {
+                'fields': field
+            }
+
+            response = requests.get(url, headers=headers, params=params)
+
+            assert len(response.json()) == 1
+            assert list(response.json().keys()) == [field]

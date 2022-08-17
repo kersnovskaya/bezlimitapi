@@ -91,7 +91,7 @@ class Test:
         lktest_url = "https://lktest.bezlimit.ru/v1"
         data = {
             "phone": phone,
-            "tariffId": 8019
+            "tariffId": 8014
         }
         request_url = f"{lktest_url}/phone/tariff/change"
         response = requests.get(request_url, headers=headers, data=data)
@@ -111,7 +111,7 @@ class Test:
         lktest_url = "https://lktest.bezlimit.ru/v1"
         data = {
             "phone": phone,
-            "tariffId": 8019
+            "tariffId": 8014
         }
         request_url = f"{lktest_url}/phone/tariff/change"
         response = requests.get(request_url, headers=headers, data=data)
