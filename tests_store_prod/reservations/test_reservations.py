@@ -1,6 +1,5 @@
 import requests
 
-
 url = 'https://api.store.bezlimit.ru/v2/reservations'
 token0 = 'Kyu8SyaqOyCQCOBTJQ93580ig_xLh1UsU2JS2i07Tt5WnJ9tc6XGqXHlrDXEUyiH'
 token1 = 'jxrOOpE33Zb944m8w5KUXhgIHPGHS1V0zO1wbphFnXNZSjL-Sa5_KGwYwndejafJ'
@@ -17,11 +16,10 @@ class TestNegative:
 
         assert response.status_code == 401
         assert response.json() == {
-            "name": "Unauthorized",
-            "message": "Your request was made with invalid credentials.",
-            "code": 0,
-            "status": 401,
-            "type": "yii\\web\\UnauthorizedHttpException"
+            'code': 0,
+            'message': 'Your request was made with invalid credentials.',
+            'name': 'Unauthorized',
+            'status': 401
         }
 
     def test_incorrect_data(self):

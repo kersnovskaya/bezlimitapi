@@ -6,6 +6,7 @@ headers = {
     'Authorization': 'Basic YXBpU3RvcmU6VkZ6WFdOSmhwNTVtc3JmQXV1dU0zVHBtcnFTRw==',
     'accept': 'application/json'
 }
+autotest_token = 'IJMcp2KDTiGU05YpYwvd2zWqcfiVJzfsyazLPppAfr-iB5GWkTIoW0tFZZ3UP4Tq'
 token0 = 'Kyu8SyaqOyCQCOBTJQ93580ig_xLh1UsU2JS2i07Tt5WnJ9tc6XGqXHlrDXEUyiH'
 token1 = 'jxrOOpE33Zb944m8w5KUXhgIHPGHS1V0zO1wbphFnXNZSjL-Sa5_KGwYwndejafJ'
 token2 = 'plq-rqmPaSlZ1bpN-LFYZX_WMQOjiuWVK8-2WnUG8n-AyBhprQgSVdXfE58Al9nW'
@@ -26,6 +27,19 @@ def search_phone(token):
     clear_number = response.json()['items'][0]['phone']
 
     return clear_number
+
+
+def reservation_search(token):
+    url_reservations = 'https://api.store.dev.bezlimit.ru/v2/reservations'
+    headers_reservations = {
+        'accept': 'application/json',
+        'Api-Token': token,
+        'Authorization': 'Basic YXBpU3RvcmU6VkZ6WFdOSmhwNTVtc3JmQXV1dU0zVHBtcnFTRw=='
+    }
+    response = requests.get(url_reservations, headers=headers_reservations)
+    reservation_id = response.json()['items'][0]['id']
+
+    return reservation_id
 
 
 class TestNegative:
@@ -110,8 +124,8 @@ class TestNegative:
 
 
 class TestPositive:
-    def test_correct_lvl1(self):
-        headers.update({'Api-Token': token1})
+    def test_correct_autotest(self):
+        headers.update({'Api-Token': autotest_token})
         phone = search_phone(token1)
         data = {
             'phone': phone
@@ -141,3 +155,11 @@ class TestPositive:
         response = requests.post(url, headers=headers, data=data)
 
         print('\n', response.json())
+
+    def test_delete(self):
+        url_delete = f'https://api.store.dev.bezlimit.ru/v2/reservations/{reservation_search(autotest_token)}'
+        headers.update({'Api-Token': autotest_token})
+
+        response = requests.delete(url_delete, headers=headers)
+
+        assert response.status_code == 204
