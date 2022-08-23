@@ -133,6 +133,7 @@ class TestPositive:
 
         response = requests.post(url, headers=headers, data=data)
         des_res = response.json()
+        print('\n', des_res)
 
         assert des_res['phone_number'] == phone
         assert type(des_res['id']) == int

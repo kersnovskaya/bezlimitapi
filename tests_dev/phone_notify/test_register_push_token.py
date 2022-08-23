@@ -1,6 +1,5 @@
 import requests
 
-
 url = 'https://lktest.bezlimit.ru/v1/phone/notify/register-push-token'
 token = 'NEKTX5ZvPNovEEmkL-8tKxcPJBuCx16v5sQCox8b483zOvfEsCwcSwrjicpWDqDI'
 headers = {
@@ -27,6 +26,7 @@ class TestValidation:
             'status': 500
         }
 
+
 class TestNegative:
     def test_unauthorized(self):
         shitty_headers = {
@@ -38,10 +38,11 @@ class TestNegative:
 
         assert response.status_code == 401
         assert response.json() == {
-            'name': 'Unauthorized',
-            'message': 'Your request was made with invalid credentials.',
             'code': 0,
-            'status': 401
+            'message': 'Your request was made with invalid credentials.',
+            'name': 'Unauthorized',
+            'status': 401,
+            'type': 'yii\\web\\UnauthorizedHttpException'
         }
 
 

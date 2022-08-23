@@ -34,11 +34,11 @@ class TestNegative:
         assert response.status_code == 422
         assert response.json() == [
             {
-                "field": "activated_from",
+                "field": "date_from",
                 "message": "Неверный формат даты. Возможный вариант: Y-m-d H:i:s"
             },
             {
-                "field": "activated_to",
+                "field": "date_to",
                 "message": "Неверный формат даты. Возможный вариант: Y-m-d H:i:s"
             }
         ]

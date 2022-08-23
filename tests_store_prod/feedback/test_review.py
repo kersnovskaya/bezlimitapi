@@ -16,11 +16,10 @@ class TestNegative:
         response = requests.post(url, headers=self.headers)
 
         assert response.json() == {
-            "name": "Unauthorized",
-            "message": "Your request was made with invalid credentials.",
-            "code": 0,
-            "status": 401,
-            "type": "yii\\web\\UnauthorizedHttpException"
+            'code': 0,
+            'message': 'Your request was made with invalid credentials.',
+            'name': 'Unauthorized',
+            'status': 401
         }, 'Ошибка в теле ответа.'
 
     def test_empty_data(self):

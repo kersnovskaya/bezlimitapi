@@ -1,7 +1,7 @@
 import requests
 
 
-url = 'https://api.store.bezlimit.ru/v2/users/levels'
+url = 'https://api.store.dev.bezlimit.ru/v2/users/levels'
 token = 'Kyu8SyaqOyCQCOBTJQ93580ig_xLh1UsU2JS2i07Tt5WnJ9tc6XGqXHlrDXEUyiH'
 
 fields = ['id', 'user_id', 'login', 'name', 'phone', 'level']

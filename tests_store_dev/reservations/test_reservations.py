@@ -1,6 +1,5 @@
 import requests
 
-
 url = 'https://api.store.dev.bezlimit.ru/v2/reservations'
 headers = {
     'Authorization': 'Basic YXBpU3RvcmU6VkZ6WFdOSmhwNTVtc3JmQXV1dU0zVHBtcnFTRw==',
@@ -10,16 +9,18 @@ token0 = 'Kyu8SyaqOyCQCOBTJQ93580ig_xLh1UsU2JS2i07Tt5WnJ9tc6XGqXHlrDXEUyiH'
 token1 = 'jxrOOpE33Zb944m8w5KUXhgIHPGHS1V0zO1wbphFnXNZSjL-Sa5_KGwYwndejafJ'
 token2 = 'plq-rqmPaSlZ1bpN-LFYZX_WMQOjiuWVK8-2WnUG8n-AyBhprQgSVdXfE58Al9nW'
 
+
 class TestNegative:
     def test_unauthorized(self):
         response = requests.get(url, headers=headers)
 
         assert response.status_code == 401
         assert response.json() == {
-            "name": "Unauthorized",
-            "message": "Your request was made with invalid credentials.",
-            "code": 0,
-            "status": 401
+            'code': 0,
+            'message': 'Your request was made with invalid credentials.',
+            'name': 'Unauthorized',
+            'status': 401,
+            'type': 'yii\\web\\UnauthorizedHttpException'
         }
 
     def test_incorrect_data(self):
@@ -34,11 +35,11 @@ class TestNegative:
         assert response.status_code == 422
         assert response.json() == [
             {
-                "field": "activated_from",
+                "field": "date_from",
                 "message": "Неверный формат даты. Возможный вариант: Y-m-d H:i:s"
             },
             {
-                "field": "activated_to",
+                "field": "date_to",
                 "message": "Неверный формат даты. Возможный вариант: Y-m-d H:i:s"
             }
         ]
