@@ -52,15 +52,33 @@ class TestPositive:
                     assert type(pity_shit[field]) == str
 
     def test_correct_expand(self):
-        data = {
+        params = {
             'expand': 'loyalty, activation'
         }
-        response = requests.get(url, headers=headers, data=data)
+        response = requests.get(url, headers=headers, params=params)
 
         for pity_shit in response.json()['items']:
-            assert list(pity_shit.keys()) == fields
+            assert list(pity_shit.keys()) == [
+                'id', 'user_id', 'login', 'name', 'phone', 'level', 'activation', 'loyalty'
+            ]
             for field in fields:
                 if field == 'id' or field == 'user_id' or field == 'phone' or field == 'level':
                     assert type(pity_shit[field]) == int
                 else:
                     assert type(pity_shit[field]) == str
+            assert type(pity_shit['activation']["total_cnt"]) == int
+            assert type(pity_shit['activation']["total_personal_cnt"]) == int
+            assert type(pity_shit['activation']["total_level_cnt"]) == int
+            assert type(pity_shit['activation']["current_month_cnt"]) == int
+            assert type(pity_shit['activation']["current_month_personal_cnt"]) == int
+            assert type(pity_shit['activation']["current_month_level_cnt"]) == int
+            assert type(pity_shit['activation']["previous_month_cnt"]) == int
+            assert type(pity_shit['activation']["previous_month_personal_cnt"]) == int
+            assert type(pity_shit['activation']["previous_month_level_cnt"]) == int
+            assert type(pity_shit['activation']["last_month_cnt"]) == int
+            assert type(pity_shit['activation']["last_month_personal_cnt"]) == int
+            assert type(pity_shit['activation']["last_month_level_cnt"]) == int
+            assert type(pity_shit['activation']["last_date"]) == str
+            assert type(pity_shit['loyalty']["id"]) == int
+            assert type(pity_shit['loyalty']["code"]) == str
+            assert type(pity_shit['loyalty']["name"]) == str

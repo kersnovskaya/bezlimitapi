@@ -275,191 +275,577 @@ import requests
 # print(set(sex_dick_asshole).difference(keys))
 
 ass = {
-  "items": [],
-  "_meta": {
-    "totalCount": 0,
-    "pageCount": 0,
-    "currentPage": 1,
-    "perPage": 50
-  }
-}
-
-dick = {
-  "items": [
-    {
-      "id": 2943440,
-      "fio": "TEST TESST TESST",
-      "phone": 9684398678,
-      "address": "г Москва, 1-й Магистральный тупик, д 5А",
-      "comment": "ТЕСТ",
-      "logistic_comment": "",
-      "track_number": "",
-      "track_url": "",
-      "status": "closed",
-      "status_name": "Доставлено (Без оплаты)",
-      "created_at": "2022-07-20",
-      "shipped_at": "2022-07-28"
-    },
-    {
-      "id": 2873250,
-      "fio": "tttt",
-      "phone": 9889665885,
-      "address": "г Москва, ул Гагарина, д 1",
-      "comment": "ghjhhhh",
-      "logistic_comment": "",
-      "track_number": "",
-      "track_url": "",
-      "status": "process",
-      "status_name": "в обработке",
-      "created_at": "2022-06-28",
-      "shipped_at": "2022-06-30"
-    },
-    {
-      "id": 2873248,
-      "fio": "tttt",
-      "phone": 9889665885,
-      "address": "г Москва, ул Гагарина, д 1",
-      "comment": "ghjhhhh",
-      "logistic_comment": "",
-      "track_number": "",
-      "track_url": "",
-      "status": "process",
-      "status_name": "в обработке",
-      "created_at": "2022-06-28",
-      "shipped_at": "2022-06-30"
-    },
-    {
-      "id": 2860932,
-      "fio": "Данильчук Владислав Викторович",
-      "phone": 9587774144,
-      "address": "г Москва, 1-й Магистральный тупик, д 5А",
-      "comment": "",
-      "logistic_comment": "",
-      "track_number": "",
-      "track_url": "",
-      "status": "process",
-      "status_name": "в обработке",
-      "created_at": "2022-06-24",
-      "shipped_at": "2022-06-25"
-    },
-    {
-      "id": 2859062,
-      "fio": "Данильчук Владислав Викторович",
-      "phone": 9587774144,
-      "address": "г Москва, 1-й Магистральный тупик, д 5А",
-      "comment": "",
-      "logistic_comment": "",
-      "track_number": "",
-      "track_url": "",
-      "status": "process",
-      "status_name": "в обработке",
-      "created_at": "2022-06-24",
-      "shipped_at": "2022-06-25"
-    },
-    {
-      "id": 2859002,
-      "fio": "Данильчук Владислав Викторович",
-      "phone": 9587774144,
-      "address": "г Москва, 1-й Магистральный тупик, д 5А",
-      "comment": "",
-      "logistic_comment": "",
-      "track_number": "",
-      "track_url": "",
-      "status": "process",
-      "status_name": "в обработке",
-      "created_at": "2022-06-24",
-      "shipped_at": "2022-06-25"
-    },
-    {
-      "id": 2858706,
-      "fio": "Данильчук Владислав Викторович",
-      "phone": 9587774144,
-      "address": "г Москва, 1-й Магистральный тупик, д 5А",
-      "comment": "Тест",
-      "logistic_comment": "",
-      "track_number": "",
-      "track_url": "",
-      "status": "process",
-      "status_name": "в обработке",
-      "created_at": "2022-06-24",
-      "shipped_at": "2022-06-25"
-    },
-    {
-      "id": 2858606,
-      "fio": "Данильчук Владислав Викторович",
-      "phone": 9587774144,
-      "address": "г Москва, 1-й Магистральный тупик, д 5А",
-      "comment": "Тест",
-      "logistic_comment": "",
-      "track_number": "",
-      "track_url": "",
-      "status": "process",
-      "status_name": "в обработке",
-      "created_at": "2022-06-24",
-      "shipped_at": "2022-06-25"
-    },
-    {
-      "id": 2849910,
-      "fio": "test",
-      "phone": 9006471111,
-      "address": "Самарская обл, г Тольятти, Автозаводское шоссе, д 24",
-      "comment": "koooo",
-      "logistic_comment": "",
-      "track_number": "80097773056088",
-      "track_url": "https://www.pochta.ru/TRACKING#80097773056088",
-      "status": "closed",
-      "status_name": "Ожидает получателя в отделении \"Почты России\"",
-      "created_at": "2022-06-23",
-      "shipped_at": "2022-06-29"
-    },
-    {
-      "id": 2849842,
-      "fio": "test name",
-      "phone": 9378887755,
-      "address": "Самарская обл, г Тольятти, Автозаводское шоссе, д 24 стр 1",
-      "comment": "comment",
-      "logistic_comment": "",
-      "track_number": "",
-      "track_url": "",
-      "status": "new",
-      "status_name": "новый",
-      "created_at": "2022-06-23",
-      "shipped_at": "2022-06-24"
-    },
-    {
-      "id": 2849820,
-      "fio": "test name",
-      "phone": 9378887755,
-      "address": "Самарская обл, г Тольятти, Автозаводское шоссе, д 24",
-      "comment": "comment",
-      "logistic_comment": "",
-      "track_number": "",
-      "track_url": "",
-      "status": "new",
-      "status_name": "новый",
-      "created_at": "2022-06-23",
-      "shipped_at": "2022-06-24"
-    },
-    {
-      "id": 2836824,
-      "fio": "test",
-      "phone": 9684398678,
-      "address": "г Москва, 1-й Магистральный тупик, д 5А",
-      "comment": "тест",
-      "logistic_comment": "",
-      "track_number": "",
-      "track_url": "",
-      "status": "process",
-      "status_name": "в обработке",
-      "created_at": "2022-06-16",
-      "shipped_at": "2022-06-17"
+    "items": [
+        {
+            "id": 146050,
+            "user_id": 362799,
+            "login": "410704",
+            "name": "tst",
+            "phone": 9951345486,
+            "level": 1,
+            "activation": {
+                "total_cnt": 0,
+                "total_personal_cnt": 0,
+                "total_level_cnt": 0,
+                "current_month_cnt": 0,
+                "current_month_personal_cnt": 0,
+                "current_month_level_cnt": 0,
+                "previous_month_cnt": 0,
+                "previous_month_personal_cnt": 0,
+                "previous_month_level_cnt": 0,
+                "last_month_cnt": 0,
+                "last_month_personal_cnt": 0,
+                "last_month_level_cnt": 0,
+                "last_date": ""
+            },
+            "loyalty": {
+                "id": 5,
+                "code": "bronze",
+                "name": "Бронза"
+            }
+        },
+        {
+            "id": 145828,
+            "user_id": 362272,
+            "login": "409594",
+            "name": "ТЕСТ ТЕСТ ТЕСТ",
+            "phone": 9052770442,
+            "level": 2,
+            "activation": {
+                "total_cnt": 0,
+                "total_personal_cnt": 0,
+                "total_level_cnt": 0,
+                "current_month_cnt": 0,
+                "current_month_personal_cnt": 0,
+                "current_month_level_cnt": 0,
+                "previous_month_cnt": 0,
+                "previous_month_personal_cnt": 0,
+                "previous_month_level_cnt": 0,
+                "last_month_cnt": 0,
+                "last_month_personal_cnt": 0,
+                "last_month_level_cnt": 0,
+                "last_date": ""
+            },
+            "loyalty": {
+                "id": 9,
+                "code": "bronze",
+                "name": "Бронза"
+            }
+        },
+        {
+            "id": 145609,
+            "user_id": 361405,
+            "login": "408499",
+            "name": "татвовььв --",
+            "phone": 9999999999,
+            "level": 1,
+            "activation": {
+                "total_cnt": 0,
+                "total_personal_cnt": 0,
+                "total_level_cnt": 0,
+                "current_month_cnt": 0,
+                "current_month_personal_cnt": 0,
+                "current_month_level_cnt": 0,
+                "previous_month_cnt": 0,
+                "previous_month_personal_cnt": 0,
+                "previous_month_level_cnt": 0,
+                "last_month_cnt": 0,
+                "last_month_personal_cnt": 0,
+                "last_month_level_cnt": 0,
+                "last_date": ""
+            },
+            "loyalty": {
+                "id": 5,
+                "code": "bronze",
+                "name": "Бронза"
+            }
+        },
+        {
+            "id": 145088,
+            "user_id": 359202,
+            "login": "405894",
+            "name": "тест тест",
+            "phone": 9657111786,
+            "level": 1,
+            "activation": {
+                "total_cnt": 0,
+                "total_personal_cnt": 0,
+                "total_level_cnt": 0,
+                "current_month_cnt": 0,
+                "current_month_personal_cnt": 0,
+                "current_month_level_cnt": 0,
+                "previous_month_cnt": 0,
+                "previous_month_personal_cnt": 0,
+                "previous_month_level_cnt": 0,
+                "last_month_cnt": 0,
+                "last_month_personal_cnt": 0,
+                "last_month_level_cnt": 0,
+                "last_date": ""
+            },
+            "loyalty": {
+                "id": 5,
+                "code": "bronze",
+                "name": "Бронза"
+            }
+        },
+        {
+            "id": 145083,
+            "user_id": 359185,
+            "login": "405869",
+            "name": "тест тест тест",
+            "phone": 9602370769,
+            "level": 1,
+            "activation": {
+                "total_cnt": 0,
+                "total_personal_cnt": 0,
+                "total_level_cnt": 0,
+                "current_month_cnt": 0,
+                "current_month_personal_cnt": 0,
+                "current_month_level_cnt": 0,
+                "previous_month_cnt": 0,
+                "previous_month_personal_cnt": 0,
+                "previous_month_level_cnt": 0,
+                "last_month_cnt": 0,
+                "last_month_personal_cnt": 0,
+                "last_month_level_cnt": 0,
+                "last_date": ""
+            },
+            "loyalty": {
+                "id": 5,
+                "code": "bronze",
+                "name": "Бронза"
+            }
+        },
+        {
+            "id": 145082,
+            "user_id": 359184,
+            "login": "405864",
+            "name": "тест тест тест",
+            "phone": 9602403367,
+            "level": 1,
+            "activation": {
+                "total_cnt": 0,
+                "total_personal_cnt": 0,
+                "total_level_cnt": 0,
+                "current_month_cnt": 0,
+                "current_month_personal_cnt": 0,
+                "current_month_level_cnt": 0,
+                "previous_month_cnt": 0,
+                "previous_month_personal_cnt": 0,
+                "previous_month_level_cnt": 0,
+                "last_month_cnt": 0,
+                "last_month_personal_cnt": 0,
+                "last_month_level_cnt": 0,
+                "last_date": ""
+            },
+            "loyalty": {
+                "id": 5,
+                "code": "bronze",
+                "name": "Бронза"
+            }
+        },
+        {
+            "id": 145066,
+            "user_id": 359125,
+            "login": "405784",
+            "name": "Test Test Test",
+            "phone": 9052259448,
+            "level": 2,
+            "activation": {
+                "total_cnt": 0,
+                "total_personal_cnt": 0,
+                "total_level_cnt": 0,
+                "current_month_cnt": 0,
+                "current_month_personal_cnt": 0,
+                "current_month_level_cnt": 0,
+                "previous_month_cnt": 0,
+                "previous_month_personal_cnt": 0,
+                "previous_month_level_cnt": 0,
+                "last_month_cnt": 0,
+                "last_month_personal_cnt": 0,
+                "last_month_level_cnt": 0,
+                "last_date": ""
+            },
+            "loyalty": {
+                "id": 9,
+                "code": "bronze",
+                "name": "Бронза"
+            }
+        },
+        {
+            "id": 145055,
+            "user_id": 359085,
+            "login": "405729",
+            "name": "ТЕСТ ТЕСТ ТЕСТ",
+            "phone": 9052811020,
+            "level": 2,
+            "activation": {
+                "total_cnt": 0,
+                "total_personal_cnt": 0,
+                "total_level_cnt": 0,
+                "current_month_cnt": 0,
+                "current_month_personal_cnt": 0,
+                "current_month_level_cnt": 0,
+                "previous_month_cnt": 0,
+                "previous_month_personal_cnt": 0,
+                "previous_month_level_cnt": 0,
+                "last_month_cnt": 0,
+                "last_month_personal_cnt": 0,
+                "last_month_level_cnt": 0,
+                "last_date": ""
+            },
+            "loyalty": {
+                "id": 9,
+                "code": "bronze",
+                "name": "Бронза"
+            }
+        },
+        {
+            "id": 145053,
+            "user_id": 359080,
+            "login": "405719",
+            "name": "Тест Тестов Тестович",
+            "phone": 9052257817,
+            "level": 1,
+            "activation": {
+                "total_cnt": 0,
+                "total_personal_cnt": 0,
+                "total_level_cnt": 0,
+                "current_month_cnt": 0,
+                "current_month_personal_cnt": 0,
+                "current_month_level_cnt": 0,
+                "previous_month_cnt": 0,
+                "previous_month_personal_cnt": 0,
+                "previous_month_level_cnt": 0,
+                "last_month_cnt": 0,
+                "last_month_personal_cnt": 0,
+                "last_month_level_cnt": 0,
+                "last_date": ""
+            },
+            "loyalty": {
+                "id": 5,
+                "code": "bronze",
+                "name": "Бронза"
+            }
+        },
+        {
+            "id": 145049,
+            "user_id": 359070,
+            "login": "405699",
+            "name": "ТЕСТ ТЕСТ ТЕСТ",
+            "phone": 9052259542,
+            "level": 2,
+            "activation": {
+                "total_cnt": 0,
+                "total_personal_cnt": 0,
+                "total_level_cnt": 0,
+                "current_month_cnt": 0,
+                "current_month_personal_cnt": 0,
+                "current_month_level_cnt": 0,
+                "previous_month_cnt": 0,
+                "previous_month_personal_cnt": 0,
+                "previous_month_level_cnt": 0,
+                "last_month_cnt": 0,
+                "last_month_personal_cnt": 0,
+                "last_month_level_cnt": 0,
+                "last_date": ""
+            },
+            "loyalty": {
+                "id": 9,
+                "code": "bronze",
+                "name": "Бронза"
+            }
+        },
+        {
+            "id": 144972,
+            "user_id": 358818,
+            "login": "405314",
+            "name": "Член Общества",
+            "phone": 9915763263,
+            "level": 1,
+            "activation": {
+                "total_cnt": 0,
+                "total_personal_cnt": 0,
+                "total_level_cnt": 0,
+                "current_month_cnt": 0,
+                "current_month_personal_cnt": 0,
+                "current_month_level_cnt": 0,
+                "previous_month_cnt": 0,
+                "previous_month_personal_cnt": 0,
+                "previous_month_level_cnt": 0,
+                "last_month_cnt": 0,
+                "last_month_personal_cnt": 0,
+                "last_month_level_cnt": 0,
+                "last_date": ""
+            },
+            "loyalty": {
+                "id": 5,
+                "code": "bronze",
+                "name": "Бронза"
+            }
+        },
+        {
+            "id": 144964,
+            "user_id": 358791,
+            "login": "405274",
+            "name": "ТЕСТ ТЕСТ ТЕСТ",
+            "phone": 9003379595,
+            "level": 2,
+            "activation": {
+                "total_cnt": 0,
+                "total_personal_cnt": 0,
+                "total_level_cnt": 0,
+                "current_month_cnt": 0,
+                "current_month_personal_cnt": 0,
+                "current_month_level_cnt": 0,
+                "previous_month_cnt": 0,
+                "previous_month_personal_cnt": 0,
+                "previous_month_level_cnt": 0,
+                "last_month_cnt": 0,
+                "last_month_personal_cnt": 0,
+                "last_month_level_cnt": 0,
+                "last_date": ""
+            },
+            "loyalty": {
+                "id": 9,
+                "code": "bronze",
+                "name": "Бронза"
+            }
+        },
+        {
+            "id": 144949,
+            "user_id": 358752,
+            "login": "405199",
+            "name": "ТЕСТ ТЕСТ ТЕСТ",
+            "phone": 9619992783,
+            "level": 1,
+            "activation": {
+                "total_cnt": 0,
+                "total_personal_cnt": 0,
+                "total_level_cnt": 0,
+                "current_month_cnt": 0,
+                "current_month_personal_cnt": 0,
+                "current_month_level_cnt": 0,
+                "previous_month_cnt": 0,
+                "previous_month_personal_cnt": 0,
+                "previous_month_level_cnt": 0,
+                "last_month_cnt": 0,
+                "last_month_personal_cnt": 0,
+                "last_month_level_cnt": 0,
+                "last_date": ""
+            },
+            "loyalty": {
+                "id": 5,
+                "code": "bronze",
+                "name": "Бронза"
+            }
+        },
+        {
+            "id": 144454,
+            "user_id": 356145,
+            "login": "402444",
+            "name": "Тест очереди",
+            "phone": 9642226804,
+            "level": 1,
+            "activation": {
+                "total_cnt": 1,
+                "total_personal_cnt": 1,
+                "total_level_cnt": 0,
+                "current_month_cnt": 1,
+                "current_month_personal_cnt": 1,
+                "current_month_level_cnt": 0,
+                "previous_month_cnt": 0,
+                "previous_month_personal_cnt": 0,
+                "previous_month_level_cnt": 0,
+                "last_month_cnt": 1,
+                "last_month_personal_cnt": 1,
+                "last_month_level_cnt": 0,
+                "last_date": "2022-08-05"
+            },
+            "loyalty": {
+                "id": 5,
+                "code": "bronze",
+                "name": "Бронза"
+            }
+        },
+        {
+            "id": 144009,
+            "user_id": 353607,
+            "login": "400223",
+            "name": "Зимоглядова Ирина",
+            "phone": 9619187863,
+            "level": 2,
+            "activation": {
+                "total_cnt": 0,
+                "total_personal_cnt": 0,
+                "total_level_cnt": 0,
+                "current_month_cnt": 0,
+                "current_month_personal_cnt": 0,
+                "current_month_level_cnt": 0,
+                "previous_month_cnt": 0,
+                "previous_month_personal_cnt": 0,
+                "previous_month_level_cnt": 0,
+                "last_month_cnt": 0,
+                "last_month_personal_cnt": 0,
+                "last_month_level_cnt": 0,
+                "last_date": ""
+            },
+            "loyalty": {
+                "id": 9,
+                "code": "bronze",
+                "name": "Бронза"
+            }
+        },
+        {
+            "id": 144006,
+            "user_id": 353600,
+            "login": "400208",
+            "name": "Зимоглядов Сергей",
+            "phone": 9198598492,
+            "level": 1,
+            "activation": {
+                "total_cnt": 0,
+                "total_personal_cnt": 0,
+                "total_level_cnt": 0,
+                "current_month_cnt": 0,
+                "current_month_personal_cnt": 0,
+                "current_month_level_cnt": 0,
+                "previous_month_cnt": 0,
+                "previous_month_personal_cnt": 0,
+                "previous_month_level_cnt": 0,
+                "last_month_cnt": 0,
+                "last_month_personal_cnt": 0,
+                "last_month_level_cnt": 0,
+                "last_date": ""
+            },
+            "loyalty": {
+                "id": 5,
+                "code": "bronze",
+                "name": "Бронза"
+            }
+        },
+        {
+            "id": 143503,
+            "user_id": 351451,
+            "login": "397693",
+            "name": "рв вапв вап",
+            "phone": 9064447536,
+            "level": 2,
+            "activation": {
+                "total_cnt": 0,
+                "total_personal_cnt": 0,
+                "total_level_cnt": 0,
+                "current_month_cnt": 0,
+                "current_month_personal_cnt": 0,
+                "current_month_level_cnt": 0,
+                "previous_month_cnt": 0,
+                "previous_month_personal_cnt": 0,
+                "previous_month_level_cnt": 0,
+                "last_month_cnt": 0,
+                "last_month_personal_cnt": 0,
+                "last_month_level_cnt": 0,
+                "last_date": ""
+            },
+            "loyalty": {
+                "id": 9,
+                "code": "bronze",
+                "name": "Бронза"
+            }
+        },
+        {
+            "id": 143504,
+            "user_id": 351452,
+            "login": "397703",
+            "name": "рв вапв вап",
+            "phone": 9064447536,
+            "level": 2,
+            "activation": {
+                "total_cnt": 0,
+                "total_personal_cnt": 0,
+                "total_level_cnt": 0,
+                "current_month_cnt": 0,
+                "current_month_personal_cnt": 0,
+                "current_month_level_cnt": 0,
+                "previous_month_cnt": 0,
+                "previous_month_personal_cnt": 0,
+                "previous_month_level_cnt": 0,
+                "last_month_cnt": 0,
+                "last_month_personal_cnt": 0,
+                "last_month_level_cnt": 0,
+                "last_date": ""
+            },
+            "loyalty": {
+                "id": 9,
+                "code": "bronze",
+                "name": "Бронза"
+            }
+        },
+        {
+            "id": 143505,
+            "user_id": 351453,
+            "login": "397713",
+            "name": "рв вапв вап",
+            "phone": 9064447536,
+            "level": 2,
+            "activation": {
+                "total_cnt": 0,
+                "total_personal_cnt": 0,
+                "total_level_cnt": 0,
+                "current_month_cnt": 0,
+                "current_month_personal_cnt": 0,
+                "current_month_level_cnt": 0,
+                "previous_month_cnt": 0,
+                "previous_month_personal_cnt": 0,
+                "previous_month_level_cnt": 0,
+                "last_month_cnt": 0,
+                "last_month_personal_cnt": 0,
+                "last_month_level_cnt": 0,
+                "last_date": ""
+            },
+            "loyalty": {
+                "id": 9,
+                "code": "bronze",
+                "name": "Бронза"
+            }
+        },
+        {
+            "id": 143506,
+            "user_id": 351454,
+            "login": "397718",
+            "name": "рв вапв вап",
+            "phone": 9064447536,
+            "level": 2,
+            "activation": {
+                "total_cnt": 0,
+                "total_personal_cnt": 0,
+                "total_level_cnt": 0,
+                "current_month_cnt": 0,
+                "current_month_personal_cnt": 0,
+                "current_month_level_cnt": 0,
+                "previous_month_cnt": 0,
+                "previous_month_personal_cnt": 0,
+                "previous_month_level_cnt": 0,
+                "last_month_cnt": 0,
+                "last_month_personal_cnt": 0,
+                "last_month_level_cnt": 0,
+                "last_date": ""
+            },
+            "loyalty": {
+                "id": 9,
+                "code": "bronze",
+                "name": "Бронза"
+            }
+        }
+    ],
+    "_meta": {
+        "totalCount": 48,
+        "pageCount": 3,
+        "currentPage": 1,
+        "perPage": 20
     }
-  ],
-  "_meta": {
-    "totalCount": 12,
-    "pageCount": 1,
-    "currentPage": 1,
-    "perPage": 50
-  }
 }
 
+for little_shit in ass['items']:
+    sex = (list(little_shit.keys()))
+    for asshole in sex:
+        print(little_shit[asshole])
