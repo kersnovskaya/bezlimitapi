@@ -10,9 +10,8 @@ headers = {
     'accept': 'application/json',
     'Api-Token': token
 }
-url = 'https://api.store.bezlimit.ru/v2/phones'
+url = 'https://api.store.dev.bezlimit.ru/v2/phones'
 pages = ['1', '52', '2', '6', '20']
-
 
 class TestNegative:
     def test_unauthorized(self):
@@ -23,7 +22,9 @@ class TestNegative:
             'code': 0,
             'message': 'Your request was made with invalid credentials.',
             'name': 'Unauthorized',
-            'status': 401}
+            'status': 401,
+            'type': 'yii\\web\\UnauthorizedHttpException'
+        }
 
     def test_wrong_params(self):
         params = {
@@ -60,7 +61,6 @@ class TestNegative:
                 'message': 'Значение "type" может быть standard, internet, paid'
             }
         ]
-
 
 class TestPositive:
     def test_type_standard(self):
