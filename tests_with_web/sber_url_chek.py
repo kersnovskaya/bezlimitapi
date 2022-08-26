@@ -60,7 +60,7 @@ for url in (url_prod, url_dev):
         button_pay.click()
         time.sleep(8)
 
-        button_cancel = driver.find_element(By.XPATH, '//a[contains(text(), "Отменить")]')
+        button_cancel = driver.find_element(By.XPATH, '//div[@class="left danger"]/a')
         button_cancel.click()
         time.sleep(8)
 
