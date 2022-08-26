@@ -43,7 +43,7 @@ for url in (url_prod, url_dev):
     time.sleep(8)
     driver.get(url)
     time.sleep(8)
-    assert driver.find_element(By.XPATH, '//*[@id="root"]/div/div/div[2]/div/div[3]/form/div[8]/button'), \
+    assert driver.find_element(By.XPATH, '//button[@type="submit"]'), \
         'Не открывается эквайринг.'
 
     for _ in range(3):
@@ -56,7 +56,7 @@ for url in (url_prod, url_dev):
         cvc.send_keys(input_cvc)
         time.sleep(8)
 
-        button_pay = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div[2]/div/div[3]/form/div[8]/button')
+        button_pay = driver.find_element(By.XPATH, '//button[@type="submit"]')
         button_pay.click()
         time.sleep(8)
 
@@ -69,5 +69,5 @@ for url in (url_prod, url_dev):
         time.sleep(5)
 
     time.sleep(5)
-    assert driver.find_element(By.XPATH, '/html/body/main/div/div[1]/button'), \
+    assert driver.find_element(By.XPATH, '//button[@class="bz-btn bz-btn-primary bz-btn-md"]'), \
         'Не открывается страница неуспешной оплаты.'
